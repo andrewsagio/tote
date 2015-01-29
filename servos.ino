@@ -67,7 +67,22 @@ void servo_move(unsigned char servo, double rads) {
 
 void servo_setup() {
     // Initialize all servos.
-    for (unsigned char servo = 0; servo < SERVOS; ++servo) {
+    // Start with hips.
+    for (unsigned char servo = 2; servo < SERVOS; servo += 3) {
+        servos[servo].attach(SERVO_PINS[servo],
+                             SERVO_FREQ_MIN, SERVO_FREQ_MAX);
+        servo_move(servo, HOME_POSITION[servo]);
+        delay(150);
+    }
+    // Then ankles.
+    for (unsigned char servo = 0; servo < SERVOS; servo += 3) {
+        servos[servo].attach(SERVO_PINS[servo],
+                             SERVO_FREQ_MIN, SERVO_FREQ_MAX);
+        servo_move(servo, HOME_POSITION[servo]);
+        delay(150);
+    }
+    // Finally knees.
+    for (unsigned char servo = 1; servo < SERVOS; servo += 3) {
         servos[servo].attach(SERVO_PINS[servo],
                              SERVO_FREQ_MIN, SERVO_FREQ_MAX);
         servo_move(servo, HOME_POSITION[servo]);
