@@ -1,11 +1,13 @@
 #include "leg.h"
 #include "misc.h"
 
+#define HOME ((COXA + FEMUR) / SQRT2)
+
 double leg_position[4][3] = {
-    {(COXA + FEMUR) / SQRT2, -(COXA + FEMUR) / SQRT2, TIBIA},
-    {(COXA + FEMUR) / SQRT2, -(COXA + FEMUR) / SQRT2, TIBIA},
-    {(COXA + FEMUR) / SQRT2, (COXA + FEMUR) / SQRT2, TIBIA},
-    {(COXA + FEMUR) / SQRT2, (COXA + FEMUR) / SQRT2, TIBIA},
+    {HOME, LEG_SIDE[0] * HOME, -TIBIA},
+    {HOME, LEG_SIDE[1] * HOME, -TIBIA},
+    {HOME, LEG_SIDE[2] * HOME, -TIBIA},
+    {HOME, LEG_SIDE[3] * HOME, -TIBIA},
 };
 
 
@@ -29,7 +31,7 @@ bool _inverse_kinematics(double x, double y, double z,
     // Return true on success, and false if x and y are out of range.
     double f = _norm(x, y) - COXA;
     double d = min(FEMUR + TIBIA, _norm(f, z));
-    *hip = atan2(y, x) - PI2;
+    *hip = atan2(y, x) - PI4;
     if (isnan(*hip)) { return false; }
     *knee = _solve_triangle(FEMUR, d, TIBIA) - atan2(-z, f);
     if (isnan(*knee)) { return false; }
@@ -46,6 +48,10 @@ bool move_leg(unsigned char leg, double x, double y, double z) {
     if (!_inverse_kinematics(x, y * LEG_SIDE[leg], z, &ankle, &knee, &hip)) {
         return false;
     }
+    Serial.println("---");
+    Serial.println(ankle);
+    Serial.println(knee);
+    Serial.println(hip);
     servo_move(leg * 3 + 0, ankle);
     servo_move(leg * 3 + 1, knee);
     servo_move(leg * 3 + 2, hip);

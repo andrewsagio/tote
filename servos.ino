@@ -16,8 +16,8 @@ static const unsigned char SERVO_PINS[SERVOS] = {
 static const char SERVO_REVERSE[SERVOS] = {
 // ankle, knee, hip
     -1, -1, 1,    // front left
-    1, 1, 1,    // hind left
-    -1, -1, -1,    // hind right
+    1, 1, -1,    // hind left
+    -1, -1, 1,    // hind right
     1, 1, -1     // front right
 };
 static const char SERVO_TRIM[SERVOS] = {

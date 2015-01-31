@@ -7,12 +7,12 @@
 
 const unsigned char _NEXT_LEG[4] = {1, 0, 2, 3};
 
-static double _shift_x = 0.0;
-static double _shift_y = 0.0;
+// static double _shift_x = 0.0;
+// static double _shift_y = 0.0;
 static bool _on_ground[4] = {true, true, true, true};
 
-double dx = 0;
-double dy = 1.0;
+//double dx = 0;
+//double dy = 1.0;
 
 
 void _creep_move(double dx, double dy) {
