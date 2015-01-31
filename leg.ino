@@ -48,10 +48,6 @@ bool move_leg(unsigned char leg, double x, double y, double z) {
     if (!_inverse_kinematics(x, y * LEG_SIDE[leg], z, &ankle, &knee, &hip)) {
         return false;
     }
-    Serial.println("---");
-    Serial.println(ankle);
-    Serial.println(knee);
-    Serial.println(hip);
     servo_move(leg * 3 + 0, ankle);
     servo_move(leg * 3 + 1, knee);
     servo_move(leg * 3 + 2, hip);

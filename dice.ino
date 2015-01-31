@@ -9,7 +9,6 @@ void setup() {
     beep_setup();
     battery_setup();
     servo_setup();
-    Serial.begin(9600);
 }
 
 
