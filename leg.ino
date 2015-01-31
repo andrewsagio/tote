@@ -2,12 +2,18 @@
 #include "misc.h"
 
 #define HOME ((COXA + FEMUR) / SQRT2)
+const unsigned char LEG_JOINT[4][3] = {
+    {0, 1, 2},
+    {3, 4, 5},
+    {6, 7, 8},
+    {9, 10, 11},
+};
 
 double leg_position[4][3] = {
-    {HOME, LEG_SIDE[0] * HOME, -TIBIA},
-    {HOME, LEG_SIDE[1] * HOME, -TIBIA},
-    {HOME, LEG_SIDE[2] * HOME, -TIBIA},
-    {HOME, LEG_SIDE[3] * HOME, -TIBIA},
+    {HOME, LEG_Y[0] * HOME, -TIBIA},
+    {HOME, LEG_Y[0] * HOME, -TIBIA},
+    {HOME, LEG_Y[0] * HOME, -TIBIA},
+    {HOME, LEG_Y[0] * HOME, -TIBIA},
 };
 
 
@@ -31,7 +37,7 @@ bool _inverse_kinematics(double x, double y, double z,
     // Return true on success, and false if x and y are out of range.
     double f = _norm(x, y) - COXA;
     double d = min(FEMUR + TIBIA, _norm(f, z));
-    *hip = atan2(y, x) - PI4;
+    *hip = atan2(y, x);
     if (isnan(*hip)) { return false; }
     *knee = _solve_triangle(FEMUR, d, TIBIA) - atan2(-z, f);
     if (isnan(*knee)) { return false; }
@@ -45,12 +51,13 @@ bool move_leg(unsigned char leg, double x, double y, double z) {
     double ankle = NaN;
     double knee = NaN;
     double hip = NaN;
-    if (!_inverse_kinematics(x, y * LEG_SIDE[leg], z, &ankle, &knee, &hip)) {
+    if (!_inverse_kinematics(x, y, z, &ankle, &knee, &hip)) {
         return false;
     }
-    servo_move(leg * 3 + 0, ankle);
-    servo_move(leg * 3 + 1, knee);
-    servo_move(leg * 3 + 2, hip);
+    hip -= PI4;
+    servo_move(LEG_JOINT[leg][0], ankle);
+    servo_move(LEG_JOINT[leg][1], knee);
+    servo_move(LEG_JOINT[leg][2], hip);
     leg_position[leg][0] = x;
     leg_position[leg][1] = y;
     leg_position[leg][2] = z;

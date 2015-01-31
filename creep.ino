@@ -18,7 +18,7 @@ static bool _on_ground[4] = {true, true, true, true};
 void _creep_move(double dx, double dy) {
     for (unsigned char leg=0; leg < 4; ++leg) {
         if (_on_ground[leg]) {
-            move_leg_by(leg, -dx, -dy * LEG_SIDE[leg], 0);
+            move_leg_by(leg, -dx, -dy * LEG_Y[leg], 0);
         }
     }
 }
@@ -46,7 +46,7 @@ void _lower_leg(unsigned char leg, double dx, double dy) {
 void _advance_leg(unsigned char leg, double dx, double dy) {
     move_leg(leg,
              (COXA + FEMUR) / SQRT2,
-             LEG_SIDE[leg] * (COXA + FEMUR) / SQRT2,
+             (COXA + FEMUR) / SQRT2,
              leg_position[leg][2]);
     _creep_tick(dx, dy);
     _creep_tick(dx, dy);
