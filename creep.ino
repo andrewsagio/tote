@@ -8,7 +8,7 @@
 #define SHIFT 6.0
 #define STEPS 4
 #define HOME ((COXA + FEMUR) / SQRT2) * 0.75
-#define BODY_HEIGHT TIBIA
+#define BODY_HEIGHT TIBIA * 0.3
 
 const unsigned char _NEXT_LEG[4] = {1, 3, 0, 2};
 
