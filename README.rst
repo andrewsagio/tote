@@ -62,5 +62,6 @@ For controlling the servos, I'm using the Servo library bundled with Arduino.
 Control
 =======
 
-At this moment, the robot just walks straight and doesn't react to anything.
-Eventually I will add the commands here.
+Since practically every TV remote is different, you have to setup the code to
+handle yours. Edit the ``ir.ino`` file and change the protocol, address and
+button codes in there to suit your preferences.
