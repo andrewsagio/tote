@@ -7,8 +7,8 @@ module leg(hip, knee, ankle) {
     HK15318_single_horn();
     translate([0, 0, -2.5]) SG90_horn_screw();
     rotate(hip) {
-        rotate(90) HK15318();
-        translate([16, -8, -16]) rotate([90, 180, 90]) {
+        rotate(-90) HK15318();
+        translate([8, -8, -16]) rotate([90, 180, 90]) {
             HK15318();
             rotate(knee - 90) {
                 HK15318_single_horn();
@@ -20,7 +20,7 @@ module leg(hip, knee, ankle) {
                     translate([0, 0, -2.5]) SG90_horn_screw();
                     rotate(ankle + 90) {
                         HK15318();
-                        translate([3.8, -15, -13]) rotate([0, 90, 0])
+                        translate([3.8, -14.5, -12.5]) rotate([0, 90, 0])
                             HK15318_double_horn();
                     }
                 }

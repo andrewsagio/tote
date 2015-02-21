@@ -2,9 +2,9 @@ use <../parts.scad>
 
 HK15318_single_horn();
 translate([0, 0, -2.5]) SG90_horn_screw();
-rotate(90) HK15318();
-color("LightSkyBlue", 0.5) translate([3, -13, -13]) rotate([90, 0, 0]) cylinder(r=6, h=0.5);
-translate([16, -18, -16]) rotate([90, 180, 90]) {
+rotate(-90) HK15318();
+color("LightSkyBlue", 0.5) translate([-5, -13, -13]) rotate([90, 0, 0]) cylinder(r=6, h=0.5);
+translate([8, -18, -16]) rotate([90, 180, 90]) {
     HK15318();
     rotate(-90) {
         HK15318_single_horn();
