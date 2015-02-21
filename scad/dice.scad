@@ -5,17 +5,21 @@ base = 39/2;
 
 module leg(hip, knee, ankle) {
     HK15318_single_horn();
+    translate([0, 0, -2.5]) SG90_horn_screw();
     rotate(hip) {
         rotate(90) HK15318();
         translate([16, -8, -16]) rotate([90, 180, 90]) {
             HK15318();
             rotate(knee - 90) {
                 HK15318_single_horn();
+                translate([0, 0, -2.5]) SG90_horn_screw();
                 translate([0, 18, -1]) rotate(180) {
                     HK15318_single_horn();
-                    rotate(ankle) {
+                    translate([0, 0, -2.5]) SG90_horn_screw();
+                    rotate(ankle + 90) {
                         HK15318();
-                        translate([7, -13.5, -9.7]) rotate([0, 180, 90]) HK15318_double_horn();
+                        translate([3.8, -15, -13]) rotate([0, 90, 0])
+                            HK15318_double_horn();
                     }
                 }
             }
@@ -35,6 +39,16 @@ module body() {
         translate([11.42, -11.43, 0]) cylinder(r=1.2, h=2, center=true);
         translate([-11.42, -11.43, 0]) cylinder(r=1.2, h=2, center=true);
     }
+
+    translate([16.5, 16.5, -2]) SG90_horn_screw();
+    translate([-16.5, 16.5, -2]) SG90_horn_screw();
+    translate([16.5, -16.5, -2]) SG90_horn_screw();
+    translate([-16.5, -16.5, -2]) SG90_horn_screw();
+    translate([11.42, 11.43, -2]) SG90_horn_screw();
+    translate([-11.42, 11.43, -2]) SG90_horn_screw();
+    translate([11.42, -11.43, -2]) SG90_horn_screw();
+    translate([-11.42, -11.43, -2]) SG90_horn_screw();
+
     translate([1.27 * 13, -2.54 * 3.5, 1.5]) rotate([0, 0, 90])
         arduino_pro_mini();
     translate([-13.5, 13.5, 1]) capacitor();
@@ -73,10 +87,10 @@ module body() {
 
 module robot() {
     translate([0, 0, 40]) {
-        translate([base, -base, -1.5]) rotate(45) leg(0, 0, 45);
-        mirror([0, 1]) translate([base, -base, -1.5]) rotate(45) leg(0, 0, 45);
-        mirror([1, 0]) translate([base, -base, -1.5]) rotate(45) leg(0, 0, 45);
-        mirror([1, 0]) mirror([0, 1]) translate([base, -base, -1.5]) rotate(45) leg(0, 0, 45);
+        translate([base, -base, -1.5]) rotate(45) leg(0, 0, 0);
+        mirror([0, 1]) translate([base, -base, -1.5]) rotate(45) leg(0, 0, 0);
+        mirror([1, 0]) translate([base, -base, -1.5]) rotate(45) leg(0, 0, 0);
+        mirror([1, 0]) mirror([0, 1]) translate([base, -base, -1.5]) rotate(45) leg(0, 0, 0);
         body();
     }
 }
