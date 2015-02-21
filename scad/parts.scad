@@ -27,6 +27,21 @@ module capacitor() {
     }
 }
 
+module rc_servo_plug() {
+    color("Orange") translate([1.27, 1.27, 12]) cylinder(r1=0.75, r2=0, h=20);
+    color("Red") translate([1.27, 1.27 + 2.54, 12]) cylinder(r1=0.75, r2=0, h=20);
+    color("Brown") translate([1.27, 1.27 + 2.54 * 2, 12]) cylinder(r1=0.75, r2=0, h=20);
+    color("DimGray") difference() {
+        cube([2.54, 2.54 * 3, 12]);
+        translate([-1, -1, -1]) cube([1.25, 2.54 * 3 + 2, 7]);
+        rotate(45) cube([1, 2, 12], center=true);
+        translate([0, 2.54*3, 0]) rotate(-45) cube([1, 2, 12], center=true);
+        for (y = [0:2]) {
+            translate([1.27, 1.27 + y * 2.54, -1]) cylinder(r=0.5, h=12);
+        }
+    }
+}
+
 module HK15318() {
     translate([-4, -12, -20]) {
         color("Lavender") {
@@ -187,7 +202,7 @@ module SG90() {
     servo_big_tip_r = 6.05;
 
     translate([-6.0, -16.9, -servo_height - 5.8 - 1]) union() {
-        color("MediumSlateBlue", 0.75) union () {
+        color("Orange", 0.75) union () {
             cube([servo_width, servo_depth, servo_height]);
             translate([0, -4.8, 17.6]) {
                 difference () {
@@ -267,3 +282,20 @@ module SG90_double_horn(angle) {
     }
 }
 
+module ir_sensor() {
+    color("Silver") cube([2.54, 2.54 * 2, 2.54 * 3]);
+    color("DarkRed") {
+        translate([0, 2.54, 0.1]) cylinder(r=1.8, h=2.54 * 2);
+        translate([0, 2.54, 2.54 * 2]) sphere(r=1.8);
+    }
+    color("Silver") {
+        translate([1.27, 1.27, -10])  cylinder(r=0.3, h=12);
+        translate([1.27, 1.27 * 2, -10])  cylinder(r=0.3, h=12);
+        translate([1.27, 1.27 * 3, -10])  cylinder(r=0.3, h=12);
+    }
+}
+
+module switch() {
+    color("Silver") cube([2.54 * 3, 2.54 * 2, 2.54 * 2]);
+    color("SteelBlue") translate([2.54, 2.54 * 2, 1.27]) cube([2.54 * 1, 2.54 * 1, 2.54 * 1]);
+}
