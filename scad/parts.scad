@@ -98,6 +98,13 @@ module HK15318_double_horn() {
     }
 }
 
+module HK15318_plug() {
+    color("WhiteSmoke") difference() {
+        cube([2.54, 2.54 * 2, 2.54 * 2]);
+        translate([0.5, 0.5, 1.5]) cube([2.54, 2.54 * 2 - 1, 2.54 * 2 - 1]);
+    }
+}
+
 module arduino_pro_mini() {
     difference() {
         union() {
