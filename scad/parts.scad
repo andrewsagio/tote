@@ -37,7 +37,7 @@ module HK15318() {
             translate([0, 0, 10]) {
                 difference() {
                     intersection() {
-                        translate([0.1, -3.5, 0]) cube([7.8, 23, 0.5]);
+                        translate([0, -4, 0]) cube([8, 24, 14.4]);
                         union() {
                             translate([4, 2.5, 0]) cylinder(r=6, h=0.25);
                             translate([4, 13.5, 0]) cylinder(r=6, h=0.25);

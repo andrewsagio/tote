@@ -42,14 +42,6 @@ module body() {
         translate([-11.42, -11.43, 0]) cylinder(r=1.2, h=2, center=true);
     }
 
-    translate([16.5, 16.5, -2]) SG90_horn_screw();
-    translate([-16.5, 16.5, -2]) SG90_horn_screw();
-    translate([16.5, -16.5, -2]) SG90_horn_screw();
-    translate([-16.5, -16.5, -2]) SG90_horn_screw();
-    translate([11.42, 11.43, -2]) SG90_horn_screw();
-    translate([-11.42, 11.43, -2]) SG90_horn_screw();
-    translate([11.42, -11.43, -2]) SG90_horn_screw();
-    translate([-11.42, -11.43, -2]) SG90_horn_screw();
 
     translate([1.27 * 13, -2.54 * 3.5, 1.5]) rotate([0, 0, 90])
         arduino_pro_mini();
@@ -81,7 +73,6 @@ module body() {
             translate([1.27, 1.27 * 3, -10])  cylinder(r=0.3, h=12);
         }
     }
-    rotate(90) translate([0, -16, -3.8]) wkLiPo238();
     translate([-2.54, 2.54 * 6, -2.54 * 2]) {
         color("Silver") cube([2.54 * 3, 2.54 * 2, 2.54 * 2]);
         color("SteelBlue") translate([2.54, 2.54 * 2, 1.27]) cube([2.54 * 1, 2.54 * 1, 2.54 * 1]);
@@ -95,7 +86,16 @@ module robot() {
         mirror([1, 0]) translate([base, -base, -1.5]) rotate(45) leg(0, 0, 0);
         mirror([1, 0]) mirror([0, 1]) translate([base, -base, -1.5]) rotate(45) leg(0, 0, 0);
         body();
+        translate([16.5, 16.5, -2]) SG90_horn_screw();
+        translate([-16.5, 16.5, -2]) SG90_horn_screw();
+        translate([16.5, -16.5, -2]) SG90_horn_screw();
+        translate([-16.5, -16.5, -2]) SG90_horn_screw();
+        translate([11.42, 11.42, -2]) SG90_horn_screw();
+        translate([-11.42, 11.42, -2]) SG90_horn_screw();
+        translate([11.42, -11.42, -2]) SG90_horn_screw();
+        translate([-11.42, -11.42, -2]) SG90_horn_screw();
     }
+    rotate(90) translate([0, -16, -3.8]) wkLiPo238();
 }
 
 robot();
