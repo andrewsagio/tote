@@ -10,7 +10,7 @@ step on it).
 Mechanical construction
 =======================
 
-.. image::images/dice.png
+.. image:: doc/images/dice.png
 
 The legs are made from sub-micro RC hobby servos and their horns and screws.
 All you need comes with the servos, so no need for any 3D-printed or laser-cut
