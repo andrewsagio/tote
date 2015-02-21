@@ -170,10 +170,11 @@ module SG90_horn_screw() {
     color("DarkGray") union() {
         translate([0, 0, 3.4]) difference() {
             union() {
-                cylinder(r=1.4, h=0.9, $fn=6);
-                translate([0, 0, -3.4]) cylinder(r=0.8, h=4, $fn=8);
+                cylinder(r=1.4, h=0.9, $fn=8);
+                translate([0, 0, -4.4]) cylinder(r1=0, r2=0.8, h=5, $fn=8);
             }
-            translate([-0.25, -2, 0.4]) cube([0.5, 4, 1]);
+            translate([-0.25, -1, 0.4]) cube([0.5, 2, 1]);
+            translate([1, -0.25, 0.4]) rotate(90) cube([0.5, 2, 1]);
         }
     }
 }
