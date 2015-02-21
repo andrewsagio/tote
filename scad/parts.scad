@@ -123,7 +123,7 @@ module HK15318_plug() {
 module arduino_pro_mini() {
     difference() {
         union() {
-            color("SeaGreen") cube([17.8, 33.0, 1.0]);
+            color("Teal") cube([17.8, 33.0, 1.0]);
             color("Gold") {
                 for (y = [0:11]) {
                     translate([1.27, 1.27 + 2.54 * y, 0.5]) {

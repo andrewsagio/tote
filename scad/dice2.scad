@@ -73,27 +73,27 @@ module body() {
 }
 
 module robot(explode) {
-    translate([20.75, 20.75, -2.1 - explode]) rotate(-135) mirror([0, 1, 0]) {
+    translate([20.75, 20.75, -2.1 - explode]) rotate(-135) {
         leg(0, 0, 0, explode);
     }
-    translate([-20.75, -20.75, -2.1 - explode]) rotate(45) mirror([0, 1, 0]) {
+    translate([-20.75, -20.75, -2.1 - explode]) rotate(45) {
         leg(0, 0, 0, explode);
     }
-    translate([20.75, -20.75, -2.1 - explode]) rotate(135) {
+    translate([20.75, -20.75, -2.1 - explode]) rotate(135) mirror([0, 1, 0]) {
         leg(0, 0, 0, explode);
     }
-    translate([-20.75, 20.75, -2.1 - explode]) rotate(-45) {
+    translate([-20.75, 20.75, -2.1 - explode]) rotate(-45) mirror([0, 1, 0]) {
         leg(0, 0, 0, explode);
     }
     body();
-        translate([16.5, 16.5, 2.5]) rotate([0, 180, 0]) SG90_horn_screw();
-        translate([-16.5, 16.5, 2.5]) rotate([0, 180, 0]) SG90_horn_screw();
-        translate([16.5, -16.5, 2.5]) rotate([0, 180, 0]) SG90_horn_screw();
-        translate([-16.5, -16.5, 2.5]) rotate([0, 180, 0]) SG90_horn_screw();
-        translate([11.2, 11.2, 2.5]) rotate([0, 180, 0]) SG90_horn_screw();
-        translate([-11.2, 11.2, 2.5]) rotate([0, 180, 0]) SG90_horn_screw();
-        translate([11.2, -11.2, 2.5]) rotate([0, 180, 0]) SG90_horn_screw();
-        translate([-11.2, -11.2, 2.5]) rotate([0, 180, 0]) SG90_horn_screw();
+    translate([16.5, 16.5, 2.5]) rotate([0, 180, 0]) SG90_horn_screw();
+    translate([-16.5, 16.5, 2.5]) rotate([0, 180, 0]) SG90_horn_screw();
+    translate([16.5, -16.5, 2.5]) rotate([0, 180, 0]) SG90_horn_screw();
+    translate([-16.5, -16.5, 2.5]) rotate([0, 180, 0]) SG90_horn_screw();
+    translate([11.2, 11.2, 2.5]) rotate([0, 180, 0]) SG90_horn_screw();
+    translate([-11.2, 11.2, 2.5]) rotate([0, 180, 0]) SG90_horn_screw();
+    translate([11.2, -11.2, 2.5]) rotate([0, 180, 0]) SG90_horn_screw();
+    translate([-11.2, -11.2, 2.5]) rotate([0, 180, 0]) SG90_horn_screw();
 }
 
 robot(0);
