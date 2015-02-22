@@ -21,10 +21,6 @@
 /* What is the home position of the legs? */
 #define HOME ((COXA + FEMUR) / SQRT2) * 0.75
 
-/* How high to keep the body over the floor? */
-#define BODY_HEIGHT TIBIA * 0.75
-
-
 /* Given current leg, which leg to move next? */
 const unsigned char _NEXT_LEG[4] = {1, 3, 0, 2};
 
@@ -39,6 +35,7 @@ static bool _on_ground[4] = {true, true, true, true};
 double creep_dx = 0;        // Sideways.
 double creep_dy = 1.0;      // Forward.
 double creep_rotation = 0;  // Rotation.
+double creep_height = TIBIA * 0.75; // Body height;
 
 /*
 Move all legs that are on the ground backwards, pushing the robot forward with
@@ -48,10 +45,11 @@ continuously.
 void _creep_move() {
     for (unsigned char leg=0; leg < 4; ++leg) {
         if (_on_ground[leg]) {
-            move_leg_by(
+            move_leg(
                 leg,
-                -creep_dx * LEG_X[leg],
-                -creep_dy * LEG_Y[leg], 0
+                leg_position[leg][0] - creep_dx * LEG_X[leg],
+                leg_position[leg][1] - creep_dy * LEG_Y[leg],
+                -creep_height
             );
             rotate_leg_by(leg, -creep_rotation * LEG_X[leg] * LEG_Y[leg]);
         }
@@ -67,8 +65,8 @@ void _creep_tick() {
 /* Raises a leg and waits for it to actually raise. */
 void _raise_leg(unsigned char leg) {
     move_leg_by(leg, 0, 0, STEP_HEIGHT);
-    _creep_tick();
     _on_ground[leg] = false;
+    _creep_tick();
     _creep_tick();
     _creep_tick();
     _creep_tick();
@@ -80,8 +78,8 @@ void _lower_leg(unsigned char leg) {
     _creep_tick();
     _creep_tick();
     _creep_tick();
-    _on_ground[leg] = true;
     _creep_tick();
+    _on_ground[leg] = true;
 }
 
 /* Moves leg forward. */
@@ -90,7 +88,7 @@ void _advance_leg(unsigned char leg) {
         leg,
         HOME + (_shift_x + creep_dx * STRIDE) * LEG_X[leg],
         HOME + (_shift_y + creep_dy * STRIDE) * LEG_Y[leg],
-        -BODY_HEIGHT + STEP_HEIGHT
+        -creep_height + STEP_HEIGHT
     );
     rotate_leg_by(leg, creep_rotation * LEG_X[leg] * LEG_Y[leg] * STRIDE);
     _creep_tick();

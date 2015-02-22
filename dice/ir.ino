@@ -44,8 +44,13 @@ void IREvent(uint8_t protocol, uint16_t address, uint32_t command) {
         case 0xA15E:    // Fast forward.
             creep_dx = min(1.0, creep_dx + 0.25);
             break;
+        case 0xF708:    // Channel minus.
+            creep_height = max(TIBIA * 0.25, creep_height - 1);
+            break;
+        case 0xA55A:    // Channel plus.
+            creep_height = min(TIBIA * 1.25, creep_height + 1);
+            break;
         case 0xAF50:    // Power.
-            servo_shutdown();
             break;
         case 0xB847:    // Home.
             for (unsigned char leg=0; leg < 4; ++leg) {
