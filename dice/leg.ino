@@ -71,3 +71,12 @@ bool move_leg_by(unsigned char leg, double dx, double dy, double dz) {
                     leg_position[leg][1] + dy,
                     leg_position[leg][2] + dz);
 }
+
+bool rotate_leg_by(unsigned char leg, double angle) {
+    // Rotate the tip of the leg around the center of robot's body.
+    double x = leg_position[leg][0] + BASE;
+    double y = leg_position[leg][1] + BASE;
+    double nx = x * cos(angle) - y * sin(angle) - BASE;
+    double ny = x * sin(angle) + y * cos(angle) - BASE;
+    return move_leg(leg, nx, ny, leg_position[leg][2]);
+}

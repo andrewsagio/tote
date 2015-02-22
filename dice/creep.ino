@@ -36,18 +36,27 @@ static double _shift_y = 0.0;
 static bool _on_ground[4] = {true, true, true, true};
 
 /* Walking speed. */
-double creep_dx = 0;    // Sideways.
-double creep_dy = 1.0;  // Forward.
-
+double creep_dx = 0;        // Sideways.
+double creep_dy = 1.0;      // Forward.
+double creep_rotation = 0;  // Rotation.
 
 /*
 Move all legs that are on the ground backwards, pushing the robot forward with
 the current walking speed. This is called every tick, to make the robot move
 continuously.
 */
-void _creep_move() { for (unsigned char leg=0; leg < 4; ++leg) { if
-(_on_ground[leg]) { move_leg_by(leg, -creep_dx * LEG_X[leg], -creep_dy *
-LEG_Y[leg], 0); } } }
+void _creep_move() {
+    for (unsigned char leg=0; leg < 4; ++leg) {
+        if (_on_ground[leg]) {
+            move_leg_by(
+                leg,
+                -creep_dx * LEG_X[leg],
+                -creep_dy * LEG_Y[leg], 0
+            );
+            rotate_leg_by(leg, -creep_rotation * LEG_X[leg] * LEG_Y[leg]);
+        }
+    }
+}
 
 /* Called every frame. */
 void _creep_tick() {
@@ -83,6 +92,7 @@ void _advance_leg(unsigned char leg) {
         HOME + (_shift_y + creep_dy * STRIDE) * LEG_Y[leg],
         -BODY_HEIGHT + STEP_HEIGHT
     );
+    rotate_leg_by(leg, creep_rotation * LEG_X[leg] * LEG_Y[leg] * STRIDE);
     _creep_tick();
     _creep_tick();
     _creep_tick();
@@ -120,8 +130,11 @@ void _creep_step(unsigned char leg) {
 void creep() {
     static unsigned char leg = 0;
 
-    if ((creep_dx < -0.01 || creep_dx > 0.01) ||
-        (creep_dy < -0.01 || creep_dy > 0.01)) {
+    if (
+        (creep_dx < -0.01 || creep_dx > 0.01) ||
+        (creep_dy < -0.01 || creep_dy > 0.01) ||
+        (creep_rotation < -0.01 || creep_rotation > 0.01)
+    ) {
         _creep_step(leg);
         leg = _NEXT_LEG[leg];
     } else {
