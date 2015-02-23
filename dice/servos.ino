@@ -22,10 +22,10 @@ static const char SERVO_REVERSE[SERVOS] = {
 };
 static const char SERVO_TRIM[SERVOS] = {
 // ankle, knee, hip
-    0, 0, 0,    // front left
-    0, 0, 0,    // hind left
-    0, 0, 0,    // hind right
-    0, 0, 0     // front right
+    -10, -5, -10,    // front left
+    10, -5, -10,    // hind left
+    0, 0, 10,    // hind right
+    0, 0, 10     // front right
 };
 static Servo servos[SERVOS];
 
