@@ -2,7 +2,12 @@
 #include "leg.h"
 #include "servos.h"
 #include "misc.h"
+#include "beep.h"
 #include <IRLremote.h>
+
+
+extern bool power;
+
 
 void ir_setup() {
     IRLbegin<IR_ALL>(0); // Sensor on PIN 2
@@ -39,10 +44,13 @@ void IREvent(uint8_t protocol, uint16_t address, uint32_t command) {
             creep_rotation = max(-PI/90, creep_rotation - PI/360);
             break;
         case 0xF30C:    // Rewind.
-            creep_dx = max(-1.0, creep_dx - 0.25);
+            creep_spread = max(-10.0, creep_spread - 1);
+            break;
+        case 0xE718:    // Play/pause.
+            creep_spread = 0.0;
             break;
         case 0xA15E:    // Fast forward.
-            creep_dx = min(1.0, creep_dx + 0.25);
+            creep_spread = min(10.0, creep_spread + 1);
             break;
         case 0xF708:    // Channel minus.
             creep_height = max(TIBIA * 0.25, creep_height - 1);
@@ -54,16 +62,19 @@ void IREvent(uint8_t protocol, uint16_t address, uint32_t command) {
             creep_height = TIBIA * 0.75;
             break;
         case 0xBD42:    // Volume down.
-            creep_spread = max(-10.0, creep_spread - 1);
+            creep_dx = max(-1.0, creep_dx - 0.25);
             break;
         case 0xAD52:    // Mute.
-            creep_spread = 0.0;
+            beep_mute = !beep_mute;
             break;
-        case 0xB54A:
-            creep_spread = min(10.0, creep_spread + 1);
+        case 0xB54A:    // Volume up.
+            creep_dx = min(1.0, creep_dx + 0.25);
             break;
+        case 0xBA45:    // Power.
         case 0xAF50:    // Power.
-            beep(440, 500);
+            power = !power;
+            break;
+        case 0xBB44:    // Search.
             break;
         case 0xB847:    // Home.
             for (unsigned char leg=0; leg < 4; ++leg) {
@@ -84,6 +95,7 @@ void IREvent(uint8_t protocol, uint16_t address, uint32_t command) {
             led = false;
     }
     if (led) {
+        beep(1319, 50);
         digitalWrite(13, HIGH);
     }
 }

@@ -86,7 +86,6 @@ void _shift_body(unsigned char leg) {
 /* Perform a full step with a single leg. */
 void _creep_step(unsigned char leg) {
     _shift_body(leg);
-    beep(440, 200);
     move_leg_by(leg, 0, 0, STEP_HEIGHT);
     _on_ground[leg] = false;
     _creep_tick();
@@ -95,6 +94,7 @@ void _creep_step(unsigned char leg) {
     _creep_tick();
     _creep_tick();
     _creep_tick();
+    beep(880, 25);
     move_leg(
         leg,
         HOME + (_shift_x + creep_dx * STRIDE) * LEG_X[leg] + creep_spread,
@@ -106,11 +106,13 @@ void _creep_step(unsigned char leg) {
     _creep_tick();
     _creep_tick();
     _on_ground[leg] = true;
+    beep(1175, 25);
     move_leg_by(leg, 0, 0, -STEP_HEIGHT);
     _creep_tick();
     _creep_tick();
     _creep_tick();
     _creep_tick();
+    beep(988, 25);
 }
 
 /* Perform one step of the creep gait with the current speed. */

@@ -7,6 +7,9 @@
 
 #define HOME ((COXA + FEMUR) / SQRT2)
 
+bool power = true;
+
+
 void setup() {
     battery_setup();
     servo_setup();
@@ -17,7 +20,11 @@ void setup() {
 void ir_loop();
 
 void loop() {
-    creep();
-    ir_loop();
-    // delay(100);
+    if (power) {
+        creep();
+        ir_loop();
+    } else {
+        servo_shutdown();
+        while (true) delay(100);
+    }
 }
