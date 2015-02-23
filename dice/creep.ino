@@ -10,7 +10,7 @@ const unsigned int tones[4] = {880, 988, 1318, 1175};
 /* Creep gait parameters. */
 
 /* How far forward to move them when making a step? */
-#define STRIDE 16.0
+#define STRIDE 12.0
 
 /* How much to shift the body? */
 #define SHIFT 8.0
