@@ -5,16 +5,15 @@
 #include "beep.h"
 
 
+const unsigned int tones[4] = {880, 988, 1318, 1175};
+
 /* Creep gait parameters. */
 
-/* How high to raise the feet? */
-#define STEP_HEIGHT 20.0
-
 /* How far forward to move them when making a step? */
-#define STRIDE 20.0
+#define STRIDE 16.0
 
 /* How much to shift the body? */
-#define SHIFT 4.0
+#define SHIFT 8.0
 
 /* In how many steps should the body be shifted? */
 #define STEPS 4
@@ -49,11 +48,11 @@ void _creep_move() {
         if (_on_ground[leg]) {
             move_leg(
                 leg,
-                leg_position[leg][0] - creep_dx * LEG_X[leg],
-                leg_position[leg][1] - creep_dy * LEG_Y[leg],
+                leg_position[leg][0] - creep_dx * LEG_X[leg] / 2,
+                leg_position[leg][1] - creep_dy * LEG_Y[leg] / 2,
                 -creep_height
             );
-            rotate_leg_by(leg, -creep_rotation * LEG_X[leg] * LEG_Y[leg]);
+            rotate_leg_by(leg, -creep_rotation * LEG_X[leg] * LEG_Y[leg] / 2);
         }
     }
 }
@@ -86,15 +85,13 @@ void _shift_body(unsigned char leg) {
 /* Perform a full step with a single leg. */
 void _creep_step(unsigned char leg) {
     _shift_body(leg);
-    move_leg_by(leg, 0, 0, STEP_HEIGHT);
     _on_ground[leg] = false;
-    _creep_tick();
-    _creep_tick();
-    _creep_tick();
-    _creep_tick();
-    _creep_tick();
-    _creep_tick();
-    beep(880, 25);
+    beep(440, 5);
+    for (unsigned char i = 0; i < 3; ++i) {
+        move_leg_by(leg, 0, 0, 10);
+        _creep_tick();
+    }
+    beep(tones[leg], 25);
     move_leg(
         leg,
         HOME + (_shift_x + creep_dx * STRIDE) * LEG_X[leg] + creep_spread,
@@ -104,15 +101,12 @@ void _creep_step(unsigned char leg) {
     _creep_tick();
     _creep_tick();
     _creep_tick();
-    _creep_tick();
     _on_ground[leg] = true;
-    beep(1175, 25);
-    move_leg_by(leg, 0, 0, -STEP_HEIGHT);
-    _creep_tick();
-    _creep_tick();
-    _creep_tick();
-    _creep_tick();
-    beep(988, 25);
+    beep(1865, 5);
+    for (unsigned char i = 0; i < 3; ++i) {
+        move_leg_by(leg, 0, 0, -10);
+        _creep_tick();
+    }
 }
 
 /* Perform one step of the creep gait with the current speed. */

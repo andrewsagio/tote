@@ -32,10 +32,10 @@ void IREvent(uint8_t protocol, uint16_t address, uint32_t command) {
     }
     switch (command) {
         case 0xBF40:    // Up arrow.
-            creep_dy = min(1.0, creep_dy + 0.25);
+            creep_dy = min(1.5, creep_dy + 0.25);
             break;
         case 0xE619:    // Down arrow.
-            creep_dy = max(-1.0, creep_dy - 0.25);
+            creep_dy = max(-1.5, creep_dy - 0.25);
             break;
         case 0xF807:    // Left arrow.
             creep_rotation = min(PI/90, creep_rotation + PI/360);
