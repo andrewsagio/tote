@@ -16,9 +16,9 @@ static const unsigned char SERVO_PINS[SERVOS] = {
 static const char SERVO_REVERSE[SERVOS] = {
 // ankle, knee, hip
     -1, 1, 1,    // front left
-    1, -1, -1,    // hind left
+    1, -1, -1,   // hind left
     -1, 1, 1,    // hind right
-    1, -1, -1     // front right
+    1, -1, -1    // front right
 };
 static const char SERVO_TRIM[SERVOS] = {
 // ankle, knee, hip
@@ -39,10 +39,10 @@ static const double HOME_POSITION[SERVOS] = {
 
 static const double FOLD_POSITION[SERVOS] = {
 // ankle, knee, hip
-    0, -PI2, -PI4,    // front left
-    0, -PI2, PI4,    // hind left
-    0, -PI2, PI4,    // hind right
-    0, -PI2, -PI4     // front right
+     PI2,  PI2, -PI4,    // front left
+    -PI2, -PI2, -PI4,    // hind left
+     PI2,  PI2, -PI4,    // hind right
+    -PI2, -PI2, -PI4     // front right
 };
 
 void servo_move(unsigned char servo, double rads) {
@@ -94,7 +94,9 @@ void servo_shutdown() {
     // Power down all servos.
     for (unsigned char servo = 0; servo < SERVOS; ++servo) {
         servo_move(servo, FOLD_POSITION[servo]);
-        delay(150);
+    }
+    delay(500);
+    for (unsigned char servo = 0; servo < SERVOS; ++servo) {
         servos[servo].detach();
     }
 }

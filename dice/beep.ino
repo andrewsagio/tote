@@ -1,15 +1,15 @@
 #define BEEP_PIN 3
 
-bool beep_mute = false;
+bool beep_mute = true;
 
 
 void beep_setup() {
     pinMode(BEEP_PIN, OUTPUT);
-    beep(440, 200);
+    beep(1760, 50);
     delay(100);
-    beep(523, 100);
+    beep(1975, 50);
     delay(50);
-    beep(880, 100);
+    beep(1760, 50);
 }
 
 void beep(int frequency, int duration) {
