@@ -50,7 +50,20 @@ void IREvent(uint8_t protocol, uint16_t address, uint32_t command) {
         case 0xA55A:    // Channel plus.
             creep_height = min(TIBIA * 1.25, creep_height + 1);
             break;
+        case 0xE31C:
+            creep_height = TIBIA * 0.75;
+            break;
+        case 0xBD42:    // Volume down.
+            creep_spread = max(-10.0, creep_spread - 1);
+            break;
+        case 0xAD52:    // Mute.
+            creep_spread = 0.0;
+            break;
+        case 0xB54A:
+            creep_spread = min(10.0, creep_spread + 1);
+            break;
         case 0xAF50:    // Power.
+            beep(440, 500);
             break;
         case 0xB847:    // Home.
             for (unsigned char leg=0; leg < 4; ++leg) {

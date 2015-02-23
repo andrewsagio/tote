@@ -8,9 +8,9 @@
 #define HOME ((COXA + FEMUR) / SQRT2)
 
 void setup() {
-    beep_setup();
     battery_setup();
     servo_setup();
+    beep_setup();
     ir_setup();
 }
 

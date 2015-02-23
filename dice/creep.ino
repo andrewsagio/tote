@@ -2,27 +2,28 @@
 #include "misc.h"
 #include "leg.h"
 #include "clock.h"
+#include "beep.h"
 
 
 /* Creep gait parameters. */
 
 /* How high to raise the feet? */
-#define STEP_HEIGHT 15.0
+#define STEP_HEIGHT 20.0
 
 /* How far forward to move them when making a step? */
-#define STRIDE 18.0
+#define STRIDE 20.0
 
 /* How much to shift the body? */
-#define SHIFT 6.0
+#define SHIFT 4.0
 
 /* In how many steps should the body be shifted? */
 #define STEPS 4
 
 /* What is the home position of the legs? */
-#define HOME ((COXA + FEMUR) / SQRT2) * 0.75
+#define HOME ((COXA + FEMUR) / SQRT2)
 
 /* Given current leg, which leg to move next? */
-const unsigned char _NEXT_LEG[4] = {1, 3, 0, 2};
+const unsigned char _NEXT_LEG[4] = {2, 0, 3, 1};
 
 /* Body position. */
 static double _shift_x = 0.0;
@@ -32,10 +33,11 @@ static double _shift_y = 0.0;
 static bool _on_ground[4] = {true, true, true, true};
 
 /* Walking speed. */
-double creep_dx = 0;        // Sideways.
-double creep_dy = 1.0;      // Forward.
-double creep_rotation = 0;  // Rotation.
-double creep_height = TIBIA * 0.75; // Body height;
+double creep_dx = 0.0;          // Sideways.
+double creep_dy = 1.0;          // Forward.
+double creep_rotation = 0.0;    // Rotation.
+double creep_height = TIBIA * 0.75; // Body height.
+double creep_spread = 0.0;      // Leg spread.
 
 /*
 Move all legs that are on the ground backwards, pushing the robot forward with
@@ -62,41 +64,6 @@ void _creep_tick() {
     tick(TICK);
 }
 
-/* Raises a leg and waits for it to actually raise. */
-void _raise_leg(unsigned char leg) {
-    move_leg_by(leg, 0, 0, STEP_HEIGHT);
-    _on_ground[leg] = false;
-    _creep_tick();
-    _creep_tick();
-    _creep_tick();
-    _creep_tick();
-}
-
-/* Lowers a leg and waits for it to lower. */
-void _lower_leg(unsigned char leg) {
-    move_leg_by(leg, 0, 0, -STEP_HEIGHT);
-    _creep_tick();
-    _creep_tick();
-    _creep_tick();
-    _creep_tick();
-    _on_ground[leg] = true;
-}
-
-/* Moves leg forward. */
-void _advance_leg(unsigned char leg) {
-    move_leg(
-        leg,
-        HOME + (_shift_x + creep_dx * STRIDE) * LEG_X[leg],
-        HOME + (_shift_y + creep_dy * STRIDE) * LEG_Y[leg],
-        -creep_height + STEP_HEIGHT
-    );
-    rotate_leg_by(leg, creep_rotation * LEG_X[leg] * LEG_Y[leg] * STRIDE);
-    _creep_tick();
-    _creep_tick();
-    _creep_tick();
-    _creep_tick();
-}
-
 /* Shifts the whole body by defined amount. */
 void _shift_body_by(double dx, double dy) {
     for (unsigned char leg=0; leg < 4; ++leg) {
@@ -119,9 +86,31 @@ void _shift_body(unsigned char leg) {
 /* Perform a full step with a single leg. */
 void _creep_step(unsigned char leg) {
     _shift_body(leg);
-    _raise_leg(leg);
-    _advance_leg(leg);
-    _lower_leg(leg);
+    beep(440, 200);
+    move_leg_by(leg, 0, 0, STEP_HEIGHT);
+    _on_ground[leg] = false;
+    _creep_tick();
+    _creep_tick();
+    _creep_tick();
+    _creep_tick();
+    _creep_tick();
+    _creep_tick();
+    move_leg(
+        leg,
+        HOME + (_shift_x + creep_dx * STRIDE) * LEG_X[leg] + creep_spread,
+        HOME + (_shift_y + creep_dy * STRIDE) * LEG_Y[leg] + creep_spread,
+        leg_position[leg][2]
+    );
+    _creep_tick();
+    _creep_tick();
+    _creep_tick();
+    _creep_tick();
+    _on_ground[leg] = true;
+    move_leg_by(leg, 0, 0, -STEP_HEIGHT);
+    _creep_tick();
+    _creep_tick();
+    _creep_tick();
+    _creep_tick();
 }
 
 /* Perform one step of the creep gait with the current speed. */
