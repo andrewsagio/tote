@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 #
-# Dice documentation build configuration file, created by
+# Documentation build configuration file, created by
 # sphinx-quickstart on Sat Feb 21 16:36:41 2015.
 #
 # This file is execfile()d with the current directory set to its
@@ -46,7 +46,7 @@ source_suffix = '.rst'
 master_doc = 'index'
 
 # General information about the project.
-project = u'Dice'
+project = u'Tote Robot'
 copyright = u'2015, Radomir Dopieralski'
 
 # The version info for the project you're documenting, acts as replacement for
@@ -109,8 +109,8 @@ html_theme = 'bootstrap'
 # documentation.
 #html_theme_options = {}
 html_theme_options = {
-    'navbar_title': "Dice",
-    'navbar_site_name': "Dice Robot",
+    'navbar_title': "Tote",
+    'navbar_site_name': "Tote Robot",
     'navbar_sidebarrel': "false",
     'navbar_fixed_top': "false",
 }
@@ -187,7 +187,7 @@ html_static_path = ['_static']
 #html_file_suffix = None
 
 # Output file base name for HTML help builder.
-htmlhelp_basename = 'Dicedoc'
+htmlhelp_basename = 'doc'
 
 
 # -- Options for LaTeX output ---------------------------------------------
@@ -207,7 +207,7 @@ latex_elements = {
 # (source start file, target name, title,
 #  author, documentclass [howto, manual, or own class]).
 latex_documents = [
-  ('index', 'Dice.tex', u'Dice Documentation',
+  ('index', 'tote.tex', u'Tote Documentation',
    u'Radomir Dopieralski', 'manual'),
 ]
 
@@ -237,7 +237,7 @@ latex_documents = [
 # One entry per manual page. List of tuples
 # (source start file, name, description, authors, manual section).
 man_pages = [
-    ('index', 'dice', u'Dice Documentation',
+    ('index', 'dice', u'Tote Documentation',
      [u'Radomir Dopieralski'], 1)
 ]
 
@@ -251,8 +251,8 @@ man_pages = [
 # (source start file, target name, title, author,
 #  dir menu entry, description, category)
 texinfo_documents = [
-  ('index', 'Dice', u'Dice Documentation',
-   u'Radomir Dopieralski', 'Dice', 'One line description of project.',
+  ('index', 'Tote', u'Tote Documentation',
+   u'Radomir Dopieralski', 'Tote', 'One line description of project.',
    'Miscellaneous'),
 ]
 
