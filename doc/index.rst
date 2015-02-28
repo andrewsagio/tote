@@ -3,8 +3,8 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-Welcome to Tote's documentation!
-================================
+Tote -- Quadruped Robot
+=======================
 
 Tote is a small (fits inside your palm), four-legged, walking robot, with three
 degrees of freedom per leg, Arduino for its brains and controlled either with a
@@ -17,6 +17,7 @@ Contents:
 .. toctree::
    :maxdepth: 2
 
+   intro.rst
    bom.rst
    assembly.rst
    electronics.rst
