@@ -6,18 +6,19 @@
 Welcome to Dice's documentation!
 ================================
 
+Dice is a small (fits inside your palm), four-legged, walking robot, with three
+degrees of freedom per leg, Arduino for its brains and controlled either with a
+TV remote, or by additional electronics added on top of it. It is very simple,
+cheap and sturdy, for this class of robots. Its goal is to be a starting point
+for anyone who wants to start building multi-legged robots.
+
 Contents:
 
 .. toctree::
    :maxdepth: 2
 
+   bom.rst
    assembly.rst
-
-
-Indices and tables
-==================
-
-* :ref:`genindex`
-* :ref:`modindex`
-* :ref:`search`
-
+   electronics.rst
+   software.rst
+   hacking.rst
