@@ -20,12 +20,12 @@ slowly, or when they want to be able to stop at any time. An example of such a
 gait is the "creep" gait, used by cats stalking their prey.
 
 Dynamically stable gaits are much harder, as they have to be performed at a
-particular speed and cannot be interrupted at any point. They are sometimes
-called "controlled falling", as they exploit the fact that it takes some time
-for the robot to fall when it's unstable, and that time can be used to move the
-legs in such a way as to prevent the fall. Most animal gaits are dynamically
-stable, as they tend to be faster and more energy-efficient. An example of a
-simple dynamically stable gait is the "trot" gait.
+particular speed and cannot be interrupted at an arbitrary point. They are
+sometimes called "controlled falling", as they exploit the fact that it takes
+some time for the robot to fall when it's unstable, and that time can be used
+to move the legs in such a way as to prevent the fall. Most animal gaits are
+dynamically stable, as they tend to be faster and more energy-efficient. An
+example of a simple dynamically stable gait is the "trot" gait.
 
 
 Area of Support
