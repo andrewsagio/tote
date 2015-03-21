@@ -23,4 +23,5 @@ Contents:
    electronics.rst
    software.rst
    hacking.rst
+   ik.rst
    gait.rst
