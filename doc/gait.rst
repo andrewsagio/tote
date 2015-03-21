@@ -31,6 +31,8 @@ example of a simple dynamically stable gait is the "trot" gait.
 Area of Support
 ===============
 
+.. image:: images/gait-step01.png
+
 I order for a relatively light robot, like ours, to be statically stable, it
 has to keep its center of mass somewhere between its legs. More precisely, if
 you connect all the feet on the ground with straight lines, so that they form a
@@ -40,9 +42,7 @@ of support will change depending on which legs are placed on the ground and
 where, so the robot will sometimes need to shift its center of mass around to
 remain stable while changing its stance.
 
-The image below shows the are of support of our robot in the starting position:
-
-.. image:: images/gait-step01.png
+The image above shows the are of support of our robot in the starting position.
 
 In a heavier robot, you also have to take into account the inertia, so that
 it's not sufficient to just track the center of mass -- you have to track the
