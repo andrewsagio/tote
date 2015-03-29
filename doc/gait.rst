@@ -110,17 +110,20 @@ The Creep Gait
 ==============
 
 What order is the best for making steps, if you raise one leg at a time? There
-are three possible orders, assuming you always start with the same leg, and
+are four possible orders, assuming you always start with the same leg, and
 ignore mirror reflections:
 
 .. image:: images/gait-step04.png
-    :width: 30%
+    :width: 48%
 
 .. image:: images/gait-step05.png
-    :width: 30%
+    :width: 48%
 
 .. image:: images/gait-step06.png
-    :width: 30%
+    :width: 48%
+
+.. image:: images/gait-step07.png
+    :width: 48%
 
 Both calculations and experimental data show that the last one, a figure eight
 orthogonal to the direction of walking, provides the optimal stability at all
