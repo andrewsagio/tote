@@ -111,7 +111,7 @@ The Creep Gait
 
 What order is the best for making steps, if you raise one leg at a time? There
 are four possible orders, assuming you always start with the same leg, and
-ignore mirror reflections:
+ignore the orders that are just reflections:
 
 .. image:: images/gait-step04.png
     :width: 48%
