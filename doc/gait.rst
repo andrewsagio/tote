@@ -115,15 +115,19 @@ ignore the orders that are just reflections:
 
 .. image:: images/gait-step04.png
     :width: 48%
+    :align: left
 
 .. image:: images/gait-step05.png
     :width: 48%
+    :align: left
 
 .. image:: images/gait-step06.png
     :width: 48%
+    :align: left
 
 .. image:: images/gait-step07.png
     :width: 48%
+    :align: left
 
 Both calculations and experimental data show that the last one, a figure eight
 orthogonal to the direction of walking, provides the optimal stability at all
