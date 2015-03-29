@@ -110,15 +110,22 @@ The Creep Gait
 ==============
 
 What order is the best for making steps, if you raise one leg at a time? There
-are six possible combinations (assuming you always start with the same leg).
-But it turns out that only one of those possible orders actually gives good
-stability, and incidentally, it's the same order as all the animals use: the
-creep gait:
+are three possible orders, assuming you always start with the same leg, and
+ignore mirror reflections:
 
 .. image:: images/gait-step04.png
+    :width: 30%
 
-Note that this order is best only when you are moving forward. If you are
-moving sideways, backwards or rotating, then other leg orders are optimal.
+.. image:: images/gait-step05.png
+    :width: 30%
+
+.. image:: images/gait-step06.png
+    :width: 30%
+
+Both calculations and experimental data show that the last one, a figure eight
+orthogonal to the direction of walking, provides the optimal stability at all
+moments.  Note that this order is best only when you are moving forward. If you
+are moving sideways, backwards or rotating, then other leg orders are optimal.
 That's why it probably makes sense to adapt the order to the situation.
 
 
