@@ -109,25 +109,13 @@ So, to sum, our plan of action is:
 The Creep Gait
 ==============
 
-.. image:: images/gait-step04.png
-    :width: 30%
-    :align: right
-
-.. image:: images/gait-step05.png
-    :width: 30%
-    :align: right
-
-.. image:: images/gait-step06.png
-    :width: 30%
-    :align: right
-
-.. image:: images/gait-step07.png
-    :width: 30%
-    :align: right
-
 What order is the best for making steps, if you raise one leg at a time? There
 are four possible orders, assuming you always start with the same leg, and
 ignore the orders that are just reflections.
+
+
+.. image:: images/gait-step08.png
+
 
 Both calculations and experimental data show that the last one, a figure eight
 orthogonal to the direction of walking, provides the optimal stability at all
