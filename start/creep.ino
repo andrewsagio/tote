@@ -8,15 +8,23 @@
 const unsigned int tones[4] = {880, 988, 1318, 1175};
 
 /* Creep gait parameters. */
-
+#ifdef TOTE2
+#define SPEED 1.0
 /* How far forward to move them when making a step? */
-#define STRIDE 12.0
-
+#define STRIDE 16.0
 /* How much to shift the body? */
-#define SHIFT 8.0
-
+#define SHIFT 12.0
 /* In how many steps should the body be shifted? */
 #define STEPS 4
+#else
+#define SPEED 0.5
+/* How far forward to move them when making a step? */
+#define STRIDE 12.0
+/* How much to shift the body? */
+#define SHIFT 8.0
+/* In how many steps should the body be shifted? */
+#define STEPS 4
+#endif
 
 /* What is the home position of the legs? */
 #define HOME ((COXA + FEMUR) / SQRT2)
@@ -48,8 +56,8 @@ void _creep_move() {
         if (_on_ground[leg]) {
             move_leg(
                 leg,
-                leg_position[leg][0] - creep_dx * LEG_X[leg] / 2,
-                leg_position[leg][1] - creep_dy * LEG_Y[leg] / 2,
+                leg_position[leg][0] - creep_dx * LEG_X[leg] * SPEED,
+                leg_position[leg][1] - creep_dy * LEG_Y[leg] * SPEED,
                 -creep_height
             );
             rotate_leg_by(leg, -creep_rotation * LEG_X[leg] * LEG_Y[leg] / 2);

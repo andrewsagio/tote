@@ -1,5 +1,5 @@
-#include "leg.h"
 #include "misc.h"
+#include "leg.h"
 
 #define HOME ((COXA + FEMUR) / SQRT2)
 const unsigned char LEG_JOINT[4][3] = {
