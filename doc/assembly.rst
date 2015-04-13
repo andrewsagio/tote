@@ -18,6 +18,22 @@ board, you might need to bend the wires a little to get them in the right
 order.
 
 
+.. image:: images/pcb2a.png
+    :width: 320px
+    :align: center
+
+The power switch, the 1000µF capacitor, the IR and distance sensors, and the
+SMD resistors and capacitors on the other side of the board are all optional --
+you can just leave them out. If you leave out the power switch, you need to add
+a wire in its place, the make the robot always on.
+
+The Arduino board can be soldered directly to the printed circuit board, or you
+can use pin headers -- so that you can remove it for programming.
+
+The battery charging module, and any additional modules, can be soldered to
+the additional holes on the sides and in the center of the board, and connected
+to the right pins with additional wires.
+
 Step 2
 ======
 
