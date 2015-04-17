@@ -1,6 +1,12 @@
 Electronics
 ===========
 
+The designs of the main printed circuit board are available in the code
+repository_. You will need Fritzing software to open them and export as
+whatever format is required for fabricating it.
+
+.. _repository: https://bitbucket.org/thesheep/tote
+
 Arduino Pro Mini is used for the brains of the robot. It is connected directly
 to the servo signals and to the battery. There is also a 1000µF electrolytic
 capacitor connected across the battery to avoid brown-outs. An optional voltage
