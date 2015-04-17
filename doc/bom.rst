@@ -5,13 +5,14 @@ Required
 ========
    * Printed Circuit Board, the board design file is in the repository,
    * Arduino Pro Mini, 3.3V/8Mhz version,
-   * 12 Sub-micro Servos, with screws and plastic horns, (I used HK-282A),
-   * 12 PicoBlade Molex Sockets, for plugging in the servos,
+   * 12 SG90 micro Servos, with screws and plastic horns,
+   * 2.54mm pin headers, with at least 38 pins total,
    * 3.7V 1S LiPo Battery (I used a 300mAh battery),
-   * Infra-Red Receiver (I used VS1838B).
 
 Optional
 ========
+   * Infra-Red Receiver (I used VS1838B).
+   * Ultra Sound distance sensor (I used HC-SR04),
    * 1000µF electrolytic capacitor, for avoiding brown-outs,
    * 2 47kΩ SMD resistors and a 47nF SMD capacitor, for battery monitoring,
    * Power Switch, for convenient on/off without unplugging the battery,
