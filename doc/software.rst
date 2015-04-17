@@ -3,7 +3,7 @@ Software
 
 All the required code is included in the repository_. You will need an Arduino
 IDE and a TTL2USB programmer for the Pro Mini to compile and upload the
-software into the robot. Connect the programmer, open ``dice.ino`` in the
+software into the robot. Connect the programmer, open ``start.ino`` in the
 Arduino IDE, and click "Upload". That's all.
 
 .. _repository: https://bitbucket.org/thesheep/tote
