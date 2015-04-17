@@ -8,6 +8,10 @@ their own robots. This takes considerably more time, than just assembling a
 robot, but it can be done one small step at a time.
 
 
+Soldering the Pin Headers
+=========================
+
+
 Connecting the Pro Mini to the Computer
 =======================================
 

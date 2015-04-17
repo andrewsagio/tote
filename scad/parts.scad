@@ -298,6 +298,9 @@ module ir_sensor() {
 module switch() {
     color("Silver") cube([2.54 * 3, 2.54 * 2, 2.54 * 2]);
     color("SteelBlue") translate([2.54, 2.54 * 2, 1.27]) cube([2.54 * 1, 2.54 * 1, 2.54 * 1]);
+    color("Gold") for (x = [0:2]) {
+        translate([2.54 * x + 1.27, 1.27, 2.54 * 2]) cube([0.5, 0.5, 2.54], center=true);
+    }
 }
 
 module goldpin() {
