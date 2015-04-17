@@ -1,3 +1,4 @@
 use <../tote.scad>;
 
-body();
+board();
+components(5);

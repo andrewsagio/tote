@@ -1,7 +1,7 @@
 use <../parts.scad>
 use <../tote.scad>
 
-body();
+body(0);
 translate([20.75, 20.75, 0]) rotate(-135) {
     leg(0, 0, 0, 0);
 }

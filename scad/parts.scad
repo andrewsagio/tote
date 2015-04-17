@@ -299,3 +299,8 @@ module switch() {
     color("Silver") cube([2.54 * 3, 2.54 * 2, 2.54 * 2]);
     color("SteelBlue") translate([2.54, 2.54 * 2, 1.27]) cube([2.54 * 1, 2.54 * 1, 2.54 * 1]);
 }
+
+module goldpin() {
+    color("Gold") translate([0, 0, -0.5]) rotate(45) cylinder(r=0.3, h=8.47, $fn=4);
+    color("DimGray") translate([0, 0, 1]) rotate(22.5) cylinder(r=1.4, h=1.5, $fn=8);
+}

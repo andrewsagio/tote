@@ -130,28 +130,59 @@ module board() {
     }
 }
 
-module body() {
-    board();
+module components(explode) {
     translate([-19.15, -19.15, -0.8]) {
-        translate([1.27 * 26, 2.54 * 4, 1.5]) rotate([0, 0, 90])
+        translate([1.27 * 26, 2.54 * 4, 1.5 + explode]) rotate([0, 0, 90])
             arduino_pro_mini();
-        translate([5, 33, 0]) rotate([0, 180, 0]) capacitor();
-        rotate([0, 180, 0]) {
-            translate([-5.5 * 2.54, 3.75 * 2.54, 0.8]) rotate(180) rc_servo_plug();
-            translate([-6.5 * 2.54, 3.75 * 2.54, 0.8]) rotate(180) rc_servo_plug();
-            translate([-7.5 * 2.54, 3.75 * 2.54, 0.8]) rotate(180) rc_servo_plug();
-            translate([-8.5 * 2.54, 3.75 * 2.54, 0.8]) rotate(180) rc_servo_plug();
-            translate([-9.5 * 2.54, 3.75 * 2.54, 0.8]) rotate(180) rc_servo_plug();
-            translate([-10.5 * 2.54, 3.75 * 2.54, 0.8]) rotate(180) rc_servo_plug();
-            translate([-6.5 * 2.54, 11.25 * 2.54, 0.8]) rc_servo_plug();
-            translate([-7.5 * 2.54, 11.25 * 2.54, 0.8]) rc_servo_plug();
-            translate([-8.5 * 2.54, 11.25 * 2.54, 0.8]) rc_servo_plug();
-            translate([-9.5 * 2.54, 11.25 * 2.54, 0.8]) rc_servo_plug();
-            translate([-10.5 * 2.54, 11.25 * 2.54, 0.8]) rc_servo_plug();
-            translate([-11.5 * 2.54, 11.25 * 2.54, 0.8]) rc_servo_plug();
+        translate([5, 33, 0 - explode]) rotate([0, 180, 0]) capacitor();
+        translate([2.54 * 14, 2.54 * 6, 10 + explode]) rotate(180) ir_sensor();
+        translate([2.54 * 5.5, 2.54, -5 - explode]) rotate(180) switch();
+        for (x = [0:1]) {
+            translate([1.27 * 8 + 2.54 * x, 1.27 * 5, 0.8 - explode])
+                rotate([0, 180, 0]) goldpin();
         }
-        translate([2.54 * 14, 2.54 * 6, 10]) rotate(180) ir_sensor();
-        translate([2.54 * 5.5, 2.54, -5]) rotate(180) switch();
+        for (x = [0:5]) for (y = [0:2]) {
+            translate([1.27 * 12 + 2.54 * x, 1.27 * 2.5 + 2.54 * y, 0.8 - explode])
+                rotate([0, 180, 0]) goldpin();
+            translate([1.27 * 12 + 2.54 * x, 1.27 * 23.5 + 2.54 * y, 0.8 - explode])
+                rotate([0, 180, 0]) goldpin();
+        }
+        translate([1.27 * 4, 1.27 * 2.5, -1.2]) color("Silver")
+            cube([2.54, 1, 1]);
+    }
+}
+
+module body(explode) {
+    board();
+    components(explode);
+    translate([-19.15, -19.15, -0.8]) {
+        rotate([0, 180, 0]) {
+            translate([-5.5 * 2.54, 3.75 * 2.54, 1.8 + explode * 2])
+                rotate(180) rc_servo_plug();
+            translate([-6.5 * 2.54, 3.75 * 2.54, 1.8 + explode * 2])
+                rotate(180) rc_servo_plug();
+            translate([-7.5 * 2.54, 3.75 * 2.54, 1.8 + explode * 2])
+                rotate(180) rc_servo_plug();
+            translate([-8.5 * 2.54, 3.75 * 2.54, 1.8 + explode * 2])
+                rotate(180) rc_servo_plug();
+            translate([-9.5 * 2.54, 3.75 * 2.54, 1.8 + explode * 2])
+                rotate(180) rc_servo_plug();
+            translate([-10.5 * 2.54, 3.75 * 2.54, 1.8 + explode * 2])
+                rotate(180) rc_servo_plug();
+            translate([-6.5 * 2.54, 11.25 * 2.54, 1.8 + explode * 2])
+                rc_servo_plug();
+            translate([-7.5 * 2.54, 11.25 * 2.54, 1.8 + explode * 2])
+                rc_servo_plug();
+            translate([-8.5 * 2.54, 11.25 * 2.54, 1.8 + explode * 2])
+                rc_servo_plug();
+            translate([-9.5 * 2.54, 11.25 * 2.54, 1.8 + explode * 2])
+                rc_servo_plug();
+            translate([-10.5 * 2.54, 11.25 * 2.54, 1.8 + explode * 2])
+                rc_servo_plug();
+            translate([-11.5 * 2.54, 11.25 * 2.54, 1.8 + explode * 2])
+                rc_servo_plug();
+       }
+
     }
 }
 
