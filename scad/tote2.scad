@@ -38,37 +38,120 @@ module leg(hip, knee, ankle, explode) {
     }
 }
 
-module body() {
-    color("Black") translate([0, 0, 0]) difference() {
-        translate([-19.15, -19.15, -0.8]) cube([38.3 + 2.54, 38.3, 1.6]);
-        translate([16.5, 16.5, 0]) cylinder(r=1.2, h=2, center=true);
-        translate([-16.5, 16.5, 0]) cylinder(r=1.2, h=2, center=true);
-        translate([16.5, -16.5, 0]) cylinder(r=1.2, h=2, center=true);
-        translate([-16.5, -16.5, 0]) cylinder(r=1.2, h=2, center=true);
-        translate([11.42, 11.43, 0]) cylinder(r=1.2, h=2, center=true);
-        translate([-11.42, 11.43, 0]) cylinder(r=1.2, h=2, center=true);
-        translate([11.42, -11.43, 0]) cylinder(r=1.2, h=2, center=true);
-        translate([-11.42, -11.43, 0]) cylinder(r=1.2, h=2, center=true);
+module board() {
+    difference() {
+        translate([-19.15, -19.15, -0.8]) {
+            color("WhiteSmoke") cube([38.3 + 2.54, 38.3, 1.6]);
+            color("Gold") {
+                for (x = [0:2])
+                    translate([1.27 * 6 + 2.54 * x, 1.27 * 1, 0.8])
+                        cylinder(r=1, h=1.8, center=true, $fn=8);
+                for (x = [0:3])
+                    translate([1.27 * 4 + 2.54 * x, 1.27 * 3, 0.8])
+                        cylinder(r=1, h=1.8, center=true, $fn=8);
+                for (x = [0:1])
+                    translate([1.27 * 8 + 2.54 * x, 1.27 * 5, 0.8])
+                        cylinder(r=1, h=1.8, center=true, $fn=8);
+                for (y = [2:5])
+                    translate([1.27 * 29, 1.27 * 8 + 2.54 * y, 0.8])
+                        cylinder(r=1, h=1.8, center=true, $fn=8);
+                for (y = [0:2])
+                    translate([1.27 * 27, 1.27 * 8 + 2.54 * y, 0.8])
+                        cylinder(r=1, h=1.8, center=true, $fn=8);
+                for (y = [4:7])
+                    translate([1.27 * 27, 1.27 * 8 + 2.54 * y, 0.8])
+                        cylinder(r=1, h=1.8, center=true, $fn=8);
+                for (x = [0:11]) {
+                    translate([1.27 * 3 + 2.54 * x, 1.27 * 9, 0.8])
+                        cylinder(r=1, h=1.8, center=true, $fn=8);
+                    translate([1.27 * 3 + 2.54 * x, 1.27 * 21, 0.8])
+                        cylinder(r=1, h=1.8, center=true, $fn=8);
+                }
+                for (x = [0:1]) {
+                    translate([1.27 * 10 + 2.54 * x, 1.27 * 19, 0.8])
+                        cylinder(r=1, h=1.8, center=true, $fn=8);
+                }
+                for (x = [0:5]) for (y = [0:2]) {
+                    translate([1.27 * 12 + 2.54 * x, 1.27 * 2.5 + 2.54 * y, 0.8])
+                        cylinder(r=1, h=1.8, center=true, $fn=8);
+                    translate([1.27 * 12 + 2.54 * x, 1.27 * 23.5 + 2.54 * y, 0.8])
+                        cylinder(r=1, h=1.8, center=true, $fn=8);
+                }
+            }
+        }
+        color("WhiteSmoke") {
+            translate([16.5, 16.5, 0]) cylinder(r=1.2, h=2, center=true, $fn=8);
+            translate([-16.5, 16.5, 0]) cylinder(r=1.2, h=2, center=true, $fn=8);
+            translate([16.5, -16.5, 0]) cylinder(r=1.2, h=2, center=true, $fn=8);
+            translate([-16.5, -16.5, 0]) cylinder(r=1.2, h=2, center=true, $fn=8);
+            translate([11.42, 11.43, 0]) cylinder(r=1.2, h=2, center=true, $fn=8);
+            translate([-11.42, 11.43, 0]) cylinder(r=1.2, h=2, center=true, $fn=8);
+            translate([11.42, -11.43, 0]) cylinder(r=1.2, h=2, center=true, $fn=8);
+            translate([-11.42, -11.43, 0]) cylinder(r=1.2, h=2, center=true);
+        }
+        translate([-19.15, -19.15, -0.8]) {
+            color("Gold") {
+                for (x = [0:2])
+                    translate([1.27 * 6 + 2.54 * x, 1.27 * 1, 0.8])
+                        cylinder(r=0.4, h=2, center=true, $fn=8);
+                for (x = [0:3])
+                    translate([1.27 * 4 + 2.54 * x, 1.27 * 3, 0.8])
+                        cylinder(r=0.4, h=2, center=true, $fn=8);
+                for (x = [0:1])
+                    translate([1.27 * 8 + 2.54 * x, 1.27 * 5, 0.8])
+                        cylinder(r=0.4, h=2, center=true, $fn=8);
+                for (y = [2:5])
+                    translate([1.27 * 29, 1.27 * 8 + 2.54 * y, 0.8])
+                        cylinder(r=0.4, h=2, center=true, $fn=8);
+                for (y = [0:2])
+                    translate([1.27 * 27, 1.27 * 8 + 2.54 * y, 0.8])
+                        cylinder(r=0.4, h=2, center=true, $fn=8);
+                for (y = [4:7])
+                    translate([1.27 * 27, 1.27 * 8 + 2.54 * y, 0.8])
+                        cylinder(r=0.4, h=2, center=true, $fn=8);
+                for (x = [0:11]) {
+                    translate([1.27 * 3 + 2.54 * x, 1.27 * 9, 0.8])
+                        cylinder(r=0.4, h=2, center=true, $fn=8);
+                    translate([1.27 * 3 + 2.54 * x, 1.27 * 21, 0.8])
+                        cylinder(r=0.4, h=2, center=true, $fn=8);
+                }
+                for (x = [0:1]) {
+                    translate([1.27 * 10 + 2.54 * x, 1.27 * 19, 0.8])
+                        cylinder(r=0.4, h=2, center=true, $fn=8);
+                }
+                for (x = [0:5]) for (y = [0:2]) {
+                    translate([1.27 * 12 + 2.54 * x, 1.27 * 2.5 + 2.54 * y, 0.8])
+                        cylinder(r=0.4, h=2, center=true, $fn=8);
+                    translate([1.27 * 12 + 2.54 * x, 1.27 * 23.5 + 2.54 * y, 0.8])
+                        cylinder(r=0.4, h=2, center=true, $fn=8);
+                }
+            }
+        }
     }
+}
+
+module body() {
+    board();
     translate([-19.15, -19.15, -0.8]) {
         translate([1.27 * 26, 2.54 * 4, 1.5]) rotate([0, 0, 90])
             arduino_pro_mini();
         translate([5, 33, 0]) rotate([0, 180, 0]) capacitor();
         rotate([0, 180, 0]) {
-            translate([-5.5 * 2.54, 4 * 2.54, 0.8]) rotate(180) rc_servo_plug();
-            translate([-6.5 * 2.54, 4 * 2.54, 0.8]) rotate(180) rc_servo_plug();
-            translate([-7.5 * 2.54, 4 * 2.54, 0.8]) rotate(180) rc_servo_plug();
-            translate([-8.5 * 2.54, 4 * 2.54, 0.8]) rotate(180) rc_servo_plug();
-            translate([-9.5 * 2.54, 4 * 2.54, 0.8]) rotate(180) rc_servo_plug();
-            translate([-10.5 * 2.54, 4 * 2.54, 0.8]) rotate(180) rc_servo_plug();
-            translate([-6.5 * 2.54, 11 * 2.54, 0.8]) rc_servo_plug();
-            translate([-7.5 * 2.54, 11 * 2.54, 0.8]) rc_servo_plug();
-            translate([-8.5 * 2.54, 11 * 2.54, 0.8]) rc_servo_plug();
-            translate([-9.5 * 2.54, 11 * 2.54, 0.8]) rc_servo_plug();
-            translate([-10.5 * 2.54, 11 * 2.54, 0.8]) rc_servo_plug();
-            translate([-11.5 * 2.54, 11 * 2.54, 0.8]) rc_servo_plug();
+            translate([-5.5 * 2.54, 3.75 * 2.54, 0.8]) rotate(180) rc_servo_plug();
+            translate([-6.5 * 2.54, 3.75 * 2.54, 0.8]) rotate(180) rc_servo_plug();
+            translate([-7.5 * 2.54, 3.75 * 2.54, 0.8]) rotate(180) rc_servo_plug();
+            translate([-8.5 * 2.54, 3.75 * 2.54, 0.8]) rotate(180) rc_servo_plug();
+            translate([-9.5 * 2.54, 3.75 * 2.54, 0.8]) rotate(180) rc_servo_plug();
+            translate([-10.5 * 2.54, 3.75 * 2.54, 0.8]) rotate(180) rc_servo_plug();
+            translate([-6.5 * 2.54, 11.25 * 2.54, 0.8]) rc_servo_plug();
+            translate([-7.5 * 2.54, 11.25 * 2.54, 0.8]) rc_servo_plug();
+            translate([-8.5 * 2.54, 11.25 * 2.54, 0.8]) rc_servo_plug();
+            translate([-9.5 * 2.54, 11.25 * 2.54, 0.8]) rc_servo_plug();
+            translate([-10.5 * 2.54, 11.25 * 2.54, 0.8]) rc_servo_plug();
+            translate([-11.5 * 2.54, 11.25 * 2.54, 0.8]) rc_servo_plug();
         }
         translate([2.54 * 14, 2.54 * 6, 10]) rotate(180) ir_sensor();
+        translate([2.54 * 5.5, 2.54, -5]) rotate(180) switch();
     }
 }
 
