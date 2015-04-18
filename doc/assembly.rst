@@ -6,7 +6,6 @@ Step 1
 ======
 
 .. image:: images/dice-step01.png
-    :width: 320px
     :align: center
 
 
@@ -34,6 +33,10 @@ The battery charging module, and any additional modules, can be soldered to
 the additional holes on the sides and in the center of the board, and connected
 to the right pins with additional wires.
 
+You can also use pins and sockets for the Arduino, if you want it to be removable:
+
+.. image:: images/dice-step01b.png
+    :align: center
 Step 2
 ======
 

@@ -181,6 +181,27 @@ module arduino_pro_mini() {
     }
 }
 
+module arduino_pro_mini_pins() {
+    for (y = [0:11]) {
+        translate([1.27, 1.27 + 2.54 * y, 1]) {
+            rotate([0, 180, 0]) goldpin();
+        }
+        translate([17.8 - 1.27, 1.27 + 2.54 * y, 1]) {
+           rotate([0, 180, 0]) goldpin();
+        }
+    }
+    for (x = [0:5]) {
+        translate([2.54 + 2.54 * x, 33.0 - 1.27, 0]) {
+            goldpin();
+        }
+    }
+    for (y=[3, 4, 7, 8]) {
+        translate([17.8 - 2.54 - 1.27, 2.54 * y, 1]) {
+            rotate([0, 180, 0]) goldpin();
+        }
+    }
+}
+
 module SG90_horn_screw() {
     color("DarkGray") union() {
         translate([0, 0, 3.4]) difference() {
@@ -306,4 +327,18 @@ module switch() {
 module goldpin() {
     color("Gold") translate([0, 0, -0.5]) rotate(45) cylinder(r=0.3, h=8.47, $fn=4);
     color("DimGray") translate([0, 0, 1]) rotate(22.5) cylinder(r=1.4, h=1.5, $fn=8);
+}
+
+module pin_socket(pins) {
+    color("DimGray") difference() {
+        translate([0, 0, -2.54 * 3]) cube([2.54, 2.54 * pins, 2.54 * 2.5]);
+        for (pin = [0:pins - 1]) {
+            translate([1.27 * 0.5, 1.27 * 0.5 + 2.54 * pin, -2.54 * 2])
+                cube([1.27, 1.27, 2.54 * 2]);
+        }
+    }
+    color("Gold") for (pin = [0:pins - 1]) {
+        translate([1.27 * 0.75, 1.27 * 0.75 + 2.54 * pin, -2.54 * 3.5])
+            cube([1.27 * 0.5, 1.27 * 0.5, 1.27]);
+    }
 }
