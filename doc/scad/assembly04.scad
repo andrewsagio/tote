@@ -1,5 +1,5 @@
-use <../parts.scad>
-use <../tote.scad>
+use <parts.scad>
+use <tote.scad>
 
 body(0);
 translate([20.75, 20.75, 0]) rotate(-135) {

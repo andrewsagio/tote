@@ -1,4 +1,4 @@
-use <../tote.scad>
+use <tote.scad>
 
 
 module robot(explode) {
@@ -43,7 +43,9 @@ module arrow() {
 }
 
 translate([0, 0, 61]) rotate(90) robot(0);
-translate([0, 0, 40]) rotate(45) arrow();
-translate([0, 0, 40]) rotate(90 + 45) arrow();
-translate([0, 0, 40]) rotate(180 + 45) arrow();
-translate([0, 0, 40]) rotate(270 + 45) arrow();
+rotate(-90) {
+    translate([0, 0, 40]) rotate([0, 180, -60]) arrow();
+    translate([0, 0, 40]) rotate(180 + 60) arrow();
+    rotate(45) rotate([30, 0, 0]) rotate([0, -90, 0]) arrow();
+    rotate(90 + 45) rotate([30, 0, 0]) rotate([0, -90, 0]) arrow();
+}

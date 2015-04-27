@@ -1,4 +1,4 @@
-use <../parts.scad>
+use <parts.scad>
 
 SG90();
 translate([0, 0, 3]) rotate(180) SG90_single_horn();

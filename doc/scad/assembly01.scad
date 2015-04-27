@@ -1,4 +1,4 @@
-use <../tote.scad>;
+use <tote.scad>;
 
 board();
 components(5);

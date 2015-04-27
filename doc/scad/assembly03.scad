@@ -1,4 +1,4 @@
-use <../tote.scad>
+use <tote.scad>
 
 leg(0, 0, 0, 10);
 //color("LightSkyBlue", 0.5) {

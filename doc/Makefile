@@ -178,4 +178,4 @@ pseudoxml:
 
 
 scad:
-	$(MAKE) scad/
+	$(MAKE) -C scad
