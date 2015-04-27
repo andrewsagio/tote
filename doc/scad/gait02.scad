@@ -1,4 +1,5 @@
 use <tote.scad>
+use <parts.scad>
 
 
 module robot(explode) {

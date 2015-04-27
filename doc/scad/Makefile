@@ -12,6 +12,7 @@ IMAGES=\
 	gait05.png \
 	gait06.png \
 	gait07.png \
+	bom-arduino.png \
 
 SIZE=1280,960
 SCAD=openscad --imgsize=$(SIZE) --projection=p -m make
@@ -52,3 +53,7 @@ gait06.png: gait06.scad
 
 gait07.png: gait07.scad
 	$(SCAD) -o $@ $< --camera=-3.53,14.94,16.47,48.00,0.00,358.40,495.70
+
+bom-arduino.png: bom-arduino.scad
+	$(SCAD) -o $@ $< --camera=9.88,18.49,-10.33,30.50,0.00,235.70,140.00
+
