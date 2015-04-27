@@ -10,6 +10,8 @@ spider a little, although it's actually closer to a lizard. In its basic
 version it can walk straight or in arcs, walk sideways and backwards and rotate
 in place, using a statically stable "creep" gait.
 
+.. image:: images/tote.jpg
+
 
 What is it for?
 ===============
@@ -58,3 +60,7 @@ want to modify and extend it once you get it to work.
 
 Depending on how proficient you are in such things, it can take you anywhere
 from four to eight hours to get it all working.
+
+In order to take the project further, you will need at least basic knowledge
+of Arduino programming and information about how the sensors that you want to
+use work, and how to manipulate the data that you receive from them.

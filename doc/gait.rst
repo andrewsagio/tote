@@ -31,7 +31,7 @@ example of a simple dynamically stable gait is the "trot" gait.
 Area of Support
 ===============
 
-.. image:: images/gait-step01.png
+.. image:: scad/gait01.png
 
 I order for a relatively light robot, like ours, to be statically stable, it
 has to keep its center of mass somewhere between its legs. More precisely, if
@@ -58,11 +58,11 @@ Raising a Leg
 
 When the robot raises one of the legs, its area of support changes dramatically:
 
-.. image:: images/gait-step02.png
+.. image:: scad/gait02.png
 
 You can see, that our center of mass is directly on an edge of our area of support. That's bad, because the smallest force can now tip our robot and make it fall. We can avoid that by moving all the legs toward the one leg that we want to raise before raising it, so that the center of mass shifts:
 
-.. image:: images/gait-step03.png
+.. image:: scad/gait03.png
 
 There are also other methods of balancing, not covered here. For example, many
 animals have a flexible spine, that they can bend sideways to shift their
@@ -114,7 +114,17 @@ are four possible orders, assuming you always start with the same leg, and
 ignore the orders that are just reflections.
 
 
-.. image:: images/gait-step08.png
+.. image:: scad/gait04.png
+    :width: 25%
+
+.. image:: scad/gait05.png
+    :width: 25%
+
+.. image:: scad/gait06.png
+    :width: 25%
+
+.. image:: scad/gait07.png
+    :width: 25%
 
 
 Both calculations and experimental data show that the last one, a figure eight

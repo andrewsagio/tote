@@ -5,7 +5,7 @@ Assembly Instructions
 Step 1
 ======
 
-.. image:: images/dice-step01.png
+.. image:: scad/assembly01.png
     :align: center
 
 
@@ -18,7 +18,6 @@ order.
 
 
 .. image:: images/pcb2a.png
-    :width: 320px
     :align: center
 
 The power switch, the 1000µF capacitor, the IR and distance sensors, and the
@@ -35,13 +34,13 @@ to the right pins with additional wires.
 
 You can also use pins and sockets for the Arduino, if you want it to be removable:
 
-.. image:: images/dice-step01b.png
+.. image:: scad/assembly01b.png
     :align: center
+
 Step 2
 ======
 
-.. image:: images/dice-step02.png
-    :width: 320px
+.. image:: scad/assembly02.png
     :align: center
 
 Set all the servos to the zero position (in the middle of their movement
@@ -54,8 +53,7 @@ with the smallest screws (make sure you un-power the servo before you do that).
 Step 3
 ======
 
-.. image:: images/dice-step03.png
-    :width: 320px
+.. image:: scad/assembly03.png
     :align: center
 
 Put the legs together. You will need two right legs, and two left ones, that
@@ -66,8 +64,7 @@ together. Use glue to attach the double-armed horn and to bind the two servos.
 Step 4
 ======
 
-.. image:: images/dice-step04.png
-    :width: 320px
+.. image:: scad/assembly04.png
     :align: center
 
 
@@ -79,8 +76,7 @@ in the right orientation, as on the image.
 Step 5
 ======
 
-.. image:: images/dice.png
-    :width: 320px
+.. image:: scad/tote.png
     :align: center
 
 Connect all the servos plugs into their respective sockets. The outermost
