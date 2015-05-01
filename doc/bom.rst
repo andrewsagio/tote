@@ -44,6 +44,7 @@ perma-board and make the connections with pieces of wire. This is not covered
 in this instruction, however.
 
 .. _repository: https://bitbucket.org/thesheep/tote
+.. _Fritzing: http://fritzing.org
 
 
 Arduino Pro Mini

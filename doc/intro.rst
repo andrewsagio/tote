@@ -22,6 +22,26 @@ for building more advanced walking robots. If you always wanted to build a
 walking robot, but wasn't sure where to start, this is it.
 
 
+How is it different from all those toys?
+========================================
+
+Most walking toys available currently are not very different from the wind-up
+toys that our parents used to play with -- except they have an electric motor
+instead of a spring. But the whole walking pattern is hard-wired in the
+mechanism of the toy, and it can do nothing more than walking forward and
+backwards on flat surfaces, and maybe turning.
+
+This robot is potentially more than a toy. While the basic functionality that
+you begin with is pretty much the same, this robot can move each of the legs
+individually within three degrees of freedom, controlled with a computer
+program that you can freely modify. You can make it dance, you can make it
+climb, you can make it follow any movement plan. Furthermore, you can add
+sensors and modules to it, that would allow you to make it do practically
+anything -- as long as you have enough skill to actually program it. Don't get
+me wrong, it's very hard to make it do even the simplest things -- but the
+point is that you can!
+
+
 Challenges
 ==========
 
@@ -61,6 +81,8 @@ want to modify and extend it once you get it to work.
 Depending on how proficient you are in such things, it can take you anywhere
 from four to eight hours to get it all working.
 
-In order to take the project further, you will need at least basic knowledge
-of Arduino programming and information about how the sensors that you want to
-use work, and how to manipulate the data that you receive from them.
+In order to take the project further, you will need at least basic knowledge of
+Arduino programming and information about how the sensors that you want to use
+work, and how to manipulate the data that you receive from them. If you add
+more modules, you will also need to know how to program those. This is a huge
+topic, and you can keep learning and experimenting for years.
