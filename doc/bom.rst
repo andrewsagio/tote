@@ -87,6 +87,8 @@ so the price is really important here. The specific SG90 model was chosen
 because it's the cheapest currently available. You can replace it with any
 other nine gram servomechanism instead.
 
+.. image:: scad/bom-servos.png
+
 Each servo comes with a set of plastic horns (single, double and cross-shaped),
 as well with three screws (one small and two larger). We will need those to
 build our robot's legs. This way you don't need any additional mechanical
@@ -106,6 +108,7 @@ a total of 38 pins, so you need to get more. You can buy them easily at any
 electronics parts shop. Don't worry about their exact lengths, you will break
 them into the lengths that you need.
 
+.. image:: scad/bom-pins.png
 
 1S LiPo Battery
 ===============

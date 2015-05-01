@@ -13,6 +13,8 @@ IMAGES=\
 	gait06.png \
 	gait07.png \
 	bom-arduino.png \
+	bom-servos.png \
+	bom-pins.png \
 
 SIZE=1280,960
 SCAD=openscad --imgsize=$(SIZE) --projection=p -m make
