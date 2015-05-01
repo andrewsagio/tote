@@ -13,9 +13,10 @@ const unsigned int tones[4] = {880, 988, 1318, 1175};
 /* How far forward to move them when making a step? */
 #define STRIDE 16.0
 /* How much to shift the body? */
-#define SHIFT 12.0
+#define SHIFT 9.0
 /* In how many steps should the body be shifted? */
-#define STEPS 4
+#define STEPS 3
+#define RAISE 20.0
 #else
 #define SPEED 0.5
 /* How far forward to move them when making a step? */
@@ -24,6 +25,7 @@ const unsigned int tones[4] = {880, 988, 1318, 1175};
 #define SHIFT 8.0
 /* In how many steps should the body be shifted? */
 #define STEPS 4
+#define RAISE 10.0
 #endif
 
 /* What is the home position of the legs? */
@@ -96,7 +98,7 @@ void _creep_step(unsigned char leg) {
     _on_ground[leg] = false;
     beep(440, 5);
     for (unsigned char i = 0; i < 3; ++i) {
-        move_leg_by(leg, 0, 0, 10);
+        move_leg_by(leg, 0, 0, RAISE);
         _creep_tick();
     }
     beep(tones[leg], 25);
@@ -112,7 +114,7 @@ void _creep_step(unsigned char leg) {
     _on_ground[leg] = true;
     beep(1865, 5);
     for (unsigned char i = 0; i < 3; ++i) {
-        move_leg_by(leg, 0, 0, -10);
+        move_leg_by(leg, 0, 0, -RAISE);
         _creep_tick();
     }
 }

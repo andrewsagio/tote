@@ -7,6 +7,7 @@ extern const double TAU;
 extern const double SQRT2;
 extern const double NaN;
 
-//#define TOTE2
+// Use the larger SG90 servos
+#define TOTE2
 
 #endif

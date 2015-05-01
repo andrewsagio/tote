@@ -25,6 +25,9 @@ void loop() {
         ir_loop();
     } else {
         servo_shutdown();
-        while (!power) delay(100);
+        while (!power) {
+            delay(100);
+            ir_loop();
+        }
     }
 }

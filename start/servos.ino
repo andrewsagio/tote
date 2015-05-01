@@ -39,10 +39,10 @@ static const double HOME_POSITION[SERVOS] = {
 
 static const double FOLD_POSITION[SERVOS] = {
 // ankle, knee, hip
-     PI2,  PI2, -PI4,    // front left
-    -PI2, -PI2, -PI4,    // hind left
-     PI2,  PI2, -PI4,    // hind right
-    -PI2, -PI2, -PI4     // front right
+    -PI2,  PI2, -PI4,    // front left
+    -PI2,  PI2, -PI4,    // hind left
+    -PI2,  PI2, -PI4,    // hind right
+    -PI2,  PI2, -PI4     // front right
 };
 
 void servo_move(unsigned char servo, double rads) {
