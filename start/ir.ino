@@ -3,14 +3,14 @@
 #include "servos.h"
 #include "misc.h"
 #include "beep.h"
-#include <IRLremote.h>
-
+#include "IRLremote.h"
 
 extern bool power;
 
 
 void ir_setup() {
-    IRLbegin<IR_ALL>(0); // Sensor on PIN 2
+    // Sensor on PIN 2, use the NEC protocol.
+    attachInterrupt(0, IRLinterrupt<IR_NEC>, CHANGE);
     pinMode(13, OUTPUT);
     digitalWrite(13, LOW);
 }

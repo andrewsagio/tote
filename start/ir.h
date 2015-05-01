@@ -3,5 +3,6 @@
 
 void ir_setup();
 void ir();
+void ir_loop();
 
 #endif

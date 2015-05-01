@@ -5,7 +5,6 @@
 #include "leg.h"
 #include "misc.h"
 
-#define HOME ((COXA + FEMUR) / SQRT2)
 
 bool power = true;
 
@@ -16,8 +15,6 @@ void setup() {
     beep_setup();
     ir_setup();
 }
-
-void ir_loop();
 
 void loop() {
     if (power) {
