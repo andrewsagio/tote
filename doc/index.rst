@@ -19,6 +19,7 @@ Contents:
 
    intro.rst
    bom.rst
+   tools.rst
    assembly.rst
    electronics.rst
    software.rst
