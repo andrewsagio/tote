@@ -20,13 +20,13 @@ the illustrations, or they may be angled -- it doesn't matter for our purposes.
 Insert the pin header into the holes at one of the short ends of the board, as
 the illustration below shows:
 
-.. image:: scad/tutotrial-pins.png
+.. image:: scad/tutorial-pins.png
 
 Now flip the board to the other side, place it on a table, and carefully solder
 each of the pins to their holes. To do that, first touch the hole with the end
 of your solder wire, and then briefly touch it with a hot soldering iron, as shown below:
 
-.. image:: scad/tutotrial-solder.png
+.. image:: scad/tutorial-solder.png
 
 The solder should melt and flow into the hole, filling it and securing the pin
 in place. Make sure you don't connect the neighbouring pins with each other
