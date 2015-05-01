@@ -15,6 +15,8 @@ IMAGES=\
 	bom-arduino.png \
 	bom-servos.png \
 	bom-pins.png \
+	tutorial-pins.png \
+	tutorial-solder.png \
 
 SIZE=1280,960
 SCAD=openscad --imgsize=$(SIZE) --projection=p -m make
@@ -59,3 +61,5 @@ gait07.png: gait07.scad
 bom-arduino.png: bom-arduino.scad
 	$(SCAD) -o $@ $< --camera=9.88,18.49,-10.33,30.50,0.00,235.70,140.00
 
+tutorial-solder.png: tutorial-solder.scad
+	$(SCAD) -o $@ $< --camera=0.93,10.92,13.82,54.30,0.00,20.10,66.96

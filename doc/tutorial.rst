@@ -11,6 +11,28 @@ robot, but it can be done one small step at a time.
 Soldering the Pin Headers
 =========================
 
+In order to be able to connect your Pro Mini to your computer, you first need
+to solder the pin header for the serial communication. Your board should have
+come with with three pin headers: one 6 pins long, and two 12 pins long. You
+will need the shorter, 6 pin long one. The pins in it may be straight, like in
+the illustrations, or they may be angled -- it doesn't matter for our purposes.
+
+Insert the pin header into the holes at one of the short ends of the board, as
+the illustration below shows:
+
+.. image:: scad/tutotrial-pins.png
+
+Now flip the board to the other side, place it on a table, and carefully solder
+each of the pins to their holes. To do that, first touch the hole with the end
+of your solder wire, and then briefly touch it with a hot soldering iron, as shown below:
+
+.. image:: scad/tutotrial-solder.png
+
+The solder should melt and flow into the hole, filling it and securing the pin
+in place. Make sure you don't connect the neighbouring pins with each other
+while doing this. Each of them should have a separate electric connection only
+to their own hole.
+
 
 Connecting the Pro Mini to the Computer
 =======================================
