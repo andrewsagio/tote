@@ -25,3 +25,4 @@ Contents:
    hacking.rst
    ik.rst
    gait.rst
+   tutorial.rst
