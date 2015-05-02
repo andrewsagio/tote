@@ -6,6 +6,7 @@
 #include "IRLremote.h"
 
 extern bool power;
+uint32_t IRcommand = 0;
 
 
 void ir_setup() {
@@ -16,21 +17,15 @@ void ir_setup() {
 }
 
 void ir_loop() {
-    digitalWrite(13, LOW);
-}
-
-void IREvent(uint8_t protocol, uint16_t address, uint32_t command) {
     static uint32_t last=0;
     bool led = true;
 
-    if (address != 0xFF00) {
-        return; // React only to my remote.
+
+    if (IRcommand == 0xFFFF) {
+        IRcommand = last;
     }
 
-    if (command == 0xFFFFFF) {
-        command = last;
-    }
-    switch (command) {
+    switch (IRcommand) {
         case 0xBF40:    // Up arrow.
             creep_dy = min(1.5, creep_dy + 0.25);
             break;
@@ -94,8 +89,19 @@ void IREvent(uint8_t protocol, uint16_t address, uint32_t command) {
         default:
             led = false;
     }
+    IRcommand = 0;
+
     if (led) {
         beep(1319, 50);
         digitalWrite(13, HIGH);
+    } else {
+        digitalWrite(13, LOW);
     }
+}
+
+void IREvent(uint8_t protocol, uint16_t address, uint32_t command) {
+    if (address != 0xFF00) {
+        return; // React only to my remote.
+    }
+    IRcommand = command;
 }
