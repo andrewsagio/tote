@@ -37,6 +37,33 @@ to their own hole.
 Connecting the Pro Mini to the Computer
 =======================================
 
+Unlike most other Arduino boards, the Pro Mini cannot be directly connected to
+your computer's USB port. Instead, you will need to use a small device called
+USB2TTL adapter, which basically contains all the electronics required to
+support a USB connection that the Pro Mini is missing. This makes the Pro Mini
+much cheaper than the other boards, and you can re-use the adapter for other
+projects. You will also need a cable to connect the USB2TTL with your board.
+It's simply 5 wires, with small sockets on both sides, which slide onto the
+pins that you just soldered, and onto the pins of the adapter. You have to pay
+very close attention to which pins you are connecting, though. Look at the
+symbols on both boards, and connect the pins like this:
+
+ * The DTR pin on the Pro Mini connects to the DTR pin on the adapter.
+ * The TXD (or simply TX) pin connects to the RXD (or RX) pin.
+ * The RXD (or RX) pin connects to the TXD (or TX) pin.
+ * The VCC pin connects to the 5V (or VCC) pin.
+ * The GND pin connects to the GDN pin.
+
+If your adapter lacks the DTR pin, don't worry, you can skip it, but then you
+will have to manually restart your board each time you are uploading code into
+it.
+
+Once you made all the connections, insert the USB2TTL into your computer's USB
+port. If everything went right, and your Pro Mini is brand new, you should see
+one LED on it light up (it's the power indicator), and another LED blink about
+once a second. This is the default "demo" program that is uploaded to all new
+Arduino boards, and it shows that your board is working.
+
 
 Uploading First Arduino Program
 ===============================
