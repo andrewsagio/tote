@@ -5,13 +5,18 @@
 #include "beep.h"
 #include "IRLremote.h"
 
+
+#define LED_PIN 13
+#define IR_INTERRUPT 0 // Sensor on PIN 2
+#define IR_PROTOCOL IR_NEC
+#define IR_ADDRESS 0xFF00
+
 extern bool power;
 uint32_t IRcommand = 0;
 
 
 void ir_setup() {
-    // Sensor on PIN 2, use the NEC protocol.
-    attachInterrupt(0, IRLinterrupt<IR_NEC>, CHANGE);
+    attachInterrupt(IR_INTERRUPT, IRLinterrupt<IR_PROTOCOL>, CHANGE);
     pinMode(13, OUTPUT);
     digitalWrite(13, LOW);
 }
@@ -20,10 +25,20 @@ void ir_loop() {
     static uint32_t last=0;
     bool led = true;
 
+    if (!IRcommand) {
+        if (led) {
+            digitalWrite(13, LOW);
+            led = false;
+        }
+        return;
+    }
 
     if (IRcommand == 0xFFFF) {
         IRcommand = last;
     }
+
+    beep(1319, 50);
+    digitalWrite(13, HIGH);
 
     switch (IRcommand) {
         case 0xBF40:    // Up arrow.
@@ -86,21 +101,13 @@ void ir_loop() {
             creep_dy = 0.0;
             creep_rotation = 0.0;
             break;
-        default:
-            led = false;
     }
     IRcommand = 0;
 
-    if (led) {
-        beep(1319, 50);
-        digitalWrite(13, HIGH);
-    } else {
-        digitalWrite(13, LOW);
-    }
 }
 
 void IREvent(uint8_t protocol, uint16_t address, uint32_t command) {
-    if (address != 0xFF00) {
+    if (address != IR_ADDRESS) {
         return; // React only to my remote.
     }
     IRcommand = command;
