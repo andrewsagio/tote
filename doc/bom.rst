@@ -62,6 +62,10 @@ You can also use a different small Arduino board, such as Nano or Pro Micro.
 They do have an USB port on them, which will stick a little bit out from the
 back of the robot.
 
+It's very important that you use a 3.3V version of the board. There are two
+versions, 5V and 3.3V, which differ in what voltage they expect. If you get the
+5V version, it won't run on the single LiPo battery that we are using here.
+
 The Pro Mini usually comes with three unsoldered pin headers, as you can see
 here:
 
