@@ -31,7 +31,7 @@
 #define KEY_OK      0xEA15 // OK.
 
 
-extern bool power;
+extern int robot_mode;
 uint32_t IRcommand = 0;
 
 
@@ -102,7 +102,8 @@ void ir_loop() {
             break;
         case KEY_POWER:    // Power.
         case KEY_POWER2:    // Power.
-            power = !power;
+            robot_mode = 0;
+            servo_shutdown();
             break;
         case KEY_SEARCH:    // Search.
             break;

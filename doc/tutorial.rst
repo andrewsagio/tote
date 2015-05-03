@@ -68,6 +68,17 @@ Arduino boards, and it shows that your board is working.
 Uploading First Arduino Program
 ===============================
 
+In order to actually write and upload programs onto your board, you will need
+the Arduino IDE software. You can download it from the Arduino website for your
+platform of choice. Refer to the information on that website for help with
+installing and configuring it.
+
+Once you have that working, you can select the "blink" example from the
+examples menu, select the right board type (Pro Mini 3.3V), connect your board
+and hit the "upload" button. With a little luck you will have your own "blink"
+program uploaded. To verify that it works, you can change the delay between
+blinks, and upload it again.
+
 
 Blinking a LED from the Computer
 ================================

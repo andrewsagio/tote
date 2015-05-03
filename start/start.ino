@@ -5,8 +5,10 @@
 #include "leg.h"
 #include "misc.h"
 
-
-bool power = true;
+// 0 -- Power off
+// 1 -- Creep
+// 2 -- Trot
+int robot_mode = 1;
 
 
 void setup() {
@@ -17,14 +19,16 @@ void setup() {
 }
 
 void loop() {
-    if (power) {
-        creep();
-        ir_loop();
-    } else {
-        servo_shutdown();
-        while (!power) {
+    switch (robot_mode) {
+        case 0: // Power off
             delay(100);
-            ir_loop();
-        }
+            break;
+        case 1: // Creep
+            creep();
+            break;
+        case 2: // Trot
+            // trot();
+            break;
     }
+    ir_loop();
 }
