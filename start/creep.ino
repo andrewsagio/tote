@@ -136,3 +136,57 @@ void creep() {
         _creep_tick();
     }
 }
+
+/* Perform a full trot step. */
+void _trot_step(unsigned char leg) {
+    unsigned char other_leg = (leg + 2) % 4;
+    _on_ground[leg] = false;
+    _on_ground[other_leg] = false;
+    beep(440, 5);
+    for (unsigned char i = 0; i < RAISE_STEPS; ++i) {
+        move_leg_by(leg, 0, 0, RAISE);
+        move_leg_by(other_leg, 0, 0, RAISE);
+        _creep_tick();
+    }
+    beep(tones[leg], 25);
+    move_leg(
+        leg,
+        HOME + (_shift_x + creep_dx * STRIDE) * LEG_X[leg] + creep_spread,
+        HOME + (_shift_y + creep_dy * STRIDE) * LEG_Y[leg] + creep_spread,
+        leg_position[leg][2]
+    );
+    move_leg(
+        other_leg,
+        HOME + (_shift_x + creep_dx * STRIDE) * LEG_X[other_leg] + creep_spread,
+        HOME + (_shift_y + creep_dy * STRIDE) * LEG_Y[other_leg] + creep_spread,
+        leg_position[other_leg][2]
+    );
+    _creep_tick();
+    _creep_tick();
+    _creep_tick();
+    _on_ground[leg] = true;
+    _on_ground[other_leg] = true;
+    beep(1865, 5);
+    for (unsigned char i = 0; i < RAISE_STEPS; ++i) {
+        move_leg_by(leg, 0, 0, -RAISE);
+        move_leg_by(other_leg, 0, 0, -RAISE);
+        _creep_tick();
+    }
+}
+
+/* Perform one step of the trot gait with the current speed. */
+void trot() {
+    static unsigned char leg = 0;
+
+    if (
+        (creep_dx < -0.01 || creep_dx > 0.01) ||
+        (creep_dy < -0.01 || creep_dy > 0.01) ||
+        (creep_rotation < -0.01 || creep_rotation > 0.01)
+    ) {
+        _trot_step(leg);
+        leg = _NEXT_LEG[leg];
+    } else {
+        _creep_tick();
+    }
+}
+

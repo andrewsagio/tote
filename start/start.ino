@@ -27,7 +27,7 @@ void loop() {
             creep();
             break;
         case 2: // Trot
-            // trot();
+            trot();
             break;
     }
     ir_loop();

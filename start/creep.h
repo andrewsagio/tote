@@ -10,5 +10,6 @@ extern double creep_height;
 
 /* Perform one step of the creep gait with the current speed. */
 void creep();
+void trot();
 
 #endif
