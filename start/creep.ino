@@ -15,8 +15,9 @@ const unsigned int tones[4] = {880, 988, 1318, 1175};
 /* How much to shift the body? */
 #define SHIFT 9.0
 /* In how many steps should the body be shifted? */
-#define STEPS 3
+#define SHIFT_STEPS 3
 #define RAISE 20.0
+#define RAISE_STEPS 4
 #else
 #define SPEED 0.5
 /* How far forward to move them when making a step? */
@@ -24,8 +25,9 @@ const unsigned int tones[4] = {880, 988, 1318, 1175};
 /* How much to shift the body? */
 #define SHIFT 8.0
 /* In how many steps should the body be shifted? */
-#define STEPS 4
+#define SHIFT_STEPS 4
 #define RAISE 10.0
+#define RAISE_STEPS 3
 #endif
 
 /* What is the home position of the legs? */
@@ -84,9 +86,9 @@ void _shift_body_by(double dx, double dy) {
 
 /* Shifts the body away from the given leg, for balance. */
 void _shift_body(unsigned char leg) {
-    double dx = (LEG_X[leg] * SHIFT - _shift_x) / STEPS;
-    double dy = (LEG_Y[leg] * SHIFT - _shift_y) / STEPS;
-    for (unsigned char i = 0; i < STEPS; ++i) {
+    double dx = (LEG_X[leg] * SHIFT - _shift_x) / SHIFT_STEPS;
+    double dy = (LEG_Y[leg] * SHIFT - _shift_y) / SHIFT_STEPS;
+    for (unsigned char i = 0; i < SHIFT_STEPS; ++i) {
         _shift_body_by(dx, dy);
         _creep_tick();
     }
@@ -97,7 +99,7 @@ void _creep_step(unsigned char leg) {
     _shift_body(leg);
     _on_ground[leg] = false;
     beep(440, 5);
-    for (unsigned char i = 0; i < 3; ++i) {
+    for (unsigned char i = 0; i < RAISE_STEPS; ++i) {
         move_leg_by(leg, 0, 0, RAISE);
         _creep_tick();
     }
@@ -113,7 +115,7 @@ void _creep_step(unsigned char leg) {
     _creep_tick();
     _on_ground[leg] = true;
     beep(1865, 5);
-    for (unsigned char i = 0; i < 3; ++i) {
+    for (unsigned char i = 0; i < RAISE_STEPS; ++i) {
         move_leg_by(leg, 0, 0, -RAISE);
         _creep_tick();
     }
