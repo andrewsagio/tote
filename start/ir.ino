@@ -106,6 +106,14 @@ void ir_loop() {
             servo_shutdown();
             break;
         case KEY_SEARCH:    // Search.
+            switch (robot_mode) {
+                case 1:
+                    robot_mode = 2;
+                    break;
+                case 2:
+                    robot_mode = 1;
+                    break;
+            }
             break;
         case KEY_HOME:    // Home.
             for (unsigned char leg=0; leg < 4; ++leg) {
