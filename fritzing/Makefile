@@ -3,6 +3,10 @@ PCBS=pcb2.zip
 
 all: $(PCBS)
 
+clean:
+	rm -f $(PCBS)
+	rm -rf gerber
+
 %.zip: %.fzz
 	mkdir -p gerber
 	$(FRITZING) $< -gerber gerber
