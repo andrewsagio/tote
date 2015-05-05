@@ -54,6 +54,14 @@ in this instruction, however.
 .. _Fritzing: http://fritzing.org
 
 
+**Shameless plug.** You can order the board from Dirty PCBs here: `order the
+board`_. If you do so, I will get a $1. You can also order the board anywhere
+else, using those `gerber files`_.
+
+.. _`order the board`: http://dirtypcbs.com/view.php?share=6918&accesskey=97f6a684899c11fcc50da07808869f5d
+.. _`gerber files`: https://bitbucket.org/thesheep/tote/src/tip/fritzing/pcb2.zip
+
+
 Arduino Pro Mini
 ================
 
