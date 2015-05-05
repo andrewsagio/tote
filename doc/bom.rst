@@ -1,6 +1,12 @@
 Bill of Materials
 *****************
 
+With the exception of the printed circuit board, which you have to make or
+order according to the provided designs, all parts are off-the-shelf, ready
+to use components which you can find in hobby stores, or even better, order
+online.
+
+
 Required
 ========
    * Printed Circuit Board, the board design file is in the repository,
@@ -23,7 +29,8 @@ Optional
 
 At the time of writing, the required materials could be bought online for about
 $50 total, but it greatly depends on availability, amount, and quality you
-require. Also, shipping time.
+require. Also, consider the shipping time, especially for the parts ordered
+overseas.
 
 
 Printed Circuit Board
