@@ -5,21 +5,13 @@ Introduction
 What is Tote?
 =============
 
-It's a small, four-legged robot. Its shape and the way it moves resembles a
-spider a little, although it's actually closer to a lizard. In its basic
-version it can walk straight or in arcs, walk sideways and backwards and rotate
-in place, using a statically stable "creep" gait.
+It's a small walking robot, designed to be as cheap and simple to build as
+possible, while at the same time serving as a starting point for more complex
+projects and for teaching. In its basic form it just walks around and turns,
+controlled by a TV remote, but it can be easily extended by adding sensors and
+more interesting behaviors.
 
 .. image:: images/tote.jpg
-
-
-What is it for?
-===============
-
-It's supposed to be more than just a remotely-controlled toy, although just
-playing with it in that way is lots of fun. It was created as a starting point
-for building more advanced walking robots. If you always wanted to build a
-walking robot, but wasn't sure where to start, this is it.
 
 
 How is it different from all those toys?
