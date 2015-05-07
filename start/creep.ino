@@ -58,11 +58,11 @@ continuously.
 void _creep_move() {
     for (unsigned char leg=0; leg < 4; ++leg) {
         if (_on_ground[leg]) {
-            move_leg(
+            move_leg_by(
                 leg,
-                leg_position[leg][0] - creep_dx * LEG_X[leg] * SPEED,
-                leg_position[leg][1] - creep_dy * LEG_Y[leg] * SPEED,
-                -creep_height
+                -creep_dx * LEG_X[leg] * SPEED,
+                -creep_dy * LEG_Y[leg] * SPEED,
+                0
             );
             rotate_leg_by(leg, -creep_rotation * LEG_X[leg] * LEG_Y[leg] / 2);
         }
