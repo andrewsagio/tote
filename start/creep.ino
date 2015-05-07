@@ -58,11 +58,11 @@ continuously.
 void _creep_move() {
     for (unsigned char leg=0; leg < 4; ++leg) {
         if (_on_ground[leg]) {
-            move_leg_by(
+            move_leg(
                 leg,
-                -creep_dx * LEG_X[leg] * SPEED,
-                -creep_dy * LEG_Y[leg] * SPEED,
-                0
+                leg_position[leg][0] - creep_dx * LEG_X[leg] * SPEED,
+                leg_position[leg][1] - creep_dy * LEG_Y[leg] * SPEED,
+                -creep_height
             );
             rotate_leg_by(leg, -creep_rotation * LEG_X[leg] * LEG_Y[leg] / 2);
         }
@@ -113,12 +113,13 @@ void _creep_step(unsigned char leg) {
     _creep_tick();
     _creep_tick();
     _creep_tick();
-    _on_ground[leg] = true;
     beep(1865, 5);
-    for (unsigned char i = 0; i < RAISE_STEPS; ++i) {
+    for (unsigned char i = 0; i < RAISE_STEPS - 1; ++i) {
         move_leg_by(leg, 0, 0, -RAISE);
         _creep_tick();
     }
+    _on_ground[leg] = true;
+    _creep_tick();
 }
 
 /* Perform one step of the creep gait with the current speed. */
@@ -171,14 +172,15 @@ void _trot_step(unsigned char leg) {
     _trot_tick();
     _trot_tick();
     _trot_tick();
-    _on_ground[leg] = true;
-    _on_ground[other_leg] = true;
     beep(1865, 5);
-    for (unsigned char i = 0; i < RAISE_STEPS; ++i) {
+    for (unsigned char i = 0; i < RAISE_STEPS - 1; ++i) {
         move_leg_by(leg, 0, 0, -RAISE);
         move_leg_by(other_leg, 0, 0, -RAISE);
         _trot_tick();
     }
+    _on_ground[leg] = true;
+    _on_ground[other_leg] = true;
+    _trot_tick();
 }
 
 /* Perform one step of the trot gait with the current speed. */
