@@ -170,8 +170,6 @@ void _trot_step(unsigned char leg) {
         leg_position[other_leg][2]
     );
     _trot_tick();
-    _trot_tick();
-    _trot_tick();
     beep(1865, 5);
     for (unsigned char i = 0; i < RAISE_STEPS - 1; ++i) {
         move_leg_by(leg, 0, 0, -RAISE);
