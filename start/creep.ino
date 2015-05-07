@@ -137,6 +137,13 @@ void creep() {
     }
 }
 
+/* Called every frame. */
+void _trot_tick() {
+    _creep_move();
+    _creep_move();
+    tick(TICK);
+}
+
 /* Perform a full trot step. */
 void _trot_step(unsigned char leg) {
     unsigned char other_leg = (leg + 2) % 4;
@@ -146,7 +153,7 @@ void _trot_step(unsigned char leg) {
     for (unsigned char i = 0; i < RAISE_STEPS; ++i) {
         move_leg_by(leg, 0, 0, RAISE);
         move_leg_by(other_leg, 0, 0, RAISE);
-        _creep_tick();
+        _trot_tick();
     }
     beep(tones[leg], 25);
     move_leg(
@@ -161,16 +168,16 @@ void _trot_step(unsigned char leg) {
         HOME + (_shift_y + creep_dy * STRIDE) * LEG_Y[other_leg] + creep_spread,
         leg_position[other_leg][2]
     );
-    _creep_tick();
-    _creep_tick();
-    _creep_tick();
+    _trot_tick();
+    _trot_tick();
+    _trot_tick();
     _on_ground[leg] = true;
     _on_ground[other_leg] = true;
     beep(1865, 5);
     for (unsigned char i = 0; i < RAISE_STEPS; ++i) {
         move_leg_by(leg, 0, 0, -RAISE);
         move_leg_by(other_leg, 0, 0, -RAISE);
-        _creep_tick();
+        _trot_tick();
     }
 }
 
@@ -186,7 +193,7 @@ void trot() {
         _trot_step(leg);
         leg = _NEXT_LEG[leg];
     } else {
-        _creep_tick();
+        _trot_tick();
     }
 }
 
