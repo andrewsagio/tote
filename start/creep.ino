@@ -16,8 +16,8 @@ const unsigned int tones[4] = {880, 988, 1318, 1175};
 #define SHIFT 9.0
 /* In how many steps should the body be shifted? */
 #define SHIFT_STEPS 3
-#define RAISE 20.0
-#define RAISE_STEPS 4
+#define RAISE 10.0
+#define RAISE_STEPS 1
 #else
 #define SPEED 0.5
 /* How far forward to move them when making a step? */
@@ -150,34 +150,28 @@ void _trot_step(unsigned char leg) {
     unsigned char other_leg = (leg + 2) % 4;
     _on_ground[leg] = false;
     _on_ground[other_leg] = false;
-    beep(440, 5);
-    for (unsigned char i = 0; i < RAISE_STEPS; ++i) {
-        move_leg_by(leg, 0, 0, RAISE);
-        move_leg_by(other_leg, 0, 0, RAISE);
-        _trot_tick();
-    }
+    move_leg_by(leg, 0, 0, RAISE);
+    move_leg_by(other_leg, 0, 0, RAISE);
+    _trot_tick();
     beep(tones[leg], 25);
     move_leg(
         leg,
-        HOME + (_shift_x + creep_dx * STRIDE) * LEG_X[leg] + creep_spread,
-        HOME + (_shift_y + creep_dy * STRIDE) * LEG_Y[leg] + creep_spread,
+        HOME + creep_dx * STRIDE * LEG_X[leg] + creep_spread,
+        HOME + creep_dy * STRIDE * LEG_Y[leg] + creep_spread,
         leg_position[leg][2]
     );
     move_leg(
         other_leg,
-        HOME + (_shift_x + creep_dx * STRIDE) * LEG_X[other_leg] + creep_spread,
-        HOME + (_shift_y + creep_dy * STRIDE) * LEG_Y[other_leg] + creep_spread,
+        HOME + creep_dx * STRIDE * LEG_X[other_leg] + creep_spread,
+        HOME + creep_dy * STRIDE * LEG_Y[other_leg] + creep_spread,
         leg_position[other_leg][2]
     );
     _trot_tick();
-    beep(1865, 5);
-    for (unsigned char i = 0; i < RAISE_STEPS - 1; ++i) {
-        move_leg_by(leg, 0, 0, -RAISE);
-        move_leg_by(other_leg, 0, 0, -RAISE);
-        _trot_tick();
-    }
+    _trot_tick();
     _on_ground[leg] = true;
     _on_ground[other_leg] = true;
+    _trot_tick();
+    _trot_tick();
     _trot_tick();
 }
 
