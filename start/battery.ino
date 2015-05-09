@@ -1,7 +1,7 @@
 #include "beep.h"
 
 #define BATTERY_PIN A3
-#define MIN_BATTERY 368  // About 3.59V.
+#define MIN_BATTERY 557  // About 3.59V.
 
 
 void battery_setup() {
@@ -12,7 +12,7 @@ int get_battery() {
     return analogRead(BATTERY_PIN);
 }
 
-void battery_check() {
+void battery_loop() {
     static int battery_fail = 0;
     int reading = get_battery();
 

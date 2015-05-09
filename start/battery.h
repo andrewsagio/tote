@@ -3,6 +3,6 @@
 
 void battery_setup(void);
 int get_battery(void);
-void battery_check(void);
+void battery_loop(void);
 
 #endif

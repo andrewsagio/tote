@@ -31,4 +31,5 @@ void loop() {
             break;
     }
     ir_loop();
+    battery_loop();
 }

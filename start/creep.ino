@@ -103,6 +103,7 @@ void _creep_step(unsigned char leg) {
     _creep_tick();
     _creep_tick();
     _creep_tick();
+    _creep_tick();
     beep(tones[leg], 25);
     move_leg(
         leg,
@@ -115,6 +116,7 @@ void _creep_step(unsigned char leg) {
     _creep_tick();
     beep(1865, 5);
     _on_ground[leg] = true;
+    _creep_tick();
     _creep_tick();
     _creep_tick();
     _creep_tick();
@@ -164,6 +166,7 @@ void _trot_step(unsigned char leg) {
         HOME + creep_dy * STRIDE * LEG_Y[other_leg] + creep_spread,
         leg_position[other_leg][2]
     );
+    _trot_tick();
     _trot_tick();
     _trot_tick();
     _on_ground[leg] = true;
