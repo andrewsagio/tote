@@ -9,14 +9,16 @@ const unsigned int tones[4] = {880, 988, 1318, 1175};
 
 /* Creep gait parameters. */
 #ifdef TOTE2
-#define SPEED 1.0
+#define SPEED 1
 /* How far forward to move them when making a step? */
-#define STRIDE 16.0
+#define STRIDE 14.0
 /* How much to shift the body? */
-#define SHIFT 9.0
+#define SHIFT 6.0
 /* In how many steps should the body be shifted? */
-#define SHIFT_STEPS 3
-#define RAISE 10.0
+#define SHIFT_STEPS 2
+/* How fast to raise the leg. */
+#define RAISE 12.0
+/* In how many steps. */
 #define RAISE_STEPS 3
 #else
 #define SPEED 0.5
@@ -40,15 +42,15 @@ const unsigned char _NEXT_LEG[4] = {2, 0, 3, 1};
 static double _shift_x = 0.0;
 static double _shift_y = 0.0;
 
-/* Which legs are touching the ground? */
-static bool _on_ground[4] = {true, true, true, true};
-
 /* Walking speed. */
 double creep_dx = 0.0;          // Sideways.
 double creep_dy = 1.0;          // Forward.
 double creep_rotation = 0.0;    // Rotation.
-double creep_height = TIBIA * 0.75; // Body height.
+double creep_height = TIBIA; // Body height.
 double creep_spread = 0.0;      // Leg spread.
+
+/* Which legs are touching the ground? */
+static bool _on_ground[4] = {true, true, true, true};
 
 /*
 Move all legs that are on the ground backwards, pushing the robot forward with
@@ -99,26 +101,25 @@ void _creep_step(unsigned char leg) {
     _shift_body(leg);
     _on_ground[leg] = false;
     beep(440, 5);
-    move_leg_by(leg, 0, 0, RAISE * RAISE_STEPS);
-    _creep_tick();
-    _creep_tick();
-    _creep_tick();
-    _creep_tick();
+    for (unsigned char step = 0; step < RAISE_STEPS; ++step) {
+        move_leg_by(leg, 0, 0, RAISE);
+        _creep_tick();
+    }
     beep(tones[leg], 25);
     move_leg(
         leg,
         HOME + (_shift_x + creep_dx * STRIDE) * LEG_X[leg] + creep_spread,
         HOME + (_shift_y + creep_dy * STRIDE) * LEG_Y[leg] + creep_spread,
-        leg_position[leg][2]
+        RAISE * RAISE_STEPS - creep_height
     );
     _creep_tick();
     _creep_tick();
-    _creep_tick();
     beep(1865, 5);
+    for (unsigned char step = 0; step < RAISE_STEPS - 1; ++step) {
+        move_leg_by(leg, 0, 0, -RAISE);
+        _creep_tick();
+    }
     _on_ground[leg] = true;
-    _creep_tick();
-    _creep_tick();
-    _creep_tick();
     _creep_tick();
 }
 

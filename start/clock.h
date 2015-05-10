@@ -1,7 +1,7 @@
 #ifndef CLOCK_H
 #define CLOCK_H
 
-#define FPS 32
+#define FPS 10
 
 const unsigned char TICK = 1000 / FPS;
 void tick(unsigned int ms);
