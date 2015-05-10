@@ -8,8 +8,8 @@
 #include <avr/sleep.h>
 
 // 0 -- Power off
-// 1 -- Creep
-// 2 -- Trot
+// 1 -- Walk
+// 2 -- Nothing
 int robot_mode = 1;
 
 
@@ -31,8 +31,8 @@ void loop() {
                 delay(100);
             }
             break;
-        case 1: // Creep
-            creep();
+        case 1:
+            walk();
             break;
         case 2: // Nothing
             delay(100);
