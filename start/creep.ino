@@ -122,22 +122,6 @@ void _creep_step(unsigned char leg) {
     _creep_tick();
 }
 
-/* Perform one step of the creep gait with the current speed. */
-void creep() {
-    static unsigned char leg = 0;
-    double max_speed = max(abs(creep_rotation),
-                           max(abs(creep_dx), abs(creep_dy)));
-
-    if (max_speed > 1.5) {
-        _trot_step(leg);
-        leg = (leg + 1) % 2;
-    } else if (max_speed > 0.1) {
-        _creep_step(leg);
-        leg = _NEXT_LEG[leg];
-    } else {
-        _creep_tick();
-    }
-}
 
 /* Called every frame. */
 void _trot_tick() {
@@ -173,4 +157,22 @@ void _trot_step(unsigned char leg) {
     _trot_tick();
     _trot_tick();
     _trot_tick();
+}
+
+
+/* Perform one step of a walk, selected depending on the speed. */
+void walk() {
+    static unsigned char leg = 0;
+    double max_speed = max(abs(creep_rotation),
+                           max(abs(creep_dx), abs(creep_dy)));
+
+    if (max_speed > 1.5) {
+        _trot_step(leg);
+        leg = (leg + 1) % 2;
+    } else if (max_speed > 0.01) {
+        _creep_step(leg);
+        leg = _NEXT_LEG[leg];
+    } else {
+        _creep_tick();
+    }
 }
