@@ -1,7 +1,6 @@
 #include "misc.h"
 #include "leg.h"
 
-#define HOME ((COXA + FEMUR) / SQRT2)
 const unsigned char LEG_JOINT[4][3] = {
     {0, 1, 2},
     {3, 4, 5},
@@ -36,7 +35,8 @@ bool _inverse_kinematics(double x, double y, double z,
     // Calculate angles for knee and ankle, and put them in those variables.
     // Return true on success, and false if x and y are out of range.
     double f = _norm(x, y) - COXA;
-    double d = min(FEMUR + TIBIA, _norm(f, z));
+    double d = _norm(f, z);
+    if (d > FEMUR + TIBIA) { return false; }
     *hip = atan2(y, x);
     if (isnan(*hip)) { return false; }
     *knee = _solve_triangle(FEMUR, d, TIBIA) - atan2(-z, f);
@@ -51,6 +51,9 @@ bool move_leg(unsigned char leg, double x, double y, double z) {
     double ankle = NaN;
     double knee = NaN;
     double hip = NaN;
+    leg_position[leg][0] = x;
+    leg_position[leg][1] = y;
+    leg_position[leg][2] = z;
     if (!_inverse_kinematics(x, y, z, &ankle, &knee, &hip)) {
         return false;
     }
@@ -58,9 +61,6 @@ bool move_leg(unsigned char leg, double x, double y, double z) {
     servo_move(LEG_JOINT[leg][0], ankle);
     servo_move(LEG_JOINT[leg][1], knee);
     servo_move(LEG_JOINT[leg][2], hip);
-    leg_position[leg][0] = x;
-    leg_position[leg][1] = y;
-    leg_position[leg][2] = z;
     return true;
 }
 

@@ -1,9 +1,9 @@
+#include "misc.h"
 #include "servos.h"
 #include "beep.h"
 #include "battery.h"
 #include "creep.h"
 #include "leg.h"
-#include "misc.h"
 
 #include <avr/sleep.h>
 
@@ -34,8 +34,8 @@ void loop() {
         case 1: // Creep
             creep();
             break;
-        case 2: // Trot
-            trot();
+        case 2: // Nothing
+            delay(100);
             break;
     }
     ir_loop();

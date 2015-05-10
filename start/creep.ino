@@ -17,7 +17,7 @@ const unsigned int tones[4] = {880, 988, 1318, 1175};
 /* In how many steps should the body be shifted? */
 #define SHIFT_STEPS 2
 /* How fast to raise the leg. */
-#define RAISE 12.0
+#define RAISE 10.0
 /* In how many steps. */
 #define RAISE_STEPS 3
 #else
@@ -28,12 +28,11 @@ const unsigned int tones[4] = {880, 988, 1318, 1175};
 #define SHIFT 8.0
 /* In how many steps should the body be shifted? */
 #define SHIFT_STEPS 4
+/* How fast to raise the leg. */
 #define RAISE 10.0
+/* In how many steps. */
 #define RAISE_STEPS 3
 #endif
-
-/* What is the home position of the legs? */
-#define HOME ((COXA + FEMUR) / SQRT2)
 
 /* Given current leg, which leg to move next? */
 const unsigned char _NEXT_LEG[4] = {2, 0, 3, 1};
@@ -126,12 +125,13 @@ void _creep_step(unsigned char leg) {
 /* Perform one step of the creep gait with the current speed. */
 void creep() {
     static unsigned char leg = 0;
+    double max_speed = max(abs(creep_rotation),
+                           max(abs(creep_dx), abs(creep_dy)));
 
-    if (
-        (creep_dx < -0.01 || creep_dx > 0.01) ||
-        (creep_dy < -0.01 || creep_dy > 0.01) ||
-        (creep_rotation < -0.01 || creep_rotation > 0.01)
-    ) {
+    if (max_speed > 1.5) {
+        _trot_step(leg);
+        leg = (leg + 1) % 2;
+    } else if (max_speed > 0.1) {
         _creep_step(leg);
         leg = _NEXT_LEG[leg];
     } else {
@@ -151,22 +151,19 @@ void _trot_step(unsigned char leg) {
     unsigned char other_leg = (leg + 2) % 4;
     _on_ground[leg] = false;
     _on_ground[other_leg] = false;
-    move_leg_by(leg, 0, 0, RAISE * RAISE_STEPS);
-    move_leg_by(other_leg, 0, 0, RAISE * RAISE_STEPS);
-    _trot_tick();
-    beep(tones[leg], 25);
     move_leg(
         leg,
         HOME + creep_dx * STRIDE * LEG_X[leg] + creep_spread,
         HOME + creep_dy * STRIDE * LEG_Y[leg] + creep_spread,
-        leg_position[leg][2]
+        RAISE * RAISE_STEPS - creep_height
     );
     move_leg(
         other_leg,
         HOME + creep_dx * STRIDE * LEG_X[other_leg] + creep_spread,
         HOME + creep_dy * STRIDE * LEG_Y[other_leg] + creep_spread,
-        leg_position[other_leg][2]
+        RAISE * RAISE_STEPS - creep_height
     );
+    _trot_tick();
     _trot_tick();
     _trot_tick();
     _trot_tick();
@@ -174,21 +171,6 @@ void _trot_step(unsigned char leg) {
     _on_ground[other_leg] = true;
     _trot_tick();
     _trot_tick();
+    _trot_tick();
+    _trot_tick();
 }
-
-/* Perform one step of the trot gait with the current speed. */
-void trot() {
-    static unsigned char leg = 0;
-
-    if (
-        (creep_dx < -0.01 || creep_dx > 0.01) ||
-        (creep_dy < -0.01 || creep_dy > 0.01) ||
-        (creep_rotation < -0.01 || creep_rotation > 0.01)
-    ) {
-        _trot_step(leg);
-        leg = _NEXT_LEG[leg];
-    } else {
-        _trot_tick();
-    }
-}
-

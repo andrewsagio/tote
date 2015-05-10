@@ -62,10 +62,10 @@ void ir_loop() {
 
     switch (IRcommand) {
         case KEY_UP:    // Up arrow.
-            creep_dy = min(1.5, creep_dy + 0.25);
+            creep_dy = min(3, creep_dy + 0.25);
             break;
         case KEY_DOWN:    // Down arrow.
-            creep_dy = max(-1.5, creep_dy - 0.25);
+            creep_dy = max(-3, creep_dy - 0.25);
             break;
         case KEY_LEFT:    // Left arrow.
             creep_rotation = min(PI/90, creep_rotation + PI/360);
@@ -117,12 +117,7 @@ void ir_loop() {
             break;
         case KEY_HOME:    // Home.
             for (unsigned char leg=0; leg < 4; ++leg) {
-                move_leg(
-                    leg,
-                    ((COXA + FEMUR) / SQRT2),
-                    ((COXA + FEMUR) / SQRT2),
-                    TIBIA
-                );
+                move_leg(leg, HOME, HOME, TIBIA);
             }
             break;
         case KEY_OK:    // OK.
