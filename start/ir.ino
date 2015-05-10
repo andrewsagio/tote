@@ -102,6 +102,7 @@ void ir_loop() {
             break;
         case KEY_POWER:    // Power.
         case KEY_POWER2:    // Power.
+            digitalWrite(13, LOW);
             robot_mode = 0;
             break;
         case KEY_SEARCH:    // Search.
