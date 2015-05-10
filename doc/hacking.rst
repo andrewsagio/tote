@@ -18,10 +18,11 @@ left for your use:
     - 2 of them can be used as serial interface,
     - 2 of them can trigger interrupts,
 
-      . 1 of them has PWM,
+      + 1 of them has PWM,
+
     - 2 other can be also used as analog pins,
 
-      . they can also be used as I²C interface,
+      + they can also be used as I²C interface,
 
   * 2 analog-only pins.
 
