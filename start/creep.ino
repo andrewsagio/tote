@@ -13,7 +13,7 @@ const unsigned int tones[4] = {880, 988, 1318, 1175};
 /* How far forward to move them when making a step? */
 #define STRIDE 14.0
 /* How much to shift the body? */
-#define SHIFT 6.0
+#define SHIFT 8.0
 /* In how many steps should the body be shifted? */
 #define SHIFT_STEPS 2
 /* How fast to raise the leg. */
