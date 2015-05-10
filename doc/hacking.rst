@@ -13,12 +13,16 @@ Most of the Arduino's pins are used internally, but there are several of them
 left for your use:
 
   * 7 pins can be used as digital,
+
     - 1 of them has a LED on it,
     - 2 of them can be used as serial interface,
     - 2 of them can trigger interrupts,
+
       . 1 of them has PWM,
     - 2 other can be also used as analog pins,
+
       . they can also be used as I²C interface,
+
   * 2 analog-only pins.
 
 
