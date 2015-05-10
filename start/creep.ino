@@ -35,7 +35,14 @@ const unsigned int tones[4] = {880, 988, 1318, 1175};
 #endif
 
 /* Given current leg, which leg to move next? */
-const unsigned char _NEXT_LEG[4] = {2, 0, 3, 1};
+const unsigned char _NEXT_LEG[6][4] = {
+    {2, 0, 3, 1},   // forward
+    {1, 3, 0, 2},   // backward
+    {1, 2, 3, 0},   // clockwise
+    {3, 0, 1, 2},   // counter-clockwise
+    {2, 3, 1, 0},   // left
+    {3, 2, 0, 1},   // right
+};
 
 /* Body position. */
 static double _shift_x = 0.0;
@@ -160,6 +167,33 @@ void _trot_step(unsigned char leg) {
 }
 
 
+unsigned char step_order() {
+    // Decide on the best leg order.
+    if (abs(creep_dy) > abs(creep_dx)) {
+        // forward/backward
+        if (creep_dy > 0) {
+            return 0; // forward
+        } else {
+            return 1; // backward
+        }
+    } else if (abs(creep_dx) > abs(creep_dy)) {
+        // sideways
+        if (creep_dx < 0) {
+            return 4; // left
+        } else {
+            return 5; // right
+        }
+    } else if (abs(creep_rotation) > 0.001) {
+        // rotate
+        if (creep_rotation > 0) {
+            return 2; // clockwise
+        } else {
+            return 3; // counter-clockwise
+        }
+    }
+    return 0; // default to forward
+}
+
 /* Perform one step of a walk, selected depending on the speed. */
 void walk() {
     static unsigned char leg = 0;
@@ -171,7 +205,7 @@ void walk() {
         leg = (leg + 1) % 2;
     } else if (max_speed > 0.01) {
         _creep_step(leg);
-        leg = _NEXT_LEG[leg];
+        leg = _NEXT_LEG[step_order()][leg];
     } else {
         _creep_tick();
     }
