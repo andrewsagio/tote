@@ -103,7 +103,6 @@ void ir_loop() {
         case KEY_POWER:    // Power.
         case KEY_POWER2:    // Power.
             robot_mode = 0;
-            servo_shutdown();
             break;
         case KEY_SEARCH:    // Search.
             switch (robot_mode) {

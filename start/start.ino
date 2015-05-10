@@ -5,6 +5,8 @@
 #include "leg.h"
 #include "misc.h"
 
+#include <avr/sleep.h>
+
 // 0 -- Power off
 // 1 -- Creep
 // 2 -- Trot
@@ -21,7 +23,13 @@ void setup() {
 void loop() {
     switch (robot_mode) {
         case 0: // Power off
-            delay(100);
+            servo_shutdown();
+            set_sleep_mode(SLEEP_MODE_PWR_DOWN);
+            sleep_enable();
+            sleep_mode();
+            while (1) {
+                delay(100);
+            }
             break;
         case 1: // Creep
             creep();

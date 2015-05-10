@@ -26,6 +26,5 @@ void battery_loop() {
     if (battery_fail > 40) {
         /* If it stays bad for 4s, shut down. */
         robot_mode = 0;
-        servo_shutdown();
     }
 }
