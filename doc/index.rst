@@ -27,3 +27,4 @@ Contents:
    ik.rst
    gait.rst
    tutorial.rst
+   help.rst
