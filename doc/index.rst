@@ -13,6 +13,7 @@ cheap and sturdy, for this class of robots. Its goal is to be a starting point
 for anyone who wants to start building multi-legged robots.
 
 .. raw::
+
     <iframe width="560" height="315"
     src="https://www.youtube.com/embed/XXotn-8DPQo" frameborder="0"
     allowfullscreen></iframe>
