@@ -30,6 +30,7 @@ Contents:
    electronics.rst
    software.rst
    hacking.rst
+   design.rst
    ik.rst
    gait.rst
    tutorial.rst
