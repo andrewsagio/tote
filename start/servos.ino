@@ -8,6 +8,12 @@
 
 static const unsigned char SERVO_PINS[SERVOS] = {
 // ankle, knee, hip
+
+/* For Pro Micro
+    14, 16, 10,     // front left
+    A0, A1, A2,     // hind left
+*/
+
     12, 11, 10,     // front left
     14, 15, 16,     // hind left
     6, 5, 4,        // hind right
