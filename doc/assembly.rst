@@ -98,7 +98,7 @@ remove it if you want to add a voltage regulator.
     :align: center
 
 The 1000µF capacitor has to be soldered with the right polarity. Make sure that
-the shorter leg (one one marked on the capacitor with a white stripe) goes to
+the shorter leg (the one marked on the capacitor with a white strip) goes to
 the hole with a small minus next to it.
 
 .. image:: images/IMG_20150527_134613.jpg
@@ -143,8 +143,8 @@ your TTL2USB, make sure to note which color goes with which symbol.
 Next, connext the other side of the cables to the Pro Mini header. Make sure
 that the connections are as follows:
 
- * ``TXD`` - ``RXD``
- * ``RXD`` - ``TXD``
+ * ``TX0`` - ``RXD``
+ * ``RX0`` - ``TXD``
  * ``VCC`` - ``VCC`` or ``5V``
  * ``GND`` - ``GND``
  * ``DTR`` - ``DTR``
@@ -195,7 +195,7 @@ First, attach the four servos to the body.
     :align: center
 
 Connect them to the outermost servo sockets. Make sure that the yellow wire is
-inside, and the brows wire outside for all the servos.
+inside, and the brown wire outside for all the servos.
 
 .. image:: images/IMG_20150527_155818.jpg
     :align: center
@@ -222,7 +222,7 @@ the stickers are in the way.
     :align: center
 
 Attach the horns to two servos. You will need two right legs, and two left
-ones, that are their mirror images of each other.
+ones, that are their mirror images.
 
 .. image:: images/IMG_20150528_101146.jpg
     :align: center
@@ -250,12 +250,28 @@ Make sure to attach the right legs in the right orientation, as on the image.
     :align: center
 
 Connect all the servos plugs into their respective sockets. The outermost
-socket for every leg is the hip, then knee, then ankle.
+socket for every leg is the hip, then knee, then ankle. Make sure the yellow
+wire is on the inside, and the brown one on the outside.
+
+.. image:: images/IMG_20150528_104941.jpg
+    :align: center
 
 Attach the battery on the bottom of the printed circuit board. You can use a
 rubber band or a double-sided adhesive tape. When connecting the battery, be
 careful to connect the negative wire to the board's mass, and the positive one
 to the switch (there is a small plus printed on the board).
+
+.. image:: images/IMG_20150528_114105.jpg
+    :align: center
+
+If you want, you can tie the cables together to make the robot look better and
+to avoid tangling. Make sure you leave enough loose cables for the legs to move
+freely.
+
+
+.. image:: images/IMG_20150528_122739.jpg
+    :align: center
+
 
 Adjustments
 ===========
