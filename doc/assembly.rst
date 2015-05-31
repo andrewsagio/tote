@@ -163,6 +163,10 @@ TTL2USB doesn't have a ``DTR`` pin, press the "reset" button on the Pro Mini as
 soon as the program size appears in the black console at the bottom of the IDE.
 When you see "Upload finished", you can disconnect everything and proceed.
 
+.. image:: images/arduino-ide.png
+    :align: center
+
+
 Mechanics
 =========
 
