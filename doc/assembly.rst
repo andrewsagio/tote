@@ -17,7 +17,7 @@ be added. They are all recommended, so we will assume there are there.
 There are two ways of assembling the electronic components for Tote. The first
 one is compact, like this:
 
-.. image:: scad/assembly01a.png
+.. image:: scad/assembly01.png
     :align: center
 
 The second one takes up more space, but lets you remove and replace the Arduino
