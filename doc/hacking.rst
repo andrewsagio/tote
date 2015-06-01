@@ -86,3 +86,28 @@ examples include:
 The possibilities are infinite, as long as the board in question has a serial
 or I²C interface, can be powered from a single LiPo battery, and doesn't weight
 too much for the robot to carry it.
+
+If your board or module can be powered with 3.3V, simply use the FTDI header of
+your Pro Mini for connecting it -- it has broken out the power and serial
+interface. You will have to write the code for communicating with the board
+yourself.
+
+If the board requires 5V or considerable amounts of current, you don't want to
+power it from Pro Mini's power regulator. Instead, add pins to the RAW and GND
+pads on it, and to the RX and TX pads:
+
+.. image:: images/IMG_20150531_183217.jpg
+    :align: center
+
+Then use a double-row female header to connect your breakout board to the Pro
+Mini:
+
+.. image:: images/IMG_20150531_183254.jpg
+    :align: center
+
+And connect your board on top of that:
+
+.. image:: images/IMG_20150531_183315.jpg
+    :align: center
+
+Of course, you will need to use a power source that can power your board.
