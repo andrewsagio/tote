@@ -18,6 +18,7 @@ void setup() {
     servo_setup();
     beep_setup();
     ir_setup();
+    Serial.begin(115200);
 }
 
 void loop() {

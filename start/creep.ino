@@ -102,8 +102,24 @@ void _shift_body(unsigned char leg) {
     }
 }
 
+double get_leg_force(unsigned char leg) {
+    static unsigned char pin[4] = {A5, A7, A6, A4};
+    static double unloaded[4] = {729, 734, 726, 699};
+    // For some reason the last servo is different in my setup...
+    double value = 0;
+
+    for (unsigned char i = 0; i < 40; ++i) {
+        delay(2);
+        value += analogRead(pin[leg]);
+    }
+    value /= 40;
+    value -= unloaded[leg];
+    return value;
+}
+
 /* Perform a full step with a single leg. */
 void _creep_step(unsigned char leg) {
+    double force = 0;
     _shift_body(leg);
     _on_ground[leg] = false;
     beep(440, 5);
@@ -126,7 +142,26 @@ void _creep_step(unsigned char leg) {
         _creep_tick();
     }
     _on_ground[leg] = true;
+    for (unsigned char i=0; i < 4; ++i) {
+        if (i != leg) {
+            move_leg_by(i, 0, 0, 5);
+        }
+    }
     _creep_tick();
+    delay(20);
+    force = get_leg_force(leg);
+    Serial.print(leg);
+    Serial.print(' ');
+    Serial.println(force);
+    if (abs(force) < 20 && leg != 1) {
+        creep_dx = 0;
+        creep_dy = 0;
+    }
+    for (unsigned char i=0; i < 4; ++i) {
+        if (i != leg) {
+            move_leg_by(i, 0, 0, -5);
+        }
+    }
 }
 
 
