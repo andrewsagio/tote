@@ -4,21 +4,18 @@
 
  IRL Receive_Raw
  Receives IR signals and prints raw values to the Serial.
- Each dump should end with a timeout.
- 
  This also demonstrates how to implement your own decoding functions.
- See PinInterrupt or PinChangeInterrupt examples for basic usage.
  */
 
 #include "IRLremote.h"
 
-// choose a valid PinInterrupt pin of your Arduino board
-#define pinIR 2
+// see readme to choose the right pin (with an interrupt!) for your Arduino board
+const int pinReceiveIR = digitalPinToInterrupt(2);
 
 // variables to record raw values
 #define IR_RAW_TIMEOUT 0xFFFF // 65535, max timeout
-#define IR_RAW_BUFFER_SIZE 100 // 0-255
-uint16_t buffer[IR_RAW_BUFFER_SIZE];
+#define IR_RAW_BUFFER_SIZE 100
+uint32_t buffer[IR_RAW_BUFFER_SIZE];
 uint8_t count = 0;
 
 void setup() {
@@ -27,28 +24,24 @@ void setup() {
   Serial.println("Startup");
 
   // set protocol to user to use the decode function below
-  attachInterrupt(digitalPinToInterrupt(pinIR), IRLinterrupt<IR_USER>, CHANGE);
+  IRLbegin<IR_USER>(pinReceiveIR);
 }
 
 void loop() {
   // check if raw buff is full or timed out.
   // keep in mind that the defined timeout above might be in the output (by default 50000)
   // so you dont get confused where the number is from.
-  bool newInput = RAWIRLavailable();
-  if (newInput) {
+  uint8_t irBytes = RAWIRLavailable();
+  if (irBytes) {
     // print a mark
     Serial.println("==========");
 
     // go through the whole buffer and print values
-    for (uint8_t i = 0; i < count; i++) {
+    for (int i = 0; i < irBytes; i++) {
       Serial.print(i);
       Serial.print(": ");
       Serial.println(buffer[i], DEC);
     }
-
-    // each buffer should end with the timeout value
-    if (count == IR_RAW_BUFFER_SIZE)
-      Serial.println("Buffer was full!");
 
     // reset for new reading
     count = 0;
@@ -64,9 +57,13 @@ void decodeIR(const uint16_t duration) {
 
   // save value and increase count
   buffer[count++] = duration;
+
+  // save last time in the buff too, to calculate timeout check
+  if (count != IR_RAW_BUFFER_SIZE)
+    buffer[count] = micros();
 }
 
-bool RAWIRLavailable(void) {
+uint8_t RAWIRLavailable(void) {
   // disable interrupts when checking for new input
   uint8_t oldSREG = SREG;
   cli();
@@ -76,27 +73,28 @@ bool RAWIRLavailable(void) {
     // check if buffer is full
     if (count == IR_RAW_BUFFER_SIZE) {
       SREG = oldSREG;
-      return true;
+      return count;
     }
 
     // check if last reading was a timeout.
     // no problem if count==0 because the if above prevents this
-    if (buffer[count - 1] >= IR_RAW_TIMEOUT) {
+    // anyways then it would just return 0
+    if (buffer[count - 1] > IR_RAW_TIMEOUT) {
       SREG = oldSREG;
-      return true;
+      return count;
     }
 
     // check if reading timed out and save value.
     // saving is needed to abord the check above next time.
-    uint32_t duration = micros() - IRL_LastTime;
+    unsigned long duration = micros() - buffer[count];
     if (duration >= IR_RAW_TIMEOUT) {
       buffer[count++] = IR_RAW_TIMEOUT;
       SREG = oldSREG;
-      return true;
+      return count;
     }
   }
 
   // continue, we can still save into the buffer or the buffer is empty
   SREG = oldSREG;
-  return false;
+  return 0;
 }
