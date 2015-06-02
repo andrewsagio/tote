@@ -1,9 +1,9 @@
+#include "IRLremote.h"
 #include "creep.h"
 #include "leg.h"
 #include "servos.h"
 #include "misc.h"
 #include "beep.h"
-#include "IRLremote.h"
 
 
 #define LED_PIN 13
@@ -32,33 +32,38 @@
 
 
 extern int robot_mode;
-uint32_t IRcommand = 0;
 
 
 void ir_setup() {
-    attachInterrupt(IR_INTERRUPT, IRLinterrupt<IR_PROTOCOL>, CHANGE);
-    pinMode(13, OUTPUT);
-    digitalWrite(13, LOW);
+    IRLbegin<IR_PROTOCOL>(IR_INTERRUPT);
+    pinMode(LED_PIN, OUTPUT);
+    digitalWrite(LED_PIN, LOW);
 }
 
 void ir_loop() {
     static uint32_t last=0;
+    uint32_t IRcommand = 0;
     bool led = true;
 
-    if (!IRcommand) {
+    if (!IRLavailable()) {
         if (led) {
-            digitalWrite(13, LOW);
+            digitalWrite(LED_PIN, LOW);
             led = false;
         }
         return;
     }
+    IRcommand = IRLgetCommand();
 
     if (IRcommand == 0xFFFF) {
         IRcommand = last;
+    } else if (IRLgetAddress() != IR_ADDRESS) {
+        IRLreset();
+        return; // React only to my remote.
     }
+    last = IRcommand;
 
     beep(1319, 50);
-    digitalWrite(13, HIGH);
+    digitalWrite(LED_PIN, HIGH);
 
     switch (IRcommand) {
         case KEY_UP:    // Up arrow.
@@ -102,7 +107,7 @@ void ir_loop() {
             break;
         case KEY_POWER:    // Power.
         case KEY_POWER2:    // Power.
-            digitalWrite(13, LOW);
+            digitalWrite(LED_PIN, LOW);
             robot_mode = 0;
             break;
         case KEY_SEARCH:    // Search.
@@ -126,12 +131,5 @@ void ir_loop() {
             creep_rotation = 0.0;
             break;
     }
-    IRcommand = 0;
-}
-
-void IREvent(uint8_t protocol, uint16_t address, uint32_t command) {
-    if (address != IR_ADDRESS) {
-        return; // React only to my remote.
-    }
-    IRcommand = command;
+    IRLreset();
 }

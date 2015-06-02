@@ -14,11 +14,11 @@ int robot_mode = 1;
 
 
 void setup() {
+    Serial.begin(115200);
     battery_setup();
     servo_setup();
     beep_setup();
     ir_setup();
-    Serial.begin(115200);
 }
 
 void loop() {
