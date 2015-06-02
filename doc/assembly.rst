@@ -76,6 +76,13 @@ program it.
 
 Now place the Pro Mini on the PCB, and put a drop of solder into every hole.
 
+.. warning::
+
+    This is not the best way to get a proper electric connection. After some
+    experimenting, I recommend inserting a piece of wire into the hole before
+    soldering, and then cutting it once it's soldered in place. Debugging bad
+    connection is really not fun.
+
 .. image:: images/IMG_20150527_133414.jpg
     :align: center
 
