@@ -15,9 +15,10 @@ int robot_mode = 1;
 
 void setup() {
     battery_setup();
+    serial_setup();
     servo_setup();
     beep_setup();
-    ir_setup();
+    // ir_setup();
 }
 
 void loop() {
@@ -38,6 +39,7 @@ void loop() {
             delay(100);
             break;
     }
-    ir_loop();
+    // ir_loop();
+    serial_loop();
     battery_loop();
 }
