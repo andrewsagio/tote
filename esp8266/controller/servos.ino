@@ -8,12 +8,6 @@
 
 static const unsigned char SERVO_PINS[SERVOS] = {
 // ankle, knee, hip
-
-/* For Pro Micro
-    14, 16, 10,     // front left
-    A0, A1, A2,     // hind left
-*/
-
     12, 11, 10,     // front left
     14, 15, 16,     // hind left
     6, 5, 4,        // hind right
@@ -28,10 +22,10 @@ static const char SERVO_REVERSE[SERVOS] = {
 };
 static const char SERVO_TRIM[SERVOS] = {
 // ankle, knee, hip
-    -10, -5, -10,    // front left
+    -10, -5, -10,   // front left
     10, -5, -10,    // hind left
-    0, 0, 10,    // hind right
-    0, 0, 10     // front right
+    0, 0, 10,       // hind right
+    0, 0, 10        // front right
 };
 static Servo servos[SERVOS];
 
@@ -45,10 +39,10 @@ static const double HOME_POSITION[SERVOS] = {
 
 static const double FOLD_POSITION[SERVOS] = {
 // ankle, knee, hip
-    -PI2,  PI2, -PI4,    // front left
-    -PI2,  PI2, -PI4,    // hind left
-    -PI2,  PI2, -PI4,    // hind right
-    -PI2,  PI2, -PI4     // front right
+     PI2,  PI2, -PI4,    // front left
+    -PI2, -PI2, -PI4,    // hind left
+     PI2,  PI2, -PI4,    // hind right
+    -PI2, -PI2, -PI4     // front right
 };
 
 void servo_move(unsigned char servo, double rads) {
@@ -73,22 +67,7 @@ void servo_move(unsigned char servo, double rads) {
 
 void servo_setup() {
     // Initialize all servos.
-    // Start with hips.
-    for (unsigned char servo = 2; servo < SERVOS; servo += 3) {
-        servos[servo].attach(SERVO_PINS[servo],
-                             SERVO_FREQ_MIN, SERVO_FREQ_MAX);
-        servo_move(servo, HOME_POSITION[servo]);
-        delay(150);
-    }
-    // Then ankles.
-    for (unsigned char servo = 0; servo < SERVOS; servo += 3) {
-        servos[servo].attach(SERVO_PINS[servo],
-                             SERVO_FREQ_MIN, SERVO_FREQ_MAX);
-        servo_move(servo, HOME_POSITION[servo]);
-        delay(150);
-    }
-    // Finally knees.
-    for (unsigned char servo = 1; servo < SERVOS; servo += 3) {
+    for (unsigned char servo = 0; servo < SERVOS; ++servo) {
         servos[servo].attach(SERVO_PINS[servo],
                              SERVO_FREQ_MIN, SERVO_FREQ_MAX);
         servo_move(servo, HOME_POSITION[servo]);
@@ -100,7 +79,7 @@ void servo_shutdown() {
     // Power down all servos.
     for (unsigned char servo = 0; servo < SERVOS; ++servo) {
         servo_move(servo, FOLD_POSITION[servo]);
-        delay(200);
+        delay(150);
         servos[servo].detach();
     }
 }
