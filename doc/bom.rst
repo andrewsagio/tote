@@ -73,9 +73,9 @@ programming, as you can other Arduinos, instead you have to use a device called
 ``USB2TTL``. But you only need one such device, and you can re-use it for
 programming as many Pro Minis, as you want.
 
-You can also use a different small Arduino board, such as Nano or Pro Micro.
-They do have an USB port on them, which will stick a little bit out from the
-back of the robot.
+You can also use a different small Arduino board, such as Nano or Pro Micro,
+but that will require adapting the pin numbers, though.  They do have an USB
+port on them, which will stick a little bit out from the back of the robot.
 
 It's very important that you use a 3.3V version of the board. There are two
 versions, 5V and 3.3V, which differ in what voltage they expect. If you get the
