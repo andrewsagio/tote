@@ -6,7 +6,6 @@
 void ping_setup() {
     pinMode(TRIG_PIN, OUTPUT);
     pinMode(ECHO_PIN, INPUT);
-    Serial.begin(115200);
 }
 
 long get_distance() {
@@ -24,11 +23,12 @@ long get_distance() {
 }
 
 void ping_loop() {
-    long distance;
+    long distance = 0;
 
-    distance = get_distance();
-    Serial.println(distance);
-    if (distance < 30) {
+    while (!distance) {
+        distance = get_distance();
+    }
+    if (distance > 1 && distance < 10) {
         creep_dx = 0;
         creep_dy = 0;
     }
