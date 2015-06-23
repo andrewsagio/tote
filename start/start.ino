@@ -1,9 +1,9 @@
 #include "misc.h"
 #include "servos.h"
-#include "beep.h"
 #include "battery.h"
 #include "creep.h"
 #include "leg.h"
+#include "ping.h"
 
 #include <avr/sleep.h>
 
@@ -16,8 +16,7 @@ int robot_mode = 1;
 void setup() {
     battery_setup();
     servo_setup();
-    beep_setup();
-    ir_setup();
+    ping_setup();
 }
 
 void loop() {
@@ -33,11 +32,11 @@ void loop() {
             break;
         case 1:
             walk();
+            ping_loop();
             break;
         case 2: // Nothing
             delay(100);
             break;
     }
-    ir_loop();
     battery_loop();
 }

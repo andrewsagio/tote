@@ -1,5 +1,3 @@
-#include "beep.h"
-
 #define BATTERY_PIN A3
 #define MIN_BATTERY 557  // About 3.59V.
 
@@ -19,7 +17,6 @@ void battery_loop() {
 
     if (reading < MIN_BATTERY) {
         battery_fail += 1;
-        beep(reading, 200);
     } else {
         battery_fail = 0;
     }

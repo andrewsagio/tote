@@ -2,7 +2,6 @@
 #include "misc.h"
 #include "leg.h"
 #include "clock.h"
-#include "beep.h"
 
 
 const unsigned int tones[4] = {880, 988, 1318, 1175};
@@ -106,12 +105,10 @@ void _shift_body(unsigned char leg) {
 void _creep_step(unsigned char leg) {
     _shift_body(leg);
     _on_ground[leg] = false;
-    beep(440, 5);
     for (unsigned char step = 0; step < RAISE_STEPS; ++step) {
         move_leg_by(leg, 0, 0, RAISE);
         _creep_tick();
     }
-    beep(tones[leg], 25);
     move_leg(
         leg,
         HOME + (_shift_x + creep_dx * STRIDE) * LEG_X[leg] + creep_spread,
@@ -120,7 +117,6 @@ void _creep_step(unsigned char leg) {
     );
     _creep_tick();
     _creep_tick();
-    beep(1865, 5);
     for (unsigned char step = 0; step < RAISE_STEPS - 1; ++step) {
         move_leg_by(leg, 0, 0, -RAISE);
         _creep_tick();
