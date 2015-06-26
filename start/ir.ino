@@ -38,6 +38,7 @@ void ir_setup() {
     IRLbegin<IR_ALL>(IR_INTERRUPT);
     pinMode(LED_PIN, OUTPUT);
     digitalWrite(LED_PIN, LOW);
+    Serial.begin(115200);
 }
 
 void ir_loop() {
@@ -52,6 +53,9 @@ void ir_loop() {
         }
         return;
     }
+
+    IRcommand = IRLgetCommand();
+
     if (IRcommand == 0xFFFF) {
         IRcommand = last;
     } else if (IRLgetAddress() != IR_ADDRESS) {
@@ -128,6 +132,8 @@ void ir_loop() {
             creep_dy = 0.0;
             creep_rotation = 0.0;
             break;
+        default:
+            Serial.println(IRcommand);
     }
     IRLreset();
 }
