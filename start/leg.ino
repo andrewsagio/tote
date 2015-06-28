@@ -36,7 +36,8 @@ bool _inverse_kinematics(double x, double y, double z,
     // Return true on success, and false if x and y are out of range.
     double f = _norm(x, y) - COXA;
     double d = _norm(f, z);
-    if (d > FEMUR + TIBIA) { return false; }
+    // if (d > FEMUR + TIBIA) { return false; }
+    d = min(d, FEMUR + TIBIA);
     *hip = atan2(y, x);
     if (isnan(*hip)) { return false; }
     *knee = _solve_triangle(FEMUR, d, TIBIA) - atan2(-z, f);

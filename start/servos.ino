@@ -8,16 +8,15 @@
 
 static const unsigned char SERVO_PINS[SERVOS] = {
 // ankle, knee, hip
-
-/* For Pro Micro
-    14, 16, 10,     // front left
-    A0, A1, A2,     // hind left
-*/
-
     12, 11, 10,     // front left
     14, 15, 16,     // hind left
     6, 5, 4,        // hind right
     7, 8, 9         // front right
+
+//    16, 15, 14,     // front left
+//    17, 18, 19,     // hind left
+//    9, 8, 7,        // hind right
+//    10, 11, 12      // front right
 };
 static const char SERVO_REVERSE[SERVOS] = {
 // ankle, knee, hip
@@ -28,10 +27,10 @@ static const char SERVO_REVERSE[SERVOS] = {
 };
 static const char SERVO_TRIM[SERVOS] = {
 // ankle, knee, hip
-    -10, -5, -10,    // front left
-    10, -5, -10,    // hind left
-    0, 0, 10,    // hind right
-    0, 0, 10     // front right
+    0, 0, 0,    // front left
+    0, 0, 0,    // hind left
+    0, 0, 0,    // hind right
+    0, 0, 0     // front right
 };
 static Servo servos[SERVOS];
 
@@ -53,6 +52,8 @@ static const double FOLD_POSITION[SERVOS] = {
 
 void servo_move(unsigned char servo, double rads) {
     // Move a servo to a position in radians between -PI/2 and PI/2.
+    long int freq;
+
     if (servo >= SERVOS) {
         return;
     }
@@ -63,11 +64,9 @@ void servo_move(unsigned char servo, double rads) {
     while (rads < 0) {
         rads += TAU;
     }
-    int freq = (SERVO_FREQ_MAX -
-                SERVO_FREQ_MIN) * rads / PI + SERVO_FREQ_MIN;
+    freq = (SERVO_FREQ_MAX - SERVO_FREQ_MIN) * rads / PI + SERVO_FREQ_MIN;
     freq = min(SERVO_FREQ_MAX,
-               max(SERVO_FREQ_MIN,
-                   freq + SERVO_TRIM[servo] * 10));
+               max(SERVO_FREQ_MIN, freq + SERVO_TRIM[servo] * 10));
     servos[servo].writeMicroseconds(freq);
 }
 
@@ -75,6 +74,7 @@ void servo_setup() {
     // Initialize all servos.
     // Start with hips.
     for (unsigned char servo = 2; servo < SERVOS; servo += 3) {
+        pinMode(SERVO_PINS[servo], OUTPUT);
         servos[servo].attach(SERVO_PINS[servo],
                              SERVO_FREQ_MIN, SERVO_FREQ_MAX);
         servo_move(servo, HOME_POSITION[servo]);
@@ -82,6 +82,7 @@ void servo_setup() {
     }
     // Then ankles.
     for (unsigned char servo = 0; servo < SERVOS; servo += 3) {
+        pinMode(SERVO_PINS[servo], OUTPUT);
         servos[servo].attach(SERVO_PINS[servo],
                              SERVO_FREQ_MIN, SERVO_FREQ_MAX);
         servo_move(servo, HOME_POSITION[servo]);
@@ -89,6 +90,7 @@ void servo_setup() {
     }
     // Finally knees.
     for (unsigned char servo = 1; servo < SERVOS; servo += 3) {
+        pinMode(SERVO_PINS[servo], OUTPUT);
         servos[servo].attach(SERVO_PINS[servo],
                              SERVO_FREQ_MIN, SERVO_FREQ_MAX);
         servo_move(servo, HOME_POSITION[servo]);

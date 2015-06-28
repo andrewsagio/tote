@@ -4,7 +4,7 @@ void tick(unsigned int ms) {
     // Wait remaining time to delay ms milliseconds since last call.
     static unsigned long last = 0;
     unsigned long now = millis();
-    long wait = last + ms - now;
+    long wait = last - now + ms;
     if (wait > 0) {
         delay(wait);
     } else {

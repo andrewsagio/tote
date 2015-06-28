@@ -2,13 +2,9 @@
 #include "misc.h"
 #include "leg.h"
 #include "clock.h"
-#include "beep.h"
 
-
-const unsigned int tones[4] = {880, 988, 1318, 1175};
 
 /* Creep gait parameters. */
-#ifdef TOTE2
 #define SPEED 1
 /* How far forward to move them when making a step? */
 #define STRIDE 14.0
@@ -20,19 +16,6 @@ const unsigned int tones[4] = {880, 988, 1318, 1175};
 #define RAISE 10.0
 /* In how many steps. */
 #define RAISE_STEPS 3
-#else
-#define SPEED 0.5
-/* How far forward to move them when making a step? */
-#define STRIDE 12.0
-/* How much to shift the body? */
-#define SHIFT 8.0
-/* In how many steps should the body be shifted? */
-#define SHIFT_STEPS 4
-/* How fast to raise the leg. */
-#define RAISE 10.0
-/* In how many steps. */
-#define RAISE_STEPS 3
-#endif
 
 /* Given current leg, which leg to move next? */
 const unsigned char _NEXT_LEG[6][4] = {
@@ -106,12 +89,10 @@ void _shift_body(unsigned char leg) {
 void _creep_step(unsigned char leg) {
     _shift_body(leg);
     _on_ground[leg] = false;
-    beep(440, 5);
     for (unsigned char step = 0; step < RAISE_STEPS; ++step) {
         move_leg_by(leg, 0, 0, RAISE);
         _creep_tick();
     }
-    beep(tones[leg], 25);
     move_leg(
         leg,
         HOME + (_shift_x + creep_dx * STRIDE) * LEG_X[leg] + creep_spread,
@@ -120,7 +101,6 @@ void _creep_step(unsigned char leg) {
     );
     _creep_tick();
     _creep_tick();
-    beep(1865, 5);
     for (unsigned char step = 0; step < RAISE_STEPS - 1; ++step) {
         move_leg_by(leg, 0, 0, -RAISE);
         _creep_tick();
