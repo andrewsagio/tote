@@ -8,7 +8,7 @@ const unsigned char LEG_JOINT[4][3] = {
     {9, 10, 11},
 };
 
-double leg_position[4][3] = {
+float leg_position[4][3] = {
     {HOME, LEG_Y[0] * HOME, -TIBIA},
     {HOME, LEG_Y[0] * HOME, -TIBIA},
     {HOME, LEG_Y[0] * HOME, -TIBIA},
@@ -16,7 +16,7 @@ double leg_position[4][3] = {
 };
 
 
-double _solve_triangle(double a, double b, double c) {
+float _solve_triangle(float a, float b, float c) {
     // Calculate the angle between a and b, opposite to c.
     a = abs(a);
     b = abs(b);
@@ -25,17 +25,17 @@ double _solve_triangle(double a, double b, double c) {
     return acos((a * a + b * b - c * c) / (2 * a * b));
 }
 
-double _norm(double a, double b) {
+float _norm(float a, float b) {
     // Calculate the norm of a vector.
     return sqrt(a * a + b * b);
 }
 
-bool _inverse_kinematics(double x, double y, double z,
-                         double *ankle, double *knee, double *hip) {
+bool _inverse_kinematics(float x, float y, float z,
+                         float *ankle, float *knee, float *hip) {
     // Calculate angles for knee and ankle, and put them in those variables.
     // Return true on success, and false if x and y are out of range.
-    double f = _norm(x, y) - COXA;
-    double d = _norm(f, z);
+    float f = _norm(x, y) - COXA;
+    float d = _norm(f, z);
     // if (d > FEMUR + TIBIA) { return false; }
     d = min(d, FEMUR + TIBIA);
     *hip = atan2(y, x);
@@ -47,11 +47,11 @@ bool _inverse_kinematics(double x, double y, double z,
     return true;
 }
 
-bool move_leg(unsigned char leg, double x, double y, double z) {
+bool move_leg(unsigned char leg, float x, float y, float z) {
     // Move the tip of the leg to x, y. Return false when out of range.
-    double ankle = NaN;
-    double knee = NaN;
-    double hip = NaN;
+    float ankle = NaN;
+    float knee = NaN;
+    float hip = NaN;
     leg_position[leg][0] = x;
     leg_position[leg][1] = y;
     leg_position[leg][2] = z;
@@ -65,7 +65,7 @@ bool move_leg(unsigned char leg, double x, double y, double z) {
     return true;
 }
 
-bool move_leg_by(unsigned char leg, double dx, double dy, double dz) {
+bool move_leg_by(unsigned char leg, float dx, float dy, float dz) {
     // Move the tip of the leg by dx, dy. Return false when out of range.
     return move_leg(leg,
                     leg_position[leg][0] + dx,
@@ -73,11 +73,11 @@ bool move_leg_by(unsigned char leg, double dx, double dy, double dz) {
                     leg_position[leg][2] + dz);
 }
 
-bool rotate_leg_by(unsigned char leg, double angle) {
+bool rotate_leg_by(unsigned char leg, float angle) {
     // Rotate the tip of the leg around the center of robot's body.
-    double x = leg_position[leg][0] + BASE;
-    double y = leg_position[leg][1] + BASE;
-    double nx = x * cos(angle) - y * sin(angle) - BASE;
-    double ny = x * sin(angle) + y * cos(angle) - BASE;
+    float x = leg_position[leg][0] + BASE;
+    float y = leg_position[leg][1] + BASE;
+    float nx = x * cos(angle) - y * sin(angle) - BASE;
+    float ny = x * sin(angle) + y * cos(angle) - BASE;
     return move_leg(leg, nx, ny, leg_position[leg][2]);
 }

@@ -28,15 +28,15 @@ const unsigned char _NEXT_LEG[6][4] = {
 };
 
 /* Body position. */
-static double _shift_x = 0.0;
-static double _shift_y = 0.0;
+static float _shift_x = 0.0;
+static float _shift_y = 0.0;
 
 /* Walking speed. */
-double creep_dx = 0.0;          // Sideways.
-double creep_dy = 1.0;          // Forward.
-double creep_rotation = 0.0;    // Rotation.
-double creep_height = TIBIA; // Body height.
-double creep_spread = 0.0;      // Leg spread.
+float creep_dx = 0.0;          // Sideways.
+float creep_dy = 1.0;          // Forward.
+float creep_rotation = 0.0;    // Rotation.
+float creep_height = TIBIA; // Body height.
+float creep_spread = 0.0;      // Leg spread.
 
 /* Which legs are touching the ground? */
 static bool _on_ground[4] = {true, true, true, true};
@@ -67,7 +67,7 @@ void _creep_tick() {
 }
 
 /* Shifts the whole body by defined amount. */
-void _shift_body_by(double dx, double dy) {
+void _shift_body_by(float dx, float dy) {
     for (unsigned char leg=0; leg < 4; ++leg) {
         move_leg_by(leg, dx * LEG_X[leg], dy * LEG_Y[leg], 0);
     }
@@ -77,8 +77,8 @@ void _shift_body_by(double dx, double dy) {
 
 /* Shifts the body away from the given leg, for balance. */
 void _shift_body(unsigned char leg) {
-    double dx = (LEG_X[leg] * SHIFT - _shift_x) / SHIFT_STEPS;
-    double dy = (LEG_Y[leg] * SHIFT - _shift_y) / SHIFT_STEPS;
+    float dx = (LEG_X[leg] * SHIFT - _shift_x) / SHIFT_STEPS;
+    float dy = (LEG_Y[leg] * SHIFT - _shift_y) / SHIFT_STEPS;
     for (unsigned char i = 0; i < SHIFT_STEPS; ++i) {
         _shift_body_by(dx, dy);
         _creep_tick();
@@ -177,7 +177,7 @@ unsigned char step_order() {
 /* Perform one step of a walk, selected depending on the speed. */
 void walk() {
     static unsigned char leg = 0;
-    double max_speed = max(abs(creep_rotation),
+    float max_speed = max(abs(creep_rotation),
                            max(abs(creep_dx), abs(creep_dy)));
 
     if (max_speed > 1.5) {

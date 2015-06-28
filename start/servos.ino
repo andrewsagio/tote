@@ -34,7 +34,7 @@ static const char SERVO_TRIM[SERVOS] = {
 };
 static Servo servos[SERVOS];
 
-static const double HOME_POSITION[SERVOS] = {
+static const float HOME_POSITION[SERVOS] = {
 // ankle, knee, hip
     0, 0, 0,    // front left
     0, 0, 0,    // hind left
@@ -42,7 +42,7 @@ static const double HOME_POSITION[SERVOS] = {
     0, 0, 0     // front right
 };
 
-static const double FOLD_POSITION[SERVOS] = {
+static const float FOLD_POSITION[SERVOS] = {
 // ankle, knee, hip
     -PI2,  PI2, -PI4,    // front left
     -PI2,  PI2, -PI4,    // hind left
@@ -50,7 +50,7 @@ static const double FOLD_POSITION[SERVOS] = {
     -PI2,  PI2, -PI4     // front right
 };
 
-void servo_move(unsigned char servo, double rads) {
+void servo_move(unsigned char servo, float rads) {
     // Move a servo to a position in radians between -PI/2 and PI/2.
     long int freq;
 
