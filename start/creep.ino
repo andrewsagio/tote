@@ -5,17 +5,17 @@
 
 
 /* Creep gait parameters. */
-#define SPEED 1
+const float SPEED = 1;
 /* How far forward to move them when making a step? */
-#define STRIDE 14.0
+const float STRIDE = 14.0;
 /* How much to shift the body? */
-#define SHIFT 8.0
+const float SHIFT = 8.0;
 /* In how many steps should the body be shifted? */
-#define SHIFT_STEPS 2
+const unsigned char SHIFT_STEPS = 2;
 /* How fast to raise the leg. */
-#define RAISE 10.0
+const float RAISE = 10.0;
 /* In how many steps. */
-#define RAISE_STEPS 3
+const unsigned char RAISE_STEPS = 3;
 
 /* Given current leg, which leg to move next? */
 const unsigned char _NEXT_LEG[6][4] = {
