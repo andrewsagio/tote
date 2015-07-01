@@ -68,7 +68,7 @@ void _creep_tick() {
 
 /* Shifts the whole body by defined amount. */
 void _shift_body_by(float dx, float dy) {
-    for (unsigned char leg=0; leg < 4; ++leg) {
+    for (unsigned char leg = 0; leg < 4; ++leg) {
         move_leg_by(leg, dx * LEG_X[leg], dy * LEG_Y[leg], 0);
     }
     _shift_x += dx;
@@ -149,21 +149,21 @@ void _trot_step(unsigned char leg) {
 
 unsigned char step_order() {
     // Decide on the best leg order.
-    if (abs(creep_dy) > abs(creep_dx)) {
+    if (max(creep_dy, -creep_dy) > max(creep_dx, -creep_dx)) {
         // forward/backward
         if (creep_dy > 0) {
             return 0; // forward
         } else {
             return 1; // backward
         }
-    } else if (abs(creep_dx) > abs(creep_dy)) {
+    } else if (max(creep_dx, -creep_dx) > max(creep_dy, -creep_dy)) {
         // sideways
         if (creep_dx < 0) {
             return 4; // left
         } else {
             return 5; // right
         }
-    } else if (abs(creep_rotation) > 0.001) {
+    } else if (max(creep_rotation, -creep_rotation) > 0.001) {
         // rotate
         if (creep_rotation > 0) {
             return 2; // clockwise
@@ -177,8 +177,9 @@ unsigned char step_order() {
 /* Perform one step of a walk, selected depending on the speed. */
 void walk() {
     static unsigned char leg = 0;
-    float max_speed = max(abs(creep_rotation),
-                           max(abs(creep_dx), abs(creep_dy)));
+    float max_speed = max(max(creep_rotation, -creep_rotation),
+                          max(max(creep_dx, -creep_dx),
+                              max(creep_dy, -creep_dy)));
 
     if (max_speed > 1.5) {
         _trot_step(leg);

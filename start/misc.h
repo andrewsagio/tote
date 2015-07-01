@@ -1,11 +1,10 @@
 #ifndef MISC_H
 #define MISC_H
 
-extern const double PI2;
-extern const double PI4;
-extern const double TAU;
-extern const double SQRT2;
-extern const double NaN;
+extern const float PI2;
+extern const float PI4;
+extern const float TAU;
+extern const float SQRT2;
 
 // Use the larger SG90 servos
 #define TOTE2

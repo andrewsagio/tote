@@ -18,16 +18,16 @@ float leg_position[4][3] = {
 
 float _solve_triangle(float a, float b, float c) {
     // Calculate the angle between a and b, opposite to c.
-    a = abs(a);
-    b = abs(b);
-    c = abs(c);
-    if (a + b < c || a + c < b || b + c < a) { return NaN; }
-    return acos((a * a + b * b - c * c) / (2 * a * b));
+    a = max(a, -a);
+    b = max(b, -b);
+    c = max(c, -c);
+    if (a + b < c || a + c < b || b + c < a) { return NAN; }
+    return acosf((a * a + b * b - c * c) / (2 * a * b));
 }
 
 float _norm(float a, float b) {
     // Calculate the norm of a vector.
-    return sqrt(a * a + b * b);
+    return sqrtf(a * a + b * b);
 }
 
 bool _inverse_kinematics(float x, float y, float z,
@@ -36,11 +36,10 @@ bool _inverse_kinematics(float x, float y, float z,
     // Return true on success, and false if x and y are out of range.
     float f = _norm(x, y) - COXA;
     float d = _norm(f, z);
-    // if (d > FEMUR + TIBIA) { return false; }
-    d = min(d, FEMUR + TIBIA);
-    *hip = atan2(y, x);
+    if (d > FEMUR + TIBIA) { return false; }
+    *hip = atan2f(y, x) - PI4;
     if (isnan(*hip)) { return false; }
-    *knee = _solve_triangle(FEMUR, d, TIBIA) - atan2(-z, f);
+    *knee = _solve_triangle(FEMUR, d, TIBIA) - atan2f(-z, f);
     if (isnan(*knee)) { return false; }
     *ankle = _solve_triangle(FEMUR, TIBIA, d) - PI2;
     if (isnan(*ankle)) { return false; }
@@ -49,19 +48,17 @@ bool _inverse_kinematics(float x, float y, float z,
 
 bool move_leg(unsigned char leg, float x, float y, float z) {
     // Move the tip of the leg to x, y. Return false when out of range.
-    float ankle = NaN;
-    float knee = NaN;
-    float hip = NaN;
-    leg_position[leg][0] = x;
-    leg_position[leg][1] = y;
-    leg_position[leg][2] = z;
-    if (!_inverse_kinematics(x, y, z, &ankle, &knee, &hip)) {
-        return false;
-    }
-    hip -= PI4;
+    float ankle;
+    float knee;
+    float hip;
+
+    if (!_inverse_kinematics(x, y, z, &ankle, &knee, &hip)) { return false; }
     servo_move(LEG_JOINT[leg][0], ankle);
     servo_move(LEG_JOINT[leg][1], knee);
     servo_move(LEG_JOINT[leg][2], hip);
+    leg_position[leg][0] = x;
+    leg_position[leg][1] = y;
+    leg_position[leg][2] = z;
     return true;
 }
 
@@ -75,9 +72,10 @@ bool move_leg_by(unsigned char leg, float dx, float dy, float dz) {
 
 bool rotate_leg_by(unsigned char leg, float angle) {
     // Rotate the tip of the leg around the center of robot's body.
+    if (angle == 0.0) { return true; }
     float x = leg_position[leg][0] + BASE;
     float y = leg_position[leg][1] + BASE;
-    float nx = x * cos(angle) - y * sin(angle) - BASE;
-    float ny = x * sin(angle) + y * cos(angle) - BASE;
+    float nx = x * cosf(angle) - y * sinf(angle) - BASE;
+    float ny = x * sinf(angle) + y * cosf(angle) - BASE;
     return move_leg(leg, nx, ny, leg_position[leg][2]);
 }
