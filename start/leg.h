@@ -15,8 +15,8 @@
 #define BASE    18.5
 #endif
 
-const char LEG_X[4] = {-1, -1, 1, 1};
-const char LEG_Y[4] = {1, -1, -1, 1};
+const signed char LEG_X[4] = {-1, -1, 1, 1};
+const signed char LEG_Y[4] = {1, -1, -1, 1};
 extern double leg_position[4][3];
 const double HOME = (COXA + FEMUR) / SQRT2;
 
