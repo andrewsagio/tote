@@ -11,6 +11,7 @@ int robot_mode = 1;
 
 
 void setup() {
+    Serial.begin(115200);
     servo_setup();
     pinMode(13, OUTPUT);
     digitalWrite(13, HIGH);

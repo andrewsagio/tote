@@ -11,11 +11,11 @@ const float STRIDE = 14.0;
 /* How much to shift the body? */
 const float SHIFT = 8.0;
 /* In how many steps should the body be shifted? */
-const unsigned char SHIFT_STEPS = 2;
+const int SHIFT_STEPS = 2;
 /* How fast to raise the leg. */
 const float RAISE = 10.0;
 /* In how many steps. */
-const unsigned char RAISE_STEPS = 3;
+const int RAISE_STEPS = 3;
 
 /* Given current leg, which leg to move next? */
 const unsigned char _NEXT_LEG[6][4] = {
@@ -68,7 +68,19 @@ void _creep_tick() {
 
 /* Shifts the whole body by defined amount. */
 void _shift_body_by(float dx, float dy) {
+    Serial.println("_shift_body_by()");
+    Serial.print("dx = ");
+    Serial.println(dx);
+    Serial.print("dy = ");
+    Serial.println(dy);
+
     for (unsigned char leg = 0; leg < 4; ++leg) {
+        Serial.print("leg = ");
+        Serial.println(leg);
+        Serial.print("LEG_X[leg] = ");
+        Serial.println(LEG_X[leg], DEC);
+        Serial.print("LEG_Y[leg] = ");
+        Serial.println(LEG_Y[leg], DEC);
         move_leg_by(leg, dx * LEG_X[leg], dy * LEG_Y[leg], 0);
     }
     _shift_x += dx;
@@ -77,8 +89,31 @@ void _shift_body_by(float dx, float dy) {
 
 /* Shifts the body away from the given leg, for balance. */
 void _shift_body(unsigned char leg) {
-    float dx = (LEG_X[leg] * SHIFT - _shift_x) / SHIFT_STEPS;
-    float dy = (LEG_Y[leg] * SHIFT - _shift_y) / SHIFT_STEPS;
+    Serial.println("_shift_body()");
+    Serial.print("leg = ");
+    Serial.println(leg);
+    Serial.print("LEG_X[leg] = ");
+    Serial.println(LEG_X[leg]);
+    Serial.print("SHIFT = ");
+    Serial.println(SHIFT);
+    float dx = LEG_X[leg] * SHIFT;
+    Serial.print("dx = ");
+    Serial.println(dx);
+    dx -= _shift_x;
+    Serial.print("dx = ");
+    Serial.println(dx);
+    dx /= SHIFT_STEPS;
+    Serial.print("dx = ");
+    Serial.println(dx);
+    float dy = LEG_Y[leg] * SHIFT;
+    Serial.print("dy = ");
+    Serial.println(dy);
+    dy -= _shift_y;
+    Serial.print("dy = ");
+    Serial.println(dy);
+    dy /= SHIFT_STEPS;
+    Serial.print("dy = ");
+    Serial.println(dy);
     for (unsigned char i = 0; i < SHIFT_STEPS; ++i) {
         _shift_body_by(dx, dy);
         _creep_tick();
