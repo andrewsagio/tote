@@ -21,7 +21,9 @@ double _solve_triangle(double a, double b, double c) {
     a = abs(a);
     b = abs(b);
     c = abs(c);
-    if (a + b < c || a + c < b || b + c < a) { return NaN; }
+    c = min(c, a + b);
+    b = min(b, a + c);
+    a = min(a, b + c);
     return acos((a * a + b * b - c * c) / (2 * a * b));
 }
 
@@ -36,7 +38,7 @@ bool _inverse_kinematics(double x, double y, double z,
     // Return true on success, and false if x and y are out of range.
     double f = _norm(x, y) - COXA;
     double d = _norm(f, z);
-    if (d > FEMUR + TIBIA) { return false; }
+    d = min(d, FEMUR + TIBIA);
     *hip = atan2(y, x);
     if (isnan(*hip)) { return false; }
     *knee = _solve_triangle(FEMUR, d, TIBIA) - atan2(-z, f);
