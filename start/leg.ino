@@ -50,9 +50,9 @@ bool _inverse_kinematics(double x, double y, double z,
 
 bool move_leg(unsigned char leg, double x, double y, double z) {
     // Move the tip of the leg to x, y. Return false when out of range.
-    double ankle = NaN;
-    double knee = NaN;
-    double hip = NaN;
+    double ankle = NAN;
+    double knee = NAN;
+    double hip = NAN;
     leg_position[leg][0] = x;
     leg_position[leg][1] = y;
     leg_position[leg][2] = z;
