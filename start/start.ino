@@ -4,6 +4,7 @@
 #include "battery.h"
 #include "creep.h"
 #include "leg.h"
+#include "sharp.h"
 
 #include <avr/sleep.h>
 
@@ -32,6 +33,7 @@ void loop() {
             }
             break;
         case 1:
+            sharp_loop();
             walk();
             break;
         case 2: // Nothing
