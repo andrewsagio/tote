@@ -19,6 +19,7 @@ void setup() {
     servo_setup();
     beep_setup();
     ir_setup();
+    sharp_setup();
 }
 
 void loop() {
