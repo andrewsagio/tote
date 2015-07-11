@@ -41,32 +41,7 @@ void ir_setup() {
     Serial.begin(115200);
 }
 
-void ir_loop() {
-    static uint32_t last=0;
-    uint32_t IRcommand = 0;
-    bool led = true;
-
-    if (!IRLavailable()) {
-        if (led) {
-            digitalWrite(LED_PIN, LOW);
-            led = false;
-        }
-        return;
-    }
-
-    IRcommand = IRLgetCommand();
-
-    if (IRcommand == 0xFFFF) {
-        IRcommand = last;
-    } else if (IRLgetAddress() != IR_ADDRESS) {
-        IRLreset();
-        return; // React only to my remote.
-    }
-    last = IRcommand;
-
-    beep(1319, 50);
-    digitalWrite(LED_PIN, HIGH);
-
+void tv_remote(uint32_t IRcommand) {
     switch (IRcommand) {
         case KEY_UP:    // Up arrow.
             creep_dy = min(3, creep_dy + 0.25);
@@ -134,6 +109,56 @@ void ir_loop() {
             break;
         default:
             Serial.println(IRcommand);
+    }
+}
+
+
+void ir_loop() {
+    static uint32_t last=0;
+    uint32_t IRcommand = 0;
+    uint32_t IRaddress = 0;
+    bool led = true;
+
+    if (!IRLavailable()) {
+        if (led) {
+            digitalWrite(LED_PIN, LOW);
+            led = false;
+        }
+        return;
+    }
+
+    IRcommand = IRLgetCommand();
+    IRaddress = IRLgetAddress();
+
+    if (IRcommand == 0xFFFF) {
+        IRcommand = last;
+        IRaddress = IR_ADDRESS;
+    }
+
+    beep(1319, 50);
+    digitalWrite(LED_PIN, HIGH);
+
+    switch (IRaddress) {
+        case IR_ADDRESS:
+            tv_remote(IRcommand);
+            last = IRcommand;
+            break;
+        case 0xFA10:
+            creep_dx = -(0.0 +
+                         (IRcommand & 0xFF) - 128) / 42.5;
+            break;
+        case 0xFA00:
+            creep_rotation = (0.0 +
+                              (IRcommand & 0xFF) - 128) / 3652.605943958998;
+            break;
+        case 0xFA11:
+            creep_height = min(TIBIA * 1.25,
+                max(TIBIA * 0.25,
+                    creep_height + (0.0 + (IRcommand & 0xFF) - 128) / 64));
+            break;
+        case 0xFA01:
+            creep_dy = (0.0 + (IRcommand & 0xFF) - 128) / 42.5;
+            break;
     }
     IRLreset();
 }
