@@ -13,10 +13,15 @@ static const unsigned char SERVO_PINS[SERVOS] = {
 //    6, 5, 4,        // hind right
 //    7, 8, 9         // front right
 
-    16, 15, 14,     // front left
-    17, 18, 19,     // hind left
-    9, 8, 7,        // hind right
-    10, 11, 12      // front right
+//    16, 15, 14,     // front left
+//    17, 18, 19,     // hind left
+//    9, 8, 7,        // hind right
+//    10, 11, 12      // front right
+
+    PB6, PA11, PA8,
+    PB7, PB8, PB9,
+    PA3, PA2, PA1,
+    PA7, PB0, PB1
 };
 static const int SERVO_REVERSE[SERVOS] = {
 // ankle, knee, hip
