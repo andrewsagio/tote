@@ -1,6 +1,6 @@
-#define BEEP_PIN 3
+#define BEEP_PIN 13
 
-bool beep_mute = true;
+bool beep_mute = false;
 
 
 void beep_setup() {
