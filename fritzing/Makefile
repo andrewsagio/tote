@@ -1,5 +1,5 @@
 FRITZING=fritzing
-PCBS=pcb2.zip pcb3.zip
+PCBS=pcb2.zip pcb3.zip pcb4.zip
 
 all: $(PCBS)
 
