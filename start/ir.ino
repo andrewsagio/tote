@@ -6,7 +6,6 @@
 #include "IRLremote.h"
 
 
-#define LED_PIN 13
 #define IR_INTERRUPT 0 // Sensor on PIN 2
 #define IR_PROTOCOL IR_NEC
 #define IR_ADDRESS 0xFF00
@@ -36,21 +35,13 @@ extern int robot_mode;
 
 void ir_setup() {
     IRLbegin<IR_ALL>(IR_INTERRUPT);
-    pinMode(LED_PIN, OUTPUT);
-    digitalWrite(LED_PIN, LOW);
-    Serial.begin(115200);
 }
 
 void ir_loop() {
     static uint32_t last=0;
     uint32_t IRcommand = 0;
-    bool led = true;
 
     if (!IRLavailable()) {
-        if (led) {
-            digitalWrite(LED_PIN, LOW);
-            led = false;
-        }
         return;
     }
 
@@ -65,7 +56,6 @@ void ir_loop() {
     last = IRcommand;
 
     beep(1319, 50);
-    digitalWrite(LED_PIN, HIGH);
 
     switch (IRcommand) {
         case KEY_UP:    // Up arrow.
@@ -109,7 +99,6 @@ void ir_loop() {
             break;
         case KEY_POWER:    // Power.
         case KEY_POWER2:    // Power.
-            digitalWrite(LED_PIN, LOW);
             robot_mode = 0;
             break;
         case KEY_SEARCH:    // Search.
