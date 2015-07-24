@@ -14,7 +14,6 @@ void sharp_loop() {
     }
     distance /= 10;
     Serial.println(distance);
-    // Stop if there is an object closer than 15cm ahead.
     if (distance > 660) {
         creep_dx = 0;
         creep_dy = -1;
