@@ -14,16 +14,16 @@ void sharp_loop() {
     }
     distance /= 10;
     Serial.println(distance);
-    if (distance > 660) {
+    if (distance > 700) {
         creep_dx = 0;
         creep_dy = -1;
         creep_rotation = 0;
         beep(352, 100);
-    } else if (distance > 480) {
+    } else if (distance > 520) {
         creep_dx = 0;
         creep_dy = 0;
         creep_rotation = 0;
-    } else if (distance > 420) {
+    } else if (distance > 260) {
         creep_dx = 0;
         creep_dy = 1;
         creep_rotation = 0;
