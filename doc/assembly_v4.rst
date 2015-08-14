@@ -108,7 +108,7 @@ Note, that there are two versions of Pro Mini, differing in where the pins A6
 and A7 are located. This board works with both of them, just pick the right
 place for one of the short headers.
 
-.. image:: images/v4/IMG_20150811_103143.jpg
+.. image:: images/v4b/IMG_20150811_103143.jpg
     :align: center
 
 
@@ -265,20 +265,20 @@ in the corners of the board. Depending on the exact model and manufacturer of
 the servo, the horns may be too big to fit -- then you have to use a file to
 either make the holes a little larger, or the horns a little smaller.
 
-.. image:: images/v4b/IMG_20150811_105213.jpg
+.. image:: images/v4/IMG_20150811_105213.jpg
     :align: center
 
 Attach the horns with two screws each:
 
-.. image:: images/v4b/IMG_20150811_105322.jpg
+.. image:: images/v4/IMG_20150811_105322.jpg
     :align: center
 
-.. image:: images/v4b/IMG_20150811_105328.jpg
+.. image:: images/v4/IMG_20150811_105328.jpg
     :align: center
 
 And then you can attach the leg servo:
 
-.. image:: images/v4b/IMG_20150811_105400.jpg
+.. image:: images/v4/IMG_20150811_105400.jpg
     :align: center
 
 Make sure it can rotate freely, without heating the heads of the screws. Use
