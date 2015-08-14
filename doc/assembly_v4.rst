@@ -85,7 +85,7 @@ a dashed line:
 Note that it may be more convenient to use an angled header for the battery
 connector.
 
-.. image:: images/v4/IMG_20150813_174718.jpg
+.. image:: images/v4b/IMG_20150813_174718.jpg
     :align: center
 
 
