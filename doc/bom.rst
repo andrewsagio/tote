@@ -42,8 +42,7 @@ the board are available in the repository_ in form of files for the Fritzing_
 program. You can use that program to open the files, optionally make any
 changes you want, and export them to whatever format you require. Then you can
 send your designs to a prototype board fabrication service and have them
-created for you. There are two versions of the board, single-layer ``pcb.fzz``
-and double-layer ``pcb2.fzz``. The double-layer one is preferred.
+created for you.
 
 If you don't have an access to a prototype board fabrication service, or don't
 want to use it, you can also create the board yourself, or even use a
@@ -59,7 +58,7 @@ board`_. If you do so, I will get a $1. You can also order the board anywhere
 else, using those `gerber files`_.
 
 .. _`order the board`: http://dirtypcbs.com/view.php?share=6918&accesskey=97f6a684899c11fcc50da07808869f5d
-.. _`gerber files`: https://bitbucket.org/thesheep/tote/src/tip/fritzing/pcb2.zip
+.. _`gerber files`: https://bitbucket.org/thesheep/tote/src/tip/fritzing/pcb4.zip
 
 
 Arduino Pro Mini
