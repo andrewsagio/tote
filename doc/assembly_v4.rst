@@ -307,16 +307,6 @@ Put the legs together.
 .. image:: scad/assembly03.png
     :align: center
 
-First, attach the four servos to the body.
-
-.. image:: images/IMG_20150527_155801.jpg
-    :align: center
-
-Connect them to the outermost servo sockets. Make sure that the yellow wire is
-inside, and the brown wire outside for all the servos.
-
-.. image:: images/IMG_20150527_155818.jpg
-    :align: center
 
 Screw the bigger screws into the double servo horn . You will need to use some
 force, because the holes in the horns are much smaller. Fortunately the plastic
@@ -362,24 +352,11 @@ too small for it to stick properly. Use glue.
 You can put a piece of rubber (a small rubber hose works best) at the tip of
 the leg, to give the robot better traction.
 
-Make sure to attach the right legs in the right orientation, as on the image.
-
-.. image:: scad/tote.png
-    :align: center
-
 Connect all the servos plugs into their respective sockets. The outermost
 socket for every leg is the hip, then knee, then ankle. Make sure the yellow
 wire is on the inside, and the brown one on the outside.
 
-.. image:: images/IMG_20150528_104941.jpg
-    :align: center
-
-Attach the battery on the bottom of the printed circuit board. You can use a
-rubber band or a double-sided adhesive tape. When connecting the battery, be
-careful to connect the negative wire to the board's mass, and the positive one
-to the switch (there is a small plus printed on the board).
-
-.. image:: images/IMG_20150528_114105.jpg
+.. image:: images/v4/IMG_20150811_112105.jpg
     :align: center
 
 If you want, you can tie the cables together to make the robot look better and
