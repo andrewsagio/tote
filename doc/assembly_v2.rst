@@ -1,5 +1,5 @@
-Assembly Instructions
-*********************
+Assembly Instructions for PCB Version 2
+***************************************
 
 
 Electronics

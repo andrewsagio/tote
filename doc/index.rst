@@ -26,7 +26,8 @@ Contents:
    intro.rst
    bom.rst
    tools.rst
-   assembly.rst
+   assembly_v2.rst
+   assembly_v4.rst
    electronics.rst
    software.rst
    hacking.rst
