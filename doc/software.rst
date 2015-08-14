@@ -75,7 +75,7 @@ which it is moving.
 Beeper
 ------
 
-If you connect a piezo buzzer to pin 3 and ground, you can make this robot
+If you connect a piezo buzzer to pin 13 and ground, you can make this robot
 beep with every step and when it receives a command. This is muted by default
 and has to be enabled with a button on the remote, because it's so annoying.
 
