@@ -108,7 +108,7 @@ Note, that there are two versions of Pro Mini, differing in where the pins A6
 and A7 are located. This board works with both of them, just pick the right
 place for one of the short headers.
 
-.. image:: images/v4b/IMG_20150811_103143.jpg
+.. image:: images/v4/IMG_20150811_103143.jpg
     :align: center
 
 
