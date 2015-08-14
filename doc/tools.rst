@@ -6,4 +6,5 @@ You will need:
  * USB2TTL module, with cables,
  * cyano-acrylic glue, or other glue suitable for gluing plastic,
  * small Phillips screwdriver,
+ * metal file,
  * TV remote.
