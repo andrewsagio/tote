@@ -18,6 +18,7 @@ void setup() {
     servo_setup();
     beep_setup();
     ir_setup();
+    walk_setup();
 }
 
 void loop() {

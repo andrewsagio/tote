@@ -16,11 +16,11 @@
 /* How fast to raise the leg. */
 #define RAISE 10.0
 /* In how many steps. */
-#define RAISE_STEPS 3
+#define RAISE_STEPS 4
 #else
 #define SPEED 0.5
 /* How far forward to move them when making a step? */
-#define STRIDE 12.0
+#define STRIDE 8.0
 /* How much to shift the body? */
 #define SHIFT 8.0
 /* In how many steps should the body be shifted? */
@@ -99,6 +99,19 @@ void _shift_body(unsigned char leg) {
     }
 }
 
+void _creep_lower_leg(unsigned char leg) {
+    for (unsigned char step = 0; step < 2 * RAISE * RAISE_STEPS - 1; ++step) {
+        move_leg_by(leg, 0, 0, -1);
+        tick(TICK);
+        if (!digitalRead(3)) {
+            break;
+            beep(1760, 250);
+        }
+    }
+    _on_ground[leg] = true;
+    _creep_tick();
+}
+
 /* Perform a full step with a single leg. */
 void _creep_step(unsigned char leg) {
     _shift_body(leg);
@@ -115,12 +128,7 @@ void _creep_step(unsigned char leg) {
     );
     _creep_tick();
     _creep_tick();
-    for (unsigned char step = 0; step < RAISE_STEPS - 1; ++step) {
-        move_leg_by(leg, 0, 0, -RAISE);
-        _creep_tick();
-    }
-    _on_ground[leg] = true;
-    _creep_tick();
+    _creep_lower_leg(leg);
 }
 
 
@@ -186,6 +194,10 @@ unsigned char step_order() {
         }
     }
     return 0; // default to forward
+}
+
+void walk_setup() {
+    pinMode(3, INPUT_PULLUP);
 }
 
 /* Perform one step of a walk, selected depending on the speed. */
