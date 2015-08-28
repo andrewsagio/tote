@@ -284,6 +284,14 @@ And then you can attach the leg servo:
 Make sure it can rotate freely, without heating the heads of the screws. Use
 a file if there is a problem.
 
+Note that when attaching the legs to the body, you will need to adjust the
+angles servo horns -- all previous versions of the board had the horns
+attached diagonally, but this version has them in parallel to the board. That
+means that you have to remove the screw, remove the horn, rotate the whole leg
+by 45°, put it back into the horn, and replace the screw. At the neutral position the leg should be sticking out at 45° from the body, shown here:
+
+.. image:: images/v4/IMG_20150811_110828.jpg
+    :align: center
 
 Legs
 ====
@@ -306,7 +314,6 @@ Put the legs together.
 
 .. image:: scad/assembly03.png
     :align: center
-
 
 Screw the bigger screws into the double servo horn . You will need to use some
 force, because the holes in the horns are much smaller. Fortunately the plastic
