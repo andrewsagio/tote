@@ -6,4 +6,4 @@ legs, with Ardunio (Pro Mini) for the brain and controlled by a TV remote. It
 is supposed to be very simple, very cheap and very sturdy (but please don't
 step on it).
 
-See the documentation at (http://tote.rtfd.org)_.
+See the documentation at http://tote.rtfd.org 
