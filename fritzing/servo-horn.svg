@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   xmlns:dc="http://purl.org/dc/elements/1.1/"
+   xmlns:cc="http://creativecommons.org/ns#"
+   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
+   xmlns:svg="http://www.w3.org/2000/svg"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   width="70.601013mm"
+   height="69.492416mm"
+   viewBox="0 0 250.16107 246.23297"
+   id="svg2"
+   version="1.1"
+   inkscape:version="0.91 r13725"
+   sodipodi:docname="servo-horn.svg">
+  <defs
+     id="defs4">
+    <inkscape:path-effect
+       effect="envelope"
+       id="path-effect4143"
+       is_visible="true"
+       yy="true"
+       xx="true"
+       bendpath1="m 105.71429,155.21934 312.65284,0"
+       bendpath2="m 418.36713,155.21934 0,97.14286"
+       bendpath3="m 105.71429,252.3622 312.65284,0"
+       bendpath4="m 105.71429,155.21934 0,97.14286" />
+  </defs>
+  <sodipodi:namedview
+     id="base"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:pageopacity="0.0"
+     inkscape:pageshadow="2"
+     inkscape:zoom="0.7"
+     inkscape:cx="321.34084"
+     inkscape:cy="-120.90975"
+     inkscape:document-units="px"
+     inkscape:current-layer="layer1"
+     showgrid="false"
+     fit-margin-top="0"
+     fit-margin-left="0"
+     fit-margin-right="0"
+     fit-margin-bottom="0"
+     inkscape:window-width="1256"
+     inkscape:window-height="1027"
+     inkscape:window-x="135"
+     inkscape:window-y="27"
+     inkscape:window-maximized="0" />
+  <metadata
+     id="metadata7">
+    <rdf:RDF>
+      <cc:Work
+         rdf:about="">
+        <dc:format>image/svg+xml</dc:format>
+        <dc:type
+           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
+        <dc:title></dc:title>
+      </cc:Work>
+    </rdf:RDF>
+  </metadata>
+  <g
+     inkscape:label="Layer 1"
+     inkscape:groupmode="layer"
+     id="layer1"
+     transform="translate(-173.09978,-53.432974)">
+    <path
+       style="opacity:1;fill:none;fill-opacity:1;stroke:#000000;stroke-width:9.00000095;stroke-linecap:round;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1"
+       d="m 280.6072,75.583303 a 60.356613,60.356613 0 0 0 -85.35829,0 60.356613,60.356613 0 0 0 0.001,85.356907 60.356613,60.356613 0 0 0 64.32601,13.61318 l 112.63714,112.63714 c 10.68428,10.68428 27.88755,10.68291 38.57184,-0.001 10.68428,-10.68428 10.68428,-27.88617 0,-38.57045 L 296.12902,133.96243 A 60.356613,60.356613 0 0 0 280.6072,75.583303 Z"
+       id="rect4145"
+       inkscape:connector-curvature="0" />
+  </g>
+</svg>
