@@ -65,9 +65,9 @@ void servo_move(unsigned char servo, double rads) {
     }
     int freq = (SERVO_FREQ_MAX -
                 SERVO_FREQ_MIN) * rads / PI + SERVO_FREQ_MIN;
-    freq = min(SERVO_FREQ_MAX,
-               max(SERVO_FREQ_MIN,
-                   freq + SERVO_TRIM[servo] * 10));
+    freq = constrain(freq + SERVO_TRIM[servo]*10, SERVO_FREQ_MIN,
+ SERVO_FREQ_MAX);
+
     servos[servo].writeMicroseconds(freq);
 }
 
