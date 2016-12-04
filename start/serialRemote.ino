@@ -10,7 +10,7 @@ void serial_setup(){
     
 }
 
-void serial_loop(){
+int serial_loop(){
     if (!serialRemoteOn)
         return;  // function off
    char sdata[256];
@@ -28,23 +28,12 @@ void serial_loop(){
     sdata[bytes] = '\0';   // make it a proper string
     Serial.print("Received: ");
     Serial.println(sdata);
+    robot_mode = atoi(sdata);
+    return robot_mode;
   }
   
-  switch(sdata[0]){
-      case '0':
-        robot_mode = 0;
-        break;
-      case '1':
-        robot_mode = 1;
-        break;
-      case '2':
-        robot_mode = 2;
-        break;
-      case '3':
-        robot_mode = 3;
-        break;
-  }
-  return;
+  
+  return -1;
 
 
     

@@ -51,6 +51,15 @@ static const double FOLD_POSITION[SERVOS] = {
     -PI2,  PI2, -PI4     // front right
 };
 
+static const double STAND_POSITION[SERVOS] = {
+// ankle, knee, hip
+    PI2,  -PI2, -PI4,    // front left
+    PI2,  -PI2, -PI4,    // hind left
+    PI2,  -PI2, -PI4,    // hind right
+    PI2,  -PI2, -PI4     // front right
+};
+
+
 void servo_move(unsigned char servo, double rads) {
     // Move a servo to a position in radians between -PI/2 and PI/2.
     if (servo >= SERVOS) {
@@ -104,5 +113,17 @@ void servo_shutdown() {
     delay(500);
     for (unsigned char servo = 0; servo < SERVOS; ++servo) {
         servos[servo].detach();
+    }
+}
+
+void servo_fold(){
+    for (unsigned char servo = 0; servo < SERVOS; ++servo) {
+        servo_move(servo, FOLD_POSITION[servo]);
+    }
+}
+
+void servo_stand(){
+    for (unsigned char servo = 0; servo < SERVOS; ++servo) {
+        servo_move(servo, STAND_POSITION[servo]);
     }
 }

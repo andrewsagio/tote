@@ -8,13 +8,24 @@
 
 #include <avr/sleep.h>
 
-// 0 -- Power off
-// 1 -- Walk
-// 2 -- Nothing
+const int maxNumModes = 10;
+
+const char* modeComment[maxNumModes];
+
+
+
+
+
+
 int robot_mode = 2;
 
 
 void setup() {
+    modeComment[0] = "0: fold up";
+    modeComment[1] = "1: Walk";
+    modeComment[2] = "2: Stop";
+    modeComment[3] = "3: Stand";
+    
     battery_setup();
     servo_setup();
     //beep_setup();
@@ -27,7 +38,8 @@ void loop() {
     
     switch (robot_mode) {
         case 0: // Power off
-            servo_shutdown();
+            servo_fold();
+//            servo_shutdown();
 //            set_sleep_mode(SLEEP_MODE_PWR_DOWN);
 //            sleep_enable();
 //            sleep_mode();
@@ -38,12 +50,20 @@ void loop() {
         case 1:
             walk();
             break;
-        case 3:  // start up
+        case 2:  // stop
             servo_setup();
             break;
+        case 3:
+            servo_stand();
+            break;
+            
     }
     //ir_loop();
     //battery_loop();
-    serial_loop();
+    int modeIn = serial_loop();
+    if (modeIn >=0 && modeIn < maxNumModes ){
+        Serial.println(modeComment[modeIn]);
+    }
+    
     //Serial.println("test");
 }

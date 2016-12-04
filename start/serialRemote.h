@@ -9,6 +9,6 @@ const bool serialRemoteOn = true;
 
 void serial_setup();
 
-void serial_loop();
+int serial_loop();
 
 #endif
